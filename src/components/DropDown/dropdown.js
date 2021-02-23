@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { MDBBtn, MDBCol, MDBCollapse, MDBIcon, MDBRow } from "mdbreact";
 import './dropdown.css'
+import Hourly from './hourly';
 import { MDBAnimation } from "mdbreact";
 
 
@@ -31,10 +32,8 @@ class Dropdown extends Component {
                         </MDBAnimation>
                     </MDBCol>
                     <MDBCol className="line" size="5"></MDBCol>
-                    <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID}>
-                        <p>
-                            This is where the daily forecast will go very soon! we will add so much more and dnehunuencejkejeijf
-                        </p>
+                    <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} style={{overflowX:"scroll"}}>
+                        <Hourly />
                     </MDBCollapse>
                 </MDBRow>
             </div>

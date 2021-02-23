@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell } from './WeatherAPI'
 import Overview from './components/DropDown/overview';
 import AddressBar from "./components/AddressBar/AddressBar";
 import React, { Component } from "react";
@@ -34,10 +35,11 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Overview />
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
+                <Overview />
             </div>
         )
+}
 }
 
 export default App;
