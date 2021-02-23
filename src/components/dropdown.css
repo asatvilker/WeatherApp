@@ -1,0 +1,25 @@
+#dropdown .btn-default
+{
+    border-radius: 50% !important;
+    padding: 1vh 1.5vh;
+    background-color: transparent !important;
+    border: 0.1vh solid white !important;
+    position: relative;
+    top:-4vh;
+}
+#dropdown .line
+{
+    border-top: 0.1vh solid white;
+}
+#dropdown
+{
+    width: 100%;
+    margin-top: 8vh;
+    margin-left: 2vh;
+    margin-right: 2vh;
+    margin-bottom: 5vh;
+}
+.row
+{
+    margin:0 !important;
+}
