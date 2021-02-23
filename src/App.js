@@ -39,6 +39,7 @@ class App extends Component {
                 <Overview />
             </div>
         )
+    }
 }
 }
 
