@@ -19,6 +19,18 @@ class App extends Component {
         }
     }
 
+    setSettings(newSettings) {
+        console.log("hello");
+        this.setState(newSettings);
+        //refresh data
+        if (newSettings.hasOwnProperty("lat")) {
+            console.log("Ran update");
+            getHourForecastClimaCell(this.state, this.setSettings.bind(this));
+            getMinuteData(this.state, this.setSettings.bind(this));
+            getDayForecastClimaCell(this.state, this.setSettings.bind(this));
+        }
+    }
+    
     render() {
         return (
             <div className="App">
@@ -26,7 +38,6 @@ class App extends Component {
                 <AddressBar/>
             </div>
         )
-    }
 }
 
 export default App;
