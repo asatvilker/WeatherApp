@@ -35,7 +35,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Overview />
-                <AddressBar/>
+                <AddressBar setSettings={this.setSettings.bind(this)}/>
             </div>
         )
 }
