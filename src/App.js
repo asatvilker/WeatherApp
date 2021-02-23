@@ -38,6 +38,7 @@ class App extends Component {
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
             </div>
         )
+    }
 }
 
 export default App;
