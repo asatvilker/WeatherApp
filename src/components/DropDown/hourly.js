@@ -5,12 +5,11 @@ import { MDBAnimation } from "mdbreact";
 import HourlyComponent from './hourlyFcstComponent';
 class Hourly extends Component {
 state = {
-  hour:"10:00",
-  temp:"22",
-  condition:"Cloudy",
+  
 }
 
 componentDidMount(){
+  
   
 }
 
@@ -18,12 +17,20 @@ render() {
   return (
       <div id="hourly">
         <MDBContainer className="d-flex flex-row hourlyContainer">
-          <HourlyComponent hour={this.state.hour} temp={this.state.temp} condition={this.state.condition}/>
-          <HourlyComponent hour={this.state.hour} temp={this.state.temp} condition={this.state.condition}/>
-          <HourlyComponent hour={this.state.hour} temp={this.state.temp} condition={this.state.condition}/>
-          <HourlyComponent hour={this.state.hour} temp={this.state.temp} condition={this.state.condition}/>
-          <HourlyComponent hour={this.state.hour} temp={this.state.temp} condition={this.state.condition}/>
-          <HourlyComponent hour={this.state.hour} temp={this.state.temp} condition={this.state.condition}/>
+            {
+                this.props.data.map(data => {
+                    var date = data.time.toString()
+                    date= date.split(" ")[4]
+                    var hour=date.split(":")[0]
+                    hour=hour.concat(":00")
+                    var temp=Math.round(data.temperature)
+                    return(
+                        <HourlyComponent hour={hour} temp={temp} condition={data.weatherDesc}/>
+                    )
+                    
+                })
+            }
+        
         </MDBContainer>
     
     </ div>

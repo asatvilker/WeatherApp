@@ -14,6 +14,7 @@ class Dropdown extends Component {
         this.setState(prevState => ({
             collapseID: prevState.collapseID !== collapseID ? collapseID : ""
         }));
+        
     }
 
     render() {
@@ -32,8 +33,8 @@ class Dropdown extends Component {
                         </MDBAnimation>
                     </MDBCol>
                     <MDBCol className="line" size="5"></MDBCol>
-                    <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} style={{overflowX:"scroll"}}>
-                        <Hourly />
+                    <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} style={{overflowX:"scroll", marginBottom:"5vh"}}>
+                        <Hourly data={this.props.data}/>
                     </MDBCollapse>
                 </MDBRow>
             </div>

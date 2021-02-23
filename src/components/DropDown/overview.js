@@ -11,8 +11,8 @@ state = {
 
 render() {
   return (
-      <>
-          <Dropdown />
+      <>  
+          <Dropdown data={this.props.data.hourly}/>
           <p>Press the button!</p>
     </>
     );

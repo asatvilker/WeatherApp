@@ -31,12 +31,17 @@ class App extends Component {
             getDayForecastClimaCell(this.state, this.setSettings.bind(this));
         }
     }
+    componentDidMount(){
+        getHourForecastClimaCell(this.state, this.setSettings.bind(this));
+        getMinuteData(this.state, this.setSettings.bind(this));
+        getDayForecastClimaCell(this.state, this.setSettings.bind(this));
+    }
     
     render() {
         return (
             <div className="App">
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
-                <Overview />
+                <Overview data={this.state}/>
             </div>
         )
     }

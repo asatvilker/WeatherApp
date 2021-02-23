@@ -16,7 +16,7 @@
     width: 100%;
     margin-top: 8vh;
     
-    margin-bottom: 5vh;
+    margin-bottom: 0vh;
 }
 .row
 {
@@ -33,6 +33,16 @@
     background-color: #f8f9fa33;
     padding: 2vh;
     border-radius: 5%;
+    min-height: 23vh;
+    min-width: 14vh;
+}
+#hourlyComponent h1{
+    font-size: 3.2vh;
+
+}
+#hourlyComponent h2
+{
+    font-size: 3vh;
 }
 .hourlyContainer{
     padding-left: 0;
