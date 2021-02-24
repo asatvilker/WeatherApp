@@ -41,7 +41,7 @@ class App extends Component {
         return (
             <div className="App">
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
-                <Overview data={this.state}/>
+                <Overview data={this.state} date={this.state.date} address={this.state.address}/>
             </div>
         )
     }

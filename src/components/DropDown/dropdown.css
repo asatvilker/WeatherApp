@@ -14,7 +14,7 @@
 #dropdown
 {
     width: 100%;
-    margin-top: 8vh;
+    margin-top: 4vh;
     
     margin-bottom: 0vh;
 }
@@ -49,4 +49,7 @@
     padding-right: 0;
     padding-bottom: 2vh;
     
+}
+.turn{
+    transform: rotate(180deg);
 }

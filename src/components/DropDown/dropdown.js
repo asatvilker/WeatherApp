@@ -14,6 +14,8 @@ class Dropdown extends Component {
         this.setState(prevState => ({
             collapseID: prevState.collapseID !== collapseID ? collapseID : ""
         }));
+        var element = document.getElementsByClassName("dropButton")[0]
+        element.classList.contains("turn")? element.classList.remove("turn"): element.classList.add("turn") //adding class to spin button when selected
         
     }
 
@@ -21,6 +23,9 @@ class Dropdown extends Component {
         return (
             <div id="dropdown">
                 <MDBRow>
+                <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} style={{overflowX:"scroll", marginBottom:"5vh"}}>
+                        <Hourly data={this.props.data}/>
+                    </MDBCollapse>
                     <MDBCol className="line" size="5"></MDBCol>
                     <MDBCol size="2"  className="d-flex p-0 justify-content-center">
                         <MDBAnimation type="bounce" count={2} reveal>
@@ -33,9 +38,7 @@ class Dropdown extends Component {
                         </MDBAnimation>
                     </MDBCol>
                     <MDBCol className="line" size="5"></MDBCol>
-                    <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} style={{overflowX:"scroll", marginBottom:"5vh"}}>
-                        <Hourly data={this.props.data}/>
-                    </MDBCollapse>
+                    
                 </MDBRow>
             </div>
         );
