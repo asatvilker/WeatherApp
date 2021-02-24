@@ -53,3 +53,7 @@
 .turn{
     transform: rotate(180deg);
 }
+.weatherIcon
+{
+    color: floralwhite;
+}
