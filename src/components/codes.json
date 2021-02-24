@@ -1,0 +1,31 @@
+{
+    
+    "Unknown":"",
+    "Clear":"sun",
+    "Cloudy": "cloud",
+    "Mostly Clear":"sun",
+    "Partly Cloudy":"cloud-sun",
+    "Mostly Cloudy":"cloud",
+    "Fog": "eye-slash",
+    "Light Fog": "eye-slash",
+    "Light Wind": "wind",
+    "Wind":"wind",
+    "Strong Wind":"wind",
+    "Drizzle": "cloud-rain",
+    "Rain":"cloud-rain",
+    "Light Rain":"cloud-rain",
+    "Heavy Rain": "cloud-showers-heavy",
+    "Snow": "snowflake",
+    "Flurries":"cloud-meatball",
+    "Light Snow":"snowflake",
+    "Heavy Snow":"snowflake",
+    "Freezing Drizzle":"cloud-rain",
+    "Freezing Rain":"cloud-rain",
+    "Light Freezing Rain": "cloud-rain",
+    "Heavy Freezing Rain": "cloud-showers-heavy",
+    "Ice Pellets":"snowflake",
+    "Heavy Ice Pellets": "snowflake",
+    "Light Ice Pellets": "snowflake",
+    "Thunderstorm": "poo-storm"
+    
+}

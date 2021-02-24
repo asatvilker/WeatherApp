@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { MDBBtn, MDBCol, MDBCollapse, MDBContainer, MDBIcon, MDBRow } from "mdbreact";
+import codes from '../codes.json';
 class HourlyComponent extends Component {
 state = {
   hour:"",
@@ -8,6 +9,8 @@ state = {
 }
 
 componentDidMount(){
+    
+    
   this.setState({
     hour:this.props.hour,
     temp:this.props.temp,
@@ -20,8 +23,10 @@ render() {
       <div id="hourlyComponent">
         <MDBContainer className="d-flex flex-column justify-content-between">
           <h1>{this.props.hour}</h1>
+          <MDBIcon icon={codes[this.props.condition]} size="3x" />
           <p>{this.props.condition}</p>
-          <h2>{this.props.temp} &#8451;</h2>
+          
+          <h2 style={{fontWeight:"400"}}>{this.props.temp} &#8451;</h2>
         </MDBContainer>
     
     </ div>
