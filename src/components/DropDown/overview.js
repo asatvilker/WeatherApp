@@ -26,8 +26,10 @@ class Overview extends Component {
                                 :   /* OR - depending on statement either code above will show or code below*/
                                 
                                 <>
-                                    <h1 style={{fontSize:"8vh",fontWeight:"400"}}>{Math.round(this.props.data.hourly[0].temperature)}</h1>
-                                    <h1 style={{fontSize:"8vh",fontWeight:"400"}}>&#8451;</h1>
+                                    <div style={{display: "flex"}}>
+                                        <h1 style={{fontSize:"8vh",fontWeight:"400"}}>{Math.round(this.props.data.hourly[0].temperature)}</h1>
+                                        <h1 style={{fontSize:"8vh",fontWeight:"400"}}>&#176;C</h1>
+                                    </div>
                                     <p>{`${this.props.address}, ${this.props.date.toString().split(" ")[0]}, ${this.props.date.toString().split(" ")[2]}`}</p>
                                 </>
                         }
