@@ -23,7 +23,7 @@ class Dropdown extends Component {
         return (
             <div id="dropdown">
                 <MDBRow>
-                <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} style={{overflowX:"scroll", marginBottom:"5vh"}}>
+                <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} style={{overflowX:"scroll", marginBottom:"5vh", width:"100%"}}>
                         <Hourly data={this.props.data}/>
                     </MDBCollapse>
                     <MDBCol className="line" size="5"></MDBCol>
