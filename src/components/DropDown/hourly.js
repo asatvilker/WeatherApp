@@ -25,14 +25,13 @@ render() {
                     hour=hour.concat(":00")
                     var temp=Math.round(data.temperature)
                     return(
-                        <HourlyComponent hour={hour} temp={temp} condition={data.weatherDesc}/>
+                        <HourlyComponent hour={hour} temp={temp} condition={data.weatherDesc} celsius={this.props.celsius}/>
                     )
                     
                 })
             }
         
         </MDBContainer>
-    
     </ div>
     );
   }

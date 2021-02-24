@@ -28,7 +28,7 @@ class Overview extends Component {
                                 <>
                                     <div style={{display: "flex"}}>
                                         <h1 style={{fontSize:"8vh",fontWeight:"400"}}>{Math.round(this.props.data.hourly[0].temperature)}</h1>
-                                        <h1 style={{fontSize:"8vh",fontWeight:"400"}}>&#176;C</h1>
+                                        <h1 style={{fontSize:"8vh",fontWeight:"400"}}>&#176;{this.props.data.celsius ? "C" : "F"}</h1>
                                     </div>
                                     <p>{`${this.props.address}, ${this.props.date.toString().split(" ")[0]}, ${this.props.date.toString().split(" ")[2]}`}</p>
                                 </>
@@ -50,7 +50,7 @@ class Overview extends Component {
                         
                     </MDBCol>
                 </MDBRow> 
-                <Dropdown data={this.props.data.hourly}/> {/* passing hourly info to dropdown for hourly forecast*/}
+                <Dropdown data={this.props.data.hourly} celsius={this.props.data.celsius}/> {/* passing hourly info to dropdown for hourly forecast*/}
                 <p>Press the button!</p>
             </>
         );
