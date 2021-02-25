@@ -1,5 +1,4 @@
-#dropdown .btn-default
-{
+#dropdown .btn-default {
     border-radius: 50% !important;
     padding: 1vh 1.5vh;
     background-color: transparent !important;
@@ -7,53 +6,64 @@
     position: relative;
     top:-4vh;
 }
-#dropdown .line
-{
+
+#dropdown .line {
     border-top: 0.1vh solid white;
 }
-#dropdown
-{
+
+#dropdown {
     width: 100%;
     margin-top: 4vh;
     
     margin-bottom: 0vh;
 }
-.row
-{
+
+.hourlyContainer{
+    max-width: 100%;
+    margin: 0;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 2vh;
+    scroll-snap-type: x mandatory;    
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.hourlyContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.row {
     margin:0 !important;
 }
+
 .collapse::-webkit-scrollbar {
     display: none;
-  }
-#hourlyComponent{
-    
-    padding-left: 1vh;
 }
-#hourlyComponent .container{
+
+.hourlyComponent {
     background-color: #f8f9fa33;
     padding: 2vh;
     border-radius: 5%;
     min-height: 23vh;
     min-width: 14vh;
+    scroll-snap-align: start;
+    margin: 0 5px;
 }
-#hourlyComponent h1{
+
+.hourlyComponent h1 {
     font-size: 3.2vh;
 
 }
-#hourlyComponent h2
-{
+.hourlyComponent h2 {
     font-size: 3vh;
 }
-.hourlyContainer{
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 2vh;
-    
-}
-.turn{
+
+.turn {
     transform: rotate(180deg);
 }
-.weatherIcon
-{
+
+.weatherIcon {
     color: floralwhite;
 }

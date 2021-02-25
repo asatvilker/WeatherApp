@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBBtn, MDBCol, MDBCollapse, MDBContainer, MDBIcon, MDBRow } from "mdbreact";
+import { MDBContainer } from "mdbreact";
 import './dropdown.css'
 import { MDBAnimation } from "mdbreact";
 import HourlyComponent from './hourlyFcstComponent';
@@ -15,8 +15,7 @@ componentDidMount(){
 
 render() {
   return (
-      <div id="hourly">
-        <MDBContainer className="d-flex flex-row hourlyContainer" style={{margin: "0 0"}}>
+        <MDBContainer className="d-flex flex-row hourlyContainer" style={{margin: "0 0", overflowX:"scroll"}}>
             {
                 this.props.data.map(data => {
                     var date = data.time.toString()
@@ -27,12 +26,9 @@ render() {
                     return(
                         <HourlyComponent hour={hour} temp={temp} condition={data.weatherDesc} celsius={this.props.celsius}/>
                     )
-                    
                 })
             }
-        
         </MDBContainer>
-    </ div>
     );
   }
 }

@@ -23,15 +23,15 @@ class Dropdown extends Component {
         return (
             <div id="dropdown">
                 <MDBRow>
-                    <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} style={{overflowX:"scroll", marginBottom:"5vh", width:"100%"}}>
-                            <Hourly data={this.props.data} celsius={this.props.celsius}/>
+                    <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} style={{marginBottom:"5vh", width:"100%"}}>
+                        <Hourly data={this.props.data} celsius={this.props.celsius}/>
                     </MDBCollapse>
                     <MDBCol className="line" size="5"></MDBCol>
                     <MDBCol size="2"  className="d-flex p-0 justify-content-center">
                         <MDBAnimation type="bounce" count={2} reveal>
                             <MDBBtn
                                 onClick={this.toggleCollapse("basicCollapse")} 
-                                style={{ marginBottom: "1rem" }}
+                                style={{ marginBottom: "1rem", height: "45px", width:"45px"}}
                                 className="dropButton">
                                 <MDBIcon icon="angle-down" id="dropIcon" size="2x"/>
                             </MDBBtn>
