@@ -1,6 +1,6 @@
 #dropdown .btn-default {
     border-radius: 50% !important;
-    padding: 1vh 1.5vh;
+    padding: 1vh;
     background-color: transparent !important;
     border: 0.1vh solid white !important;
     position: relative;
@@ -71,4 +71,18 @@
 
 .weatherIcon {
     color: floralwhite;
+}
+.overviewHeader h1{
+
+    font-size:"8vh";
+    font-weight:"400";
+}
+.overviewHeaderContainer{
+    display: flex;
+}
+.overview .col-6{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
