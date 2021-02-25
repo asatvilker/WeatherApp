@@ -48,6 +48,9 @@
 }
 
 .hourlyComponent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: #f8f9fa33;
     padding: 2vh;
     border-radius: 5%;
@@ -55,6 +58,7 @@
     min-width: 14vh;
     scroll-snap-align: start;
     margin: 0 5px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12) !important;
 }
 
 .hourlyComponent h1 {
