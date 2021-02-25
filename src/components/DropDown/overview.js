@@ -16,7 +16,7 @@ class Overview extends Component {
         return (
             <>  
                 <MDBRow className="pt-4">
-                    <MDBCol size="6" className="d-flex flex-column justify-content-center">
+                    <MDBCol size="6" className="d-flex flex-column justify-content-center align-items-center">
                         {
                             this.props.data.hourly[0] == undefined? 
                                 <div className="spinner-border" role="status">
@@ -35,7 +35,7 @@ class Overview extends Component {
                         }
                         
                     </MDBCol>
-                    <MDBCol size="6" className="d-flex flex-column justify-content-center" >
+                    <MDBCol size="6" className="d-flex flex-column justify-content-center align-items-center" >
                         {
                             this.props.data.hourly[0] == undefined? 
                                 <div>
