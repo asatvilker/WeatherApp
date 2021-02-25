@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { MDBBtn, MDBCol, MDBCollapse, MDBContainer, MDBIcon, MDBRow } from "mdbreact";
 import codes from '../codes.json';
 
-class HourlyComponent extends Component {
+class Card extends Component {
     state = {
         hour:"",
         temp:"",
@@ -29,4 +29,4 @@ class HourlyComponent extends Component {
     }
 }
 
-export default HourlyComponent;
+export default Card;

@@ -51,7 +51,7 @@ class Overview extends Component {
                     </MDBCol>
                 </MDBRow> 
                 <Dropdown data={this.props.data.hourly} celsius={this.props.data.celsius}/> {/* passing hourly info to dropdown for hourly forecast*/}
-                <p>Press the button!</p>
+               
             </>
         );
     }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { MDBContainer } from "mdbreact";
 import './dropdown.css'
 import { MDBAnimation } from "mdbreact";
-import HourlyComponent from './hourlyFcstComponent';
+import Card from './FcstComponent';
 class Hourly extends Component {
 state = {
   
@@ -15,7 +15,7 @@ componentDidMount(){
 
 render() {
   return (
-        <MDBContainer className="d-flex flex-row hourlyContainer" style={{margin: "0 0", overflowX:"scroll"}}>
+        <MDBContainer className="d-flex flex-row hourlyContainer" style={{margin: "0 0"}}>
             {
                 this.props.data.map(data => {
                     var date = data.time.toString()
@@ -24,7 +24,7 @@ render() {
                     hour=hour.concat(":00")
                     var temp=Math.round(data.temperature)
                     return(
-                        <HourlyComponent hour={hour} temp={temp} condition={data.weatherDesc} celsius={this.props.celsius}/>
+                        <Card hour={hour} temp={temp} condition={data.weatherDesc} celsius={this.props.celsius}/>
                     )
                 })
             }

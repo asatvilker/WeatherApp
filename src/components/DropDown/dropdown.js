@@ -26,8 +26,8 @@ class Dropdown extends Component {
                     <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} style={{marginBottom:"5vh", width:"100%"}}>
                         <Hourly data={this.props.data} celsius={this.props.celsius}/>
                     </MDBCollapse>
-                    <MDBCol className="line" size="5"></MDBCol>
-                    <MDBCol size="2"  className="d-flex p-0 justify-content-center">
+                    <MDBCol className="line column" size="5"></MDBCol>
+                    <MDBCol size="2"  className="d-flex p-0 justify-content-center column">
                         <MDBAnimation type="bounce" count={2} reveal>
                             <MDBBtn
                                 onClick={this.toggleCollapse("basicCollapse")} 
@@ -37,7 +37,7 @@ class Dropdown extends Component {
                             </MDBBtn>
                         </MDBAnimation>
                     </MDBCol>
-                    <MDBCol className="line" size="5"></MDBCol>  
+                    <MDBCol className="line column" size="5"></MDBCol>  
                 </MDBRow>
             </div>
         );
