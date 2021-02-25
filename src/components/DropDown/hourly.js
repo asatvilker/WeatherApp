@@ -16,7 +16,7 @@ componentDidMount(){
 render() {
   return (
       <div id="hourly">
-        <MDBContainer className="d-flex flex-row hourlyContainer">
+        <MDBContainer className="d-flex flex-row hourlyContainer" style={{margin: "0 0"}}>
             {
                 this.props.data.map(data => {
                     var date = data.time.toString()
