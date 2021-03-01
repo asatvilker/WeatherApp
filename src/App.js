@@ -4,6 +4,7 @@ import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell } from 
 import Overview from './components/DropDown/overview';
 import AddressBar from "./components/AddressBar/AddressBar";
 import Daily from './components/daily/daily';
+import Background from './Background';
 import React, { Component } from "react";
 
 class App extends Component {
@@ -41,6 +42,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
+                <Background />
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
                 <Overview data={this.state} date={this.state.date} address={this.state.address}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>
