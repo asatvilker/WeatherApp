@@ -9,53 +9,7 @@ state = {
     rainOption:["Drizzle","Rain","Light Rain","Heavy Rain","Flurries","Light Snow","Heavy Snow","Freezing Drizzle","Freezing Rain","Light Freezing Rain","Heavy Freezing Rain"],
     hourly:[]
 }
-async componentDidMount(){
-    
-    if (this.props.hourly[0] != undefined){
-        if (Math.round(this.props.hourly[0].temperature) <= 15 ){
-            if (Math.round(this.props.hourly[0].temperature) <= 5 ){
-                this.setState({selection:["coat","hoodie","jeans","gloves"]})
-            }
-            else{
-                if (this.state.rainOption.includes(this.props.hourly[0].weatherDesc) ){
-                    this.setState({selection:["raincoat","hoodie","jeans","trainers"]})
-                }
-                else{
-                    this.setState({selection:["hoodie","jeans","scarf"]})
-                }
-            }
-        }
-        else{
-            if (this.state.rainOption.includes(this.props.hourly[0].weatherDesc)){
-                if ( Math.round(this.props.hourly[0].temperature) >= 26 ){
-                    this.setState({selection:["umbrella","T-shirt","shorts/skirt","trainers"]})
-                }
-                else{
-                    this.setState({selection:["raincoat","T-shirt","joggers","trainers"]})
-                }
-            }
-            
-            else{
-                if ( Math.round(this.props.hourly[0].temperature) >= 26 ){
-                    this.setState({selection:["T-shirt","shorts/skirt","sunglasses"]})
-                }
-                else{
-                    this.setState({selection:["hoodie","joggers","cap"]})
-                }
-            }
 
-
-        }
-    }
-    else{
-        console.log("error")
-    }
-    
-}
-check(){
-    console.log("updating...")
-    this.setState({selection:["hoodie","jeans","scarf"]})
-}
 
 render() {
   return (
