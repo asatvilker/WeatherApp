@@ -1,100 +1,101 @@
 .address-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(196,196,196,0.6);
-    z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(196, 196, 196, 0.6);
+  z-index: 10;
 }
 
 .address-wrapper {
-    padding-top: 20px;
-    position: relative;
-    z-index: 11;
-    width: 80%;
-    left: 10%;
-    height: auto;
+  padding-top: 20px;
+  position: relative;
+  z-index: 11;
+  width: 80%;
+  left: 10%;
+  height: auto;
 }
 
 .address-header-title {
-    display: flex;
-    height: 27px;
-    margin: 0 auto;
-    background-color: #E7E7E7;
-    border-radius: 40px;
-    font-family: Sen;
+  display: flex;
+  height: 27px;
+  margin: 0 auto;
+  background-color: #e7e7e7;
+  border-radius: 40px;
+  font-family: Sen;
 }
 
-.address-header-title input, input:focus{
-    width: 100%;
-    margin: 0 10px;
-    font-size: 14px;
-    border:none;
-    background-image:none;
-    background-color:transparent;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    outline: none;
+.address-header-title input,
+input:focus {
+  width: 100%;
+  margin: 0 10px;
+  font-size: 14px;
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  outline: none;
 }
 
 .address-suggestions {
-    width: 80%;
-    position: fixed;
-    margin: 0 auto;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    background: #E7E7E7;
-    border-radius: 18px;
-    left: 50%;
-    transform: translate(-50%, 0%);
+  width: 80%;
+  position: fixed;
+  margin: 0 auto;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  background: #e7e7e7;
+  border-radius: 18px;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 
 .address-suggestions-item {
-    background-color: #E7E7E7;
-    margin-left: 25px;
-    margin-right: 25px;
-    padding-top: 3px;
+  background-color: #e7e7e7;
+  margin-left: 25px;
+  margin-right: 25px;
+  padding-top: 3px;
 }
 
 .address-suggestions-main {
-    font-family: Sen;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 17px;
-    color:black;
+  font-family: Sen;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: black;
 }
 
 .address-suggestions-secondary {
-    font-family: Sen;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 9px;
-    line-height: 11px;
-    color: black;
-    padding-bottom: 3px;
+  font-family: Sen;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 9px;
+  line-height: 11px;
+  color: black;
+  padding-bottom: 3px;
 }
 
 .address-line {
-    width: 100%;
-    height: 0;
-    border: 1px solid #858585;
-    background-color: #858585;
+  width: 100%;
+  height: 0;
+  border: 1px solid #858585;
+  background-color: #858585;
 }
 
 .address-text-body {
-    padding: 5px 10px;
+  padding: 5px 10px;
 }
 
 .address-search-icon {
-    padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .greyed {
-    color:#383840;
+  color: #383840;
 }

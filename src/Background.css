@@ -109,7 +109,19 @@ code {
     0 0 0 120px rgba(248, 177, 149, 0.5), 0 0 0 180px rgba(248, 177, 149, 0.4),
     0 0 0 240px rgba(248, 177, 149, 0.3), 0 0 0 300px rgba(248, 177, 149, 0.1),
     0 0 0px 300px rgba(248, 177, 149, 0);
-  animation: sunrise 2s infinite linear forwards, rays 5s 2s infinite linear;
+  animation: upDown 5s linear infinite, sunrise 2s infinite linear forwards,
+    rays 5s 2s infinite linear;
+  position: relative;
+}
+
+@keyframes upDown {
+  0%,
+  100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 25px;
+  }
 }
 
 @keyframes sunrise {
