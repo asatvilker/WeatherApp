@@ -1,0 +1,21 @@
+.settings-suggestions {
+    width: 80%;
+    position: fixed;
+    margin: 0 auto;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    background: #E7E7E7;
+    border-radius: 18px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.settings-wrapper {
+    padding-top: 20px;
+    position: relative;
+    z-index: 15;
+    width: 80%;
+    left: 10%;
+    height: auto;
+}

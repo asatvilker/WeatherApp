@@ -5,6 +5,7 @@ import Overview from './components/DropDown/overview';
 import AddressBar from "./components/AddressBar/AddressBar";
 import Daily from './components/daily/daily';
 import Clothes from './components/clothes/clothes';
+import Settings from './components/Settings/Settings';
 import React, { Component } from "react";
 
 class App extends Component {
@@ -42,6 +43,8 @@ class App extends Component {
     render() {
         return (
             <div className="App">
+                
+                <Settings/>
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
                 <Overview data={this.state} date={this.state.date} address={this.state.address}/>
                 <Clothes data={this.state} hourly={this.state.hourly}/>
