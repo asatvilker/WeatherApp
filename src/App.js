@@ -1,10 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell } from './WeatherAPI'
+import Background from './components/Background/Background';
 import Overview from './components/DropDown/overview';
 import AddressBar from "./components/AddressBar/AddressBar";
 import Daily from './components/daily/daily';
-import Background from './Background';
 import React, { Component } from "react";
 
 class App extends Component {
