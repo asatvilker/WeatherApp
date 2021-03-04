@@ -18,13 +18,27 @@ function Mountain() {
   );
 }
 
-function Sun() {
+function Sun(props) {
   return(
     <div className="sun-wrap">
-      <div className="sun"></div>
+      <div className="sun" style={{backgroundColor: props.style}}></div>
     </div>
   );
 }
+
+function Time() {
+  var today = new Date();
+  let background = "rgb(248, 177, 149)";
+  var today = new Date();
+  
+  if(today.getHours()<14) {
+    background = "red";
+  } else if(today.getHours()<15) {
+    background = "blue";
+  }
+  return <Sun style={background}/>
+}
+
 
 function Birds() {
   return(
@@ -40,7 +54,7 @@ function Birds() {
 function Background() {
   return (
     <>
-      <Sun />
+      {Time()}
       <Birds />
       <Mountain />
     </>

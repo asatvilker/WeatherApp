@@ -1,6 +1,5 @@
 html,
 body {
-  height: 100%;
   width: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -107,8 +106,8 @@ code {
     0 0 0 120px rgba(248, 177, 149, 0.5), 0 0 0 180px rgba(248, 177, 149, 0.4),
     0 0 0 240px rgba(248, 177, 149, 0.3), 0 0 0 300px rgba(248, 177, 149, 0.1),
     0 0 0px 300px rgba(248, 177, 149, 0);
-  animation: upDown 5s linear infinite, sunrise 2s infinite linear forwards,
-    rays 5s 2s infinite linear;
+  animation: upDown 10s linear infinite, sunrise 4s infinite linear forwards,
+    rays 5s 4s infinite linear;
   position: relative;
 }
 
@@ -118,7 +117,7 @@ code {
     bottom: 0;
   }
   50% {
-    bottom: 25px;
+    bottom: 15px;
   }
 }
 
@@ -169,10 +168,11 @@ code {
     25% 80%
   );
   position: absolute;
-  animation: fly 4s infinite;
+  animation: fly 3.5s infinite;
 }
 
 .birdA {
+  animation-delay: -1.5s;
   height: 50px;
   width: 89px;
   top: 80%;
@@ -180,6 +180,7 @@ code {
 }
 
 .birdB {
+  animation-delay: -2.7s;
   height: 35px;
   width: 69px;
   top: 85%;
@@ -187,6 +188,7 @@ code {
 }
 
 .birdC {
+  animation-delay: -3.8s;
   height: 25px;
   width: 49px;
   top: 20%;
