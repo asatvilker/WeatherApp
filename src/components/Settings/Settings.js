@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Settings.css";
-import { MDBBox, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
+import { MDBBox, MDBContainer, MDBRow, MDBCol, MDBIcon, MDBPopover, MDBPopoverBody, MDBPopoverHeader, MDBBtn } from 'mdbreact';
 
 class Settings extends Component{
     constructor(props) {
@@ -10,9 +10,9 @@ class Settings extends Component{
             focus: false
         }
         this.setFocus = this.setFocus.bind(this);
-        
+
     }
-    
+
     setFocus(e) {
         const {focus} = this.state;
         if (focus){
@@ -25,7 +25,7 @@ class Settings extends Component{
             this.setState({
                 focus: true,
                 isListOpen: true
-            }); 
+            });
         }
     }
 
@@ -45,10 +45,24 @@ class Settings extends Component{
                     <MDBBox className='Container'>
                       <MDBIcon fab icon="creative-commons-by" /> Accessibility
                       <hr />
-                      <MDBIcon icon="info-circle" /> Info
+                      <MDBPopover
+                      placement="bottom"
+                      popover
+                      clickable
+                      id="popper3"
+                      >
+                      <MDBBtn color="orange"><MDBIcon icon="info-circle" /> Info</MDBBtn>
+                      <div>
+                        <MDBPopoverHeader>Product Info</MDBPopoverHeader>
+                          <MDBPopoverBody>
+                            Sed posuere consectetur est at lobortis. Aenean eu leo quam.
+                            Pellentesque ornare sem lacinia quam venenatis vestibulum.
+                            </MDBPopoverBody>
+                            </div>
+                            </MDBPopover>
                       <br />
                       <br />
-                      
+
                     </MDBBox>
                   </React.Fragment>
                 )
@@ -60,11 +74,11 @@ class Settings extends Component{
                 {addOverlay()}
                 <div className="settings-wrapper">
                     <div>
-                        <MDBIcon icon="bars" size="3x" onClick={this.setFocus} /> 
+                        <MDBIcon icon="bars" size="3x" onClick={this.setFocus} />
                     </div>
                     <div className="settings-suggestions">
                         {addSettingsOverlay()}
-                    </div> 
+                    </div>
                 </div>
             </div>
             )
