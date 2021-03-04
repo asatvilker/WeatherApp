@@ -28,7 +28,12 @@ function Sun() {
 
 function Birds() {
   return(
-    <div className="birdA"></div>
+    <div className="bird-wrap">
+      <div className="birdA"></div>
+      <div className="birdB"></div>
+      <div className="birdC"></div>
+      <div className="birdD"></div>
+    </div>
   );
 }
 
