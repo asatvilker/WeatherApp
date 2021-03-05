@@ -68,7 +68,7 @@ export function getMinuteData(sdata, callBack) {
     return fetch(url)
     .then(res => res.json())
     .then(result => {
-        console.log(result);
+        console.log("MINUTE DATA: ", result);
         let rainData = result["data"]["timelines"][0]["intervals"].map(function(item, i) {
             return (
                 {

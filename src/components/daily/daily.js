@@ -27,7 +27,6 @@ render() {
                         hour=hour.concat(":00")
                         var temp=Math.round(data.temperature)
                         var day=date.split(" ")[0]
-                        console.log(this.props.data)
                         return(
                             <Card hour={day} temp={temp} condition={data.weatherDesc} celsius={this.props.celsius}/>
                         )

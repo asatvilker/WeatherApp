@@ -6,6 +6,7 @@ import TopBar from './components/TopBar'
 import Daily from './components/daily/daily';
 import Clothes from './components/clothes/clothes';
 import React, { Component } from "react";
+import Chart from "./components/Chart/Chart"
 
 class App extends Component {
     constructor(props) {
@@ -17,17 +18,17 @@ class App extends Component {
             celsius: true,
             date: new Date(),
             hourly: [],
-            minutely: [{temperature: 0}],
+            minutely: [],
             daily: [],
         }
     }
 
     setSettings(newSettings) {
-        console.log("hello");
+        console.log("APP: NEW SETTINGS: ", newSettings);
         this.setState(newSettings);
         //refresh data
         if (newSettings.hasOwnProperty("lat")) {
-            console.log("Ran update");
+            console.log("APP: FETCHING NEW DATA");
             getHourForecastClimaCell(this.state, this.setSettings.bind(this));
             getMinuteData(this.state, this.setSettings.bind(this));
             getDayForecastClimaCell(this.state, this.setSettings.bind(this));
@@ -42,7 +43,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <TopBar/>
+                <TopBar setSettings={this.setSettings.bind(this)}/>
                 <Overview data={this.state} date={this.state.date} address={this.state.address}/>
                 <Clothes data={this.state} hourly={this.state.hourly}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>
@@ -50,6 +51,5 @@ class App extends Component {
         )
     }
 }
-
 
 export default App;
