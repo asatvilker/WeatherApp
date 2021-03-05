@@ -11,11 +11,4 @@
     transform: translate(-50%, 0%);
 }
 
-.settings-wrapper {
-    padding-top: 20px;
-    position: relative;
-    z-index: 15;
-    width: 80%;
-    left: 50%;
-    height: auto;
-}
+
