@@ -31,7 +31,7 @@ class App extends Component {
                         item.temperature = 5/9*(item.temperature-32);
                         return (item)
                     });
-                    newSettings["daily"] = this.state.hourly.map((item) => {
+                    newSettings["daily"] = this.state.daily.map((item) => {
                         item.temperature = 5/9*(item.temperature-32);
                         return (item)
                     });
@@ -41,7 +41,7 @@ class App extends Component {
                         item.temperature = (9/5*item.temperature)+32;
                         return (item)
                     });
-                    newSettings["daily"] = this.state.hourly.map((item) => {
+                    newSettings["daily"] = this.state.daily.map((item) => {
                         item.temperature =  (9/5*item.temperature)+32;
                         return (item)
                     });
