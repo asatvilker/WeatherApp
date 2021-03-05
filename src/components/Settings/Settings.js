@@ -14,7 +14,7 @@ class Settings extends Component{
     }
 
     setFocus(e) {
-        const {focus} = this.state;
+        const {focus,isListOpen} = this.state;
         if (focus){
             this.setState({
                 focus: false,
@@ -34,7 +34,7 @@ class Settings extends Component{
         const {focus, isListOpen } = this.state;
         const addOverlay = () => {
             if (focus) {
-                return <div className="address-overlay" />
+                return <div className="settings-overlay" />
             }
         }
         const addSettingsOverlay = () => {
@@ -70,8 +70,8 @@ class Settings extends Component{
         }
 
         return(
+            //{addOverlay()} removed from first div
             <div>
-                {addOverlay()}
                 <div className="settings-wrapper">
                     <div>
                         <MDBIcon icon="bars" size="2x" onClick={this.setFocus} />

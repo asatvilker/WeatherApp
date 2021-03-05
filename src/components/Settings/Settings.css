@@ -11,4 +11,12 @@
     transform: translate(-50%, 0%);
 }
 
-
+.settings-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(196,196,196,0.6);
+    z-index: 5;
+}

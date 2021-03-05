@@ -21,7 +21,7 @@ class TopBar extends Component{
             <div className="topbar-parent">
                 <TempSwitch setSettings={this.props.setSettings}/>
                 <AddressBar setSettings={this.props.setSettings}/>
-                <Settings/>
+                <Settings setSettings={this.props.setSettings}/>
             </div>
         )
     }
