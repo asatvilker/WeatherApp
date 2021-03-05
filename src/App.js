@@ -24,16 +24,42 @@ class App extends Component {
     }
 
     setSettings(newSettings) {
-        console.log("hello");
+        console.log("APP: NEW SETTINGS: ", newSettings);
+        if (newSettings.hasOwnProperty("celsius")) {
+            if (newSettings.celsius != this.state.celsius) {
+                if (newSettings.celsius) {
+                    //convert to celsius
+                    newSettings["hourly"] = this.state.hourly.map((item) => {
+                        item.temperature = 5/9*(item.temperature-32);
+                        return (item)
+                    });
+                    newSettings["daily"] = this.state.daily.map((item) => {
+                        item.temperature = 5/9*(item.temperature-32);
+                        return (item)
+                    });
+                } else {
+                    //convert to faren
+                    newSettings["hourly"] = this.state.hourly.map((item) => {
+                        item.temperature = (9/5*item.temperature)+32;
+                        return (item)
+                    });
+                    newSettings["daily"] = this.state.daily.map((item) => {
+                        item.temperature =  (9/5*item.temperature)+32;
+                        return (item)
+                    });
+                }
+            }
+        }
         this.setState(newSettings);
         //refresh data
         if (newSettings.hasOwnProperty("lat")) {
-            console.log("Ran update");
+            console.log("APP: FETCHING NEW DATA");
             getHourForecastClimaCell(this.state, this.setSettings.bind(this));
             getMinuteData(this.state, this.setSettings.bind(this));
             getDayForecastClimaCell(this.state, this.setSettings.bind(this));
         }
     }
+
     componentDidMount(){
         getHourForecastClimaCell(this.state, this.setSettings.bind(this));
         getMinuteData(this.state, this.setSettings.bind(this));
