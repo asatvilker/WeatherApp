@@ -129,6 +129,7 @@ export function getOpenWeatherData(sdata, callBack) {
     return fetch(url)
     .then(res => res.json())
     .then(result => {
+        console.log("API: URL: ", url)
         let timezone = result["timezone_offset"] * 1000;
         let daily = result["daily"].map(function(item) {
             return (

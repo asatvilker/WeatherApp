@@ -81,10 +81,6 @@ class App extends Component {
         clearInterval(this.timerIntervalID);
     }
 
-    componentDidUpdate() {
-        console.log("APP: ", this.state);
-    }
-    
     render() {
         return (
             <div className="App">
