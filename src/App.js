@@ -21,7 +21,7 @@ class App extends Component {
             minutely: [{temperature: 0}],
             daily: [],
             api: "openweather",
-            timezone: 0
+            timezone: "Europe/London"
         }
     }
 
@@ -72,6 +72,17 @@ class App extends Component {
 
     componentDidMount(){
         this.fetchData();
+        this.timerIntervalID = setInterval(
+            () => this.setState({date: new Date()}), 1000
+        );
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timerIntervalID);
+    }
+
+    componentDidUpdate() {
+        console.log("APP: ", this.state);
     }
     
     render() {
@@ -80,7 +91,7 @@ class App extends Component {
                 
                 <Settings/>
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
-                <Overview data={this.state} date={this.state.date} address={this.state.address}/>
+                <Overview data={this.state} date={this.state.date} address={this.state.address} timeZone={this.state.timezone}/>
                 <Clothes data={this.state} hourly={this.state.hourly}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>
             </div>

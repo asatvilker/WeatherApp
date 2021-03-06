@@ -1,5 +1,4 @@
 const geoTz = require("geo-tz");
-const tzOffset = require("tz-offset")
 
 const weatherCode = {
     0: "Unknown",
@@ -195,7 +194,7 @@ export function getGeoCoords(sdata, callBack) {
     .then(result => {
         let loc = result["results"][0]["geometry"]["location"];
         if (callBack) {
-            callBack({lat: loc.lat, lon: loc.lng, address: result["results"][0]["formatted_address"], timezone: 0 - tzOffset.offsetOf(geoTz(loc.lat, loc.lng))});
+            callBack({lat: loc.lat, lon: loc.lng, address: result["results"][0]["formatted_address"], timezone: geoTz(loc.lat, loc.lng)[0]});
             //callBack({lat: loc.lat, lon: loc.lng});
         }
         return loc;

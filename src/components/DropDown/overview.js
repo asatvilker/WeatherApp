@@ -30,7 +30,7 @@ class Overview extends Component {
                                         <h1 className="overviewHeader" >{Math.round(this.props.data.hourly[0].temperature)}</h1>
                                         <h1 className="overviewHeader" >&#176;{this.props.data.celsius ? "C" : "F"}</h1>
                                     </div>
-                                    <p>{`${this.props.address}, ${this.props.date.toString().split(" ")[0]}, ${this.props.date.toString().split(" ")[2]}`}</p>
+                                    <p>{`${this.props.address}, ${this.props.date.toLocaleString("en-US", {timeZone: this.props.timeZone})}, ${this.props.date.toString().split(" ")[2]}`}</p>
                                 </>
                         }
 
