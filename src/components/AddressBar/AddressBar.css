@@ -28,7 +28,7 @@
 
 .address-header-title input, input:focus{
     width: 100%;
-    margin: 0 10px;
+    margin-left: 5px;
     font-size: 14px;
     border:none;
     background-image:none;
@@ -37,6 +37,8 @@
     -moz-box-shadow: none;
     box-shadow: none;
     outline: none;
+    -webkit-user-select: text;
+    user-select: text;
 }
 
 .address-suggestions {
@@ -93,6 +95,8 @@
     padding-left: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
+    height: 100%;
+    width: auto;
 }
 
 .greyed {
