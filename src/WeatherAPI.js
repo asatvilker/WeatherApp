@@ -141,7 +141,7 @@ export function getOpenWeatherData(sdata, callBack) {
                 }
             )
         });
-        let startTime = new Date(result["hourly"][0].dt * 1000);
+        let startTime = new Date(result["hourly"][0].dt * 1000 + result["timezone_offset"]*1000);
         let hourly = result["hourly"].slice(0, 24 - startTime.getHours()).map(function(item) {
             return (
                 {
