@@ -79,7 +79,7 @@ render() {
                  return(
                         <MDBCol size="6">
                            
-                            <ClothesIcon iconName={codes[item]} size="7vh"/>
+                             <ClothesIcon iconName={codes[item]} size="7vh"/> 
                             
                             <p>{item}</p>
                         </MDBCol>
