@@ -1,8 +1,8 @@
 import * as ClothesIcons from "react-icons/gi";
-import {IoRibbonOutline} from "react-icons/io5";
+import {FaRibbon} from "react-icons/fa";
 const ClothesIcon = ({iconName, size}) => {
     if (iconName === "IoRibbonOutline") {
-        let Icon = IoRibbonOutline
+        let Icon = FaRibbon
         return (
             <Icon className="weatherIcon" size={size} style={{color: "floralwhite"}}/>
         )
