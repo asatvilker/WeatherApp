@@ -1,5 +1,3 @@
-const geoTz = require("geo-tz");
-
 const weatherCode = {
     0: "Unknown",
     1000: "Clear",
@@ -162,7 +160,7 @@ export function getOpenWeatherData(sdata, callBack) {
         });
         console.log("API: FETCHING DATA (OPENWEATHER): ", daily, "\n\t\t\t\t  ", hourly, "\n\t\t\t\t  ", minutely);
         if (callBack) {
-            callBack({hourly: hourly, minutely: minutely, daily: daily});
+            callBack({hourly: hourly, minutely: minutely, daily: daily, timezone: result["timezone"]});
         }
     });
 }
@@ -195,7 +193,8 @@ export function getGeoCoords(sdata, callBack) {
     .then(result => {
         let loc = result["results"][0]["geometry"]["location"];
         if (callBack) {
-            callBack({lat: loc.lat, lon: loc.lng, address: result["results"][0]["formatted_address"], timezone: geoTz(loc.lat, loc.lng)[0]});
+            //console.log(geoTz(loc.lat, loc.lng));
+            callBack({lat: loc.lat, lon: loc.lng, address: result["results"][0]["formatted_address"]});
             //callBack({lat: loc.lat, lon: loc.lng});
         }
         return loc;
