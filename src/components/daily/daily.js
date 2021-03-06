@@ -17,7 +17,7 @@ componentDidMount(){
 render() {
   return (
         <div id="daily">
-            <p>Next 14 days</p>
+            <p>Next {this.props.data.length} days</p>
             <MDBContainer className="d-flex flex-row hourlyContainer" style={{margin: "0 0"}}>
                 {
                     this.props.data.map(data => {
@@ -28,7 +28,7 @@ render() {
                         var temp=Math.round(data.temperature)
                         var day=date.split(" ")[0]
                         return(
-                            <Card hour={day} temp={temp} condition={data.weatherDesc} celsius={this.props.celsius}/>
+                            <Card hour={day} temp={temp} icon={data.weatherIcon} condition={data.weatherDesc} celsius={this.props.celsius}/>
                         )
                     })
                 }

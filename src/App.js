@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell } from './WeatherAPI'
+import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell, getOpenWeatherData } from './WeatherAPI'
 import Overview from './components/DropDown/overview';
 import AddressBar from "./components/AddressBar/AddressBar";
 import Daily from './components/daily/daily';
@@ -20,7 +20,7 @@ class App extends Component {
             hourly: [],
             minutely: [{temperature: 0}],
             daily: [],
-            api: "openweather"
+            api: "climacell"
         }
     }
 
@@ -55,6 +55,14 @@ class App extends Component {
         //refresh data
         if (newSettings.hasOwnProperty("lat")) {
             console.log("APP: FETCHING NEW DATA");
+            this.fetchData();
+        }
+    }
+
+    fetchData() {
+        if (this.state.api == "openweather") {
+            getOpenWeatherData(this.state, this.setSettings.bind(this));
+        } else {
             getHourForecastClimaCell(this.state, this.setSettings.bind(this));
             getMinuteData(this.state, this.setSettings.bind(this));
             getDayForecastClimaCell(this.state, this.setSettings.bind(this));
@@ -62,9 +70,7 @@ class App extends Component {
     }
 
     componentDidMount(){
-        getHourForecastClimaCell(this.state, this.setSettings.bind(this));
-        getMinuteData(this.state, this.setSettings.bind(this));
-        getDayForecastClimaCell(this.state, this.setSettings.bind(this));
+        this.fetchData();
     }
     
     render() {
