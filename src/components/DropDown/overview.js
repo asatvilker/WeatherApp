@@ -44,7 +44,7 @@ class Overview extends Component {
                                 :
 
                                 <>
-                                    <WeatherIcon iconName={this.props.data.hourly[0].weatherIcon} size="8x"></WeatherIcon>
+                                    <WeatherIcon iconName={this.props.data.hourly[0].weatherIcon} size="20vh"></WeatherIcon>
                                 </>
                         }
 

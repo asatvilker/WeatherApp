@@ -1,16 +1,16 @@
 {
-    "hoodie":"",
-    "joggers":"",
-    "cap":"",
-    "T-shirt":"",
-    "shorts/skirt":"",
-    "sunglasses":"",
-    "raincoat":"",
-    "trainers":"",
-    "umbrella":"",
-    "jeans":"jeans.png",
+    "hoodie":"GiHoodie",
+    "joggers":"GiTrousers",
+    "cap":"GiCaptainHatProfile",
+    "T-shirt":"GiTShirt",
+    "shorts/skirt":"GiUnderwearShorts",
+    "sunglasses":"GiSunglasses",
+    "raincoat":"GiLabCoat",
+    "trainers":"GiRunningShoe",
+    "umbrella":"GiUmbrella",
+    "jeans":"GiTrousers",
     "scarf":"",
-    "coat":"",
-    "gloves":""
+    "coat":"GiMonclerJacket",
+    "gloves":"GiWinterGloves"
 
 }

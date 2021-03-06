@@ -20,7 +20,7 @@ class Card extends Component {
     render() {
         return (
             <MDBContainer className="hourlyComponent">
-                <WeatherIcon iconName={this.props.icon} size="3x"></WeatherIcon>
+                <WeatherIcon iconName={this.props.icon} size="9vh"></WeatherIcon>
                 <h1>{this.props.hour}</h1>
                 <p>{this.props.condition}</p>
                 <h2 style={{fontWeight:"400"}}>{this.props.temp}&#176;{this.props.celsius ? "C" : "F"}</h2>
