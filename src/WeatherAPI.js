@@ -1,3 +1,6 @@
+const geoTz = require("geo-tz");
+const tzOffset = require("tz-offset")
+
 const weatherCode = {
     0: "Unknown",
     1000: "Clear",
@@ -127,11 +130,11 @@ export function getOpenWeatherData(sdata, callBack) {
     return fetch(url)
     .then(res => res.json())
     .then(result => {
+        let timezone = result["timezone_offset"] * 1000;
         let daily = result["daily"].map(function(item) {
-            console.log(item.weather[0]);
             return (
                 {
-                    time: new Date(item.dt * 1000),
+                    time: new Date((item.dt * 1000) + timezone),
                     temperature: item.temp.day,
                     weatherIcon: openWeatherIconMap[item.weather[0].id],
                     weatherDesc: item.weather[0].description
@@ -142,7 +145,7 @@ export function getOpenWeatherData(sdata, callBack) {
         let hourly = result["hourly"].slice(0, 24 - startTime.getHours()).map(function(item) {
             return (
                 {
-                    time: new Date(item.dt * 1000),
+                    time: new Date((item.dt * 1000) + timezone),
                     temperature: item.temp,
                     weatherIcon: openWeatherIconMap[item.weather[0].id],
                     weatherDesc: item.weather[0].description
@@ -152,7 +155,7 @@ export function getOpenWeatherData(sdata, callBack) {
         let minutely = result["minutely"].map(function(item) {
             return (
                 {
-                    time: new Date(item.dt * 1000),
+                    time: new Date((item.dt * 1000) + timezone),
                     intensity: item.precipitation
                 }
             )
@@ -192,7 +195,7 @@ export function getGeoCoords(sdata, callBack) {
     .then(result => {
         let loc = result["results"][0]["geometry"]["location"];
         if (callBack) {
-            callBack({lat: loc.lat, lon: loc.lng, address: result["results"][0]["formatted_address"]});
+            callBack({lat: loc.lat, lon: loc.lng, address: result["results"][0]["formatted_address"], timezone: 0 - tzOffset.offsetOf(geoTz(loc.lat, loc.lng))});
             //callBack({lat: loc.lat, lon: loc.lng});
         }
         return loc;

@@ -20,7 +20,8 @@ class App extends Component {
             hourly: [],
             minutely: [{temperature: 0}],
             daily: [],
-            api: "climacell"
+            api: "openweather",
+            timezone: 0
         }
     }
 
