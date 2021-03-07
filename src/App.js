@@ -7,6 +7,7 @@ import Daily from './components/daily/daily';
 import Clothes from './components/clothes/clothes';
 import Settings from './components/Settings/Settings';
 import React, { Component } from "react";
+import Chart from "./components/Chart/Chart";
 
 class App extends Component {
     constructor(props) {
@@ -84,7 +85,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                
+                <Chart data={this.state.minutely.map((item) => item.intensity)}/>
                 <Settings/>
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
                 <Overview data={this.state} date={this.state.date} address={this.state.address} timeZone={this.state.timezone}/>

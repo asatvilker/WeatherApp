@@ -6,7 +6,6 @@ function sleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-
 class RainChart extends React.Component {
     constructor(props) {
         super(props);
@@ -21,16 +20,17 @@ class RainChart extends React.Component {
                         label: "Rain",
                         fill: true,
                         lineTension: 0.3,
-                        backgroundColor: "rgba(122, 190, 237)",
-                        borderColor: "rgb(122, 190, 237)",
+                        backgroundColor: 'rgba(89, 160, 238, 0.2)',
+                        borderColor: 'rgba(89, 160, 238, 1)',
                         borderCapStyle: "butt",
+                        borderWidth: 1.5,
                         borderDash: [],
                         borderDashOffset: 0.0,
                         borderJoinStyle: "miter",
                         pointRadius: 0,
                         data: this.props.data.map((item) => {
                             if (item <= 2.5) {
-                                return item/2.5;
+                                return 2;
                             } else if (item <= 7.6) {
                                 return 1 + (item-2.5)/5.1
                             } else if (item <= 50) {
@@ -58,7 +58,7 @@ class RainChart extends React.Component {
         return true;
     }
 
-    componentDidUpdate() {
+    /*componentDidUpdate() {
         console.log("CHART: VALUES: ", this.props.data, this.chartRef.chartInstance.data.datasets[0].data)
         if (!(this.areArraysEqual(this.props.data, this.chartRef.chartInstance.data.datasets[0].data))) {
             console.log("CHART (BEFORE): ",this.props.data, this.chartRef.chartInstance.data.datasets[0].data);
@@ -77,7 +77,7 @@ class RainChart extends React.Component {
             console.log("CHART (AFTER): ",this.props.data, this.chartRef.chartInstance.data.datasets[0].data);
             this.chartRef.chartInstance.update();
         }
-    }
+    }*/
 
     componentDidMount() {
         this.chartRef.chartInstance.update();

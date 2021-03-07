@@ -135,7 +135,9 @@ export function getOpenWeatherData(sdata, callBack) {
                     time: new Date((item.dt * 1000) + timezone),
                     temperature: item.temp.day,
                     weatherIcon: openWeatherIconMap[item.weather[0].id],
-                    weatherDesc: item.weather[0].description
+                    weatherDesc: item.weather[0].description,
+                    tempMin: item.temp.min,
+                    tempMax: item.temp.max
                 }
             )
         });
@@ -145,6 +147,7 @@ export function getOpenWeatherData(sdata, callBack) {
                 {
                     time: new Date((item.dt * 1000) + timezone),
                     temperature: item.temp,
+                    temperatureApparent: item.feels_like,
                     weatherIcon: openWeatherIconMap[item.weather[0].id],
                     weatherDesc: item.weather[0].description
                 }
