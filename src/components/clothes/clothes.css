@@ -2,13 +2,17 @@
     margin-top: 2vh !important;
     background-color: #f8f9fa33;
     border-radius: 5%;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+    margin-left: 1vh !important;
+    margin-right: 1vh !important;
 }
 #clothesHead{
     font-size: 2vh;
     margin-top: 5vh;
 }
 #clothes .col-6{
-    padding: 3vh 2vh 3vh 2vh;
+    
     
     
 }

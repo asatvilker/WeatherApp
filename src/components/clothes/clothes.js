@@ -77,11 +77,11 @@ render() {
                  
                 
                  return(
-                        <MDBCol size="6">
+                        <MDBCol size="6" className="flex-center flex-column">
                            
-                             <ClothesIcon iconName={codes[item]} size="7vh"/> 
+                             <ClothesIcon iconName={codes[item]} size="10vh"/> 
                             
-                            <p>{item}</p>
+                            <p>{item.toUpperCase()}</p>
                         </MDBCol>
              )})
          }
