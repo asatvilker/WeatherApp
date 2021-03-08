@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell, getOpenWeatherData } from './WeatherAPI'
+import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell, getOpenWeatherData, getMinuteDataMicrosoft, getHourDataMicrosoft, getDailyDataMicrosoft } from './WeatherAPI'
 import Overview from './components/DropDown/overview';
 import AddressBar from "./components/AddressBar/AddressBar";
 import Daily from './components/daily/daily';
@@ -20,7 +20,7 @@ class App extends Component {
             hourly: [],
             minutely: [{temperature: 0}],
             daily: [],
-            api: "openweather",
+            api: "microsoft",
             timezone: "Europe/London"
         }
     }
@@ -61,12 +61,17 @@ class App extends Component {
     }
 
     fetchData() {
+        console.log("fetching");
         if (this.state.api == "openweather") {
             getOpenWeatherData(this.state, this.setSettings.bind(this));
-        } else {
+        } else if (this.state.api == "climacell") {
             getHourForecastClimaCell(this.state, this.setSettings.bind(this));
             getMinuteData(this.state, this.setSettings.bind(this));
             getDayForecastClimaCell(this.state, this.setSettings.bind(this));
+        } else if (this.state.api == "microsoft") {
+            getMinuteDataMicrosoft(this.state, this.setSettings.bind(this)); 
+            getHourDataMicrosoft(this.state, this.setSettings.bind(this)); 
+            getDailyDataMicrosoft(this.state, this.setSettings.bind(this));
         }
     }
 

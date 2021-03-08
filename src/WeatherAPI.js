@@ -122,6 +122,120 @@ const openWeatherIconMap = {
     957: "WiStrongWind"
 }
 
+const microsoftIconMap = {
+    1: "WiDaySunny",
+    2: "WiDaySunnyOvercast",
+    3: "WiDayCloudyHigh",
+    4: "WiDayCloudy",
+    5: "WiDayHazy",
+    6: "WiDayCloudyHigh",
+    7: "WiCloud",
+    8: "WiCloudy",
+    11: "WiFog",
+    12: "WiShowers",
+    13: "WiDayShowers",
+    14: "WiDayShowers",
+    15: "WiThunderstorm",
+    16: "WiDayThunderstorm",
+    17: "WiDayThunderstorm",
+    18: "WiRain",
+    19: "WiRainMix",
+    20: "WiDayRainMix",
+    21: "WiDayRainMix",
+    22: "WiSnow",
+    23: "WiDaySnow",
+    24: "WiSleet",
+    25: "WiSleet",
+    26: "WiHail",
+    29: "WiRainMix",
+    30: "WiHot",
+    31: "WiCloud",
+    32: "WiWindy",
+    33: "WiNightClear",
+    34: "WiNightPartlyCloudy",
+    35: "WiNightCloudy",
+    36: "WiNightAltCloudyHigh",
+    37: "WiNightFog",
+    38: "WiNightCloudyWindy",
+    39: "WiNightShowers",
+    40: "WiNightRain",
+    41: "WiNightStormShowers",
+    42: "WiNightThunderstorm",
+    43: "WiNightStormShowers",
+    44: "WiNightSnow"
+
+}
+
+function convertTZ(date, tzString) {
+    return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
+}
+
+export function getMinuteDataMicrosoft(sdata, callBack) {
+    let url = "https://maxjay.dev/weatherAppData.php?api=microsoft&type=minutely&lat=" + sdata.lat + "&lon=" + sdata.lon;
+    console.log("API: URL: ", url);
+    return fetch(url)
+    .then(res => res.json())
+    .then(result => {
+        console.log(result);
+        let minutely = result["intervals"].map(function(item) {
+            return (
+                {
+                    minute: item.minute,
+                    intensity: item.dbz
+                }
+            )
+        });
+        if (callBack) {
+            callBack({minutely: minutely});
+        }
+    });
+}
+
+export function getHourDataMicrosoft(sdata, callBack) {
+    let url = "https://maxjay.dev/weatherAppData.php?api=microsoft&type=hourly&lat=" + sdata.lat + "&lon=" + sdata.lon;
+    console.log("API: URL: ", url);
+    return fetch(url)
+    .then(res => res.json())
+    .then(result => {
+        let hourly = result["forecasts"].slice(0, 29).map(function(item) {
+            return (
+                {
+                    time: convertTZ(item.date, sdata.timezone),
+                    temperature: item.temperature.value,
+                    weatherIcon: microsoftIconMap[item.iconCode],
+                    weatherDesc: item.iconPhrase
+                }
+            )
+        });
+        if (callBack) {
+            callBack({hourly: hourly});
+        }
+    });
+}
+
+export function getDailyDataMicrosoft(sdata, callBack) {
+    let url = "https://maxjay.dev/weatherAppData.php?api=microsoft&type=daily&lat=" + sdata.lat + "&lon=" + sdata.lon;
+    console.log("API: URL: ", url);
+    return fetch(url)
+    .then(res => res.json())
+    .then(result => {
+        let daily = result["forecasts"].map(function(item) {
+            console.log(item);
+            return (
+                {
+                    time: convertTZ(item.date, sdata.timezone),
+                    temperature: (item.temperature.maximum.value + item.temperature.minimum.value) / 2,
+                    weatherIcon: microsoftIconMap[item.day.iconCode],
+                    weatherDesc: item.day.iconPhrase
+                }
+            )
+        });
+        if (callBack) {
+            callBack({daily: daily});
+        }
+    });
+}
+
 export function getOpenWeatherData(sdata, callBack) {
     let url = "https://maxjay.dev/weatherAppData.php?api=openweather&lat=" + sdata.lat + "&lon=" + sdata.lon;
     return fetch(url)
@@ -160,7 +274,7 @@ export function getOpenWeatherData(sdata, callBack) {
         });
         console.log("API: FETCHING DATA (OPENWEATHER): ", daily, "\n\t\t\t\t  ", hourly, "\n\t\t\t\t  ", minutely);
         if (callBack) {
-            callBack({hourly: hourly, minutely: minutely, daily: daily, timezone: result["timezone"]});
+            callBack({hourly: hourly, minutely: minutely, daily: daily});
         }
     });
 }
@@ -194,7 +308,7 @@ export function getGeoCoords(sdata, callBack) {
         let loc = result["results"][0]["geometry"]["location"];
         if (callBack) {
             //console.log(geoTz(loc.lat, loc.lng));
-            callBack({lat: loc.lat, lon: loc.lng, address: result["results"][0]["formatted_address"]});
+            callBack({lat: loc.lat, lon: loc.lng, address: result["results"][0]["formatted_address"], timezone: result["TimeZones"][0]["Id"]});
             //callBack({lat: loc.lat, lon: loc.lng});
         }
         return loc;
