@@ -1,35 +1,11 @@
 import React, { Component } from "react";
 import { MDBBtn, MDBCol, MDBCollapse, MDBContainer, MDBIcon, MDBRow } from "mdbreact";
 import './clothes.css';
-
-import jeans from '../../images/jeans.png';
-import trainers from '../../images/trainer.png';
-import hoodie from '../../images/hoodie.png';
-import shirt from '../../images/shirt.png';
-import skirt from '../../images/skirt.png';
-import cap from '../../images/cap.png';
-import sunglass from '../../images/sunglass.png';
-import umbrella from '../../images/umbrella.png';
-import gloves from '../../images/gloves.png';
-import coat from '../../images/coat.png';
+import codes from './clothes.json'
+import ClothesIcon from "./clothesIcons";
 
 
-const codes={
-    "hoodie":hoodie,
-    "joggers":jeans,
-    "cap":cap,
-    "T-shirt":shirt,
-    "shorts/skirt":skirt,
-    "sunglasses":sunglass,
-    "raincoat":coat,
-    "trainers":trainers,
-    "umbrella":umbrella,
-    "jeans":jeans,
-    "scarf":"",
-    "coat":coat,
-    "gloves":gloves
 
-}
 
 class Clothes extends Component {
     
@@ -98,10 +74,14 @@ render() {
 
          {
              this.state.selection.map((item)=>{
+                 
+                
                  return(
-                        <MDBCol size="6">
-                            <img src={codes[item]} width="50px" height="50px" alt=" "/>
-                            <p>{item}</p>
+                        <MDBCol size="6" className="flex-center flex-column">
+                           
+                             <ClothesIcon iconName={codes[item]} size="10vh"/> 
+                            
+                            <p>{item.toUpperCase()}</p>
                         </MDBCol>
              )})
          }

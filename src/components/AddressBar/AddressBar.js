@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {placeSuggestions, getGeoCoords} from "../../WeatherAPI.js";
 import "./AddressBar.css";
-import icon from "./search.svg";
+import {BiSearch} from "react-icons/bi"
 
 class AddressBar extends Component {
 
@@ -62,7 +62,7 @@ class AddressBar extends Component {
                 {addOverlay()}
                 <div className="address-wrapper">
                     <div className="address-header-title" onClick={this.setFocus}>
-                        <img className="address-search-icon" src={icon}/>
+                        <BiSearch className="address-search-icon"/>
                         <input
                             type="text"
                             defaultValue={"Search"}

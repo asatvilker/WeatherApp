@@ -1,5 +1,5 @@
 import './App.css';
-import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell } from './WeatherAPI'
+import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell, getOpenWeatherData } from './WeatherAPI'
 import Overview from './components/DropDown/overview';
 import TopBar from './components/TopBar'
 import Daily from './components/daily/daily';
@@ -18,6 +18,8 @@ class App extends Component {
             hourly: [],
             minutely: [],
             daily: [],
+            api: "openweather",
+            timezone: "Europe/London"
         }
     }
 
@@ -52,6 +54,14 @@ class App extends Component {
         //refresh data
         if (newSettings.hasOwnProperty("lat")) {
             console.log("APP: FETCHING NEW DATA");
+            this.fetchData();
+        }
+    }
+
+    fetchData() {
+        if (this.state.api == "openweather") {
+            getOpenWeatherData(this.state, this.setSettings.bind(this));
+        } else {
             getHourForecastClimaCell(this.state, this.setSettings.bind(this));
             getMinuteData(this.state, this.setSettings.bind(this));
             getDayForecastClimaCell(this.state, this.setSettings.bind(this));
@@ -59,16 +69,21 @@ class App extends Component {
     }
 
     componentDidMount(){
-        getHourForecastClimaCell(this.state, this.setSettings.bind(this));
-        getMinuteData(this.state, this.setSettings.bind(this));
-        getDayForecastClimaCell(this.state, this.setSettings.bind(this));
+        this.fetchData();
+        this.timerIntervalID = setInterval(
+            () => this.setState({date: new Date()}), 1000
+        );
     }
-    
+
+    componentWillUnmount() {
+        clearInterval(this.timerIntervalID);
+    }
+
     render() {
         return (
             <div className="App">
                 <TopBar setSettings={this.setSettings.bind(this)}/>
-                <Overview data={this.state} date={this.state.date} address={this.state.address}/>
+                <Overview data={this.state} date={this.state.date} address={this.state.address} timeZone={this.state.timezone}/>
                 <Clothes data={this.state} hourly={this.state.hourly}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>
             </div>
