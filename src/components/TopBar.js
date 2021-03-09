@@ -19,9 +19,15 @@ class TopBar extends Component{
     render(){
         return(
             <div className="topbar-parent">
-                <TempSwitch setSettings={this.props.setSettings}/>
-                <AddressBar setSettings={this.props.setSettings}/>
-                <Settings setSettings={this.props.setSettings}/>
+                <div class="topbar-spacing1">
+                    <TempSwitch setSettings={this.props.setSettings}/>
+                </div>
+                <div class="topbar-spacing2">
+                    <AddressBar setSettings={this.props.setSettings}/>
+                </div>
+                <div class="topbar-spacing1">
+                    <Settings setSettings={this.props.setSettings}/>
+                </div> 
             </div>
         )
     }

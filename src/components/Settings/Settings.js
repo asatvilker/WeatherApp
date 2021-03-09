@@ -74,7 +74,7 @@ class Settings extends Component{
             <div>
                 <div className="settings-wrapper">
                     <div>
-                        <MDBIcon icon="bars" size="2x" onClick={this.setFocus} />
+                        <MDBIcon icon="bars" size="3x" onClick={this.setFocus} />
                     </div>
                     <div className="settings-suggestions">
                         {addSettingsOverlay()}

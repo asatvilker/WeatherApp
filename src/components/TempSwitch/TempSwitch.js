@@ -27,13 +27,16 @@ class TempSwitch extends Component{
     }
     render(){
         return(
-            <div class="switch-wrapper">
+            <div>
+                <div id="switch-wrapper">
                 <div>C</div>
                 <label class="switch">
                     <input type="checkbox" onClick={this.checktoggled}></input>
                     <span class="slider round"></span>
                 </label>  
                 <div>F</div>
+                </div>
+                
             </div>
         )
     }
