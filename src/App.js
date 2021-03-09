@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell, getOpenWeatherData, getMinuteDataMicrosoft, getHourDataMicrosoft, getDailyDataMicrosoft } from './WeatherAPI'
+import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell, getOpenWeatherData, getMinuteDataMicrosoft, getHourDataMicrosoft, getDailyDataMicrosoft, convertTZ } from './WeatherAPI'
 import Overview from './components/DropDown/overview';
 import AddressBar from "./components/AddressBar/AddressBar";
 import Daily from './components/daily/daily';
@@ -78,7 +78,7 @@ class App extends Component {
     componentDidMount(){
         this.fetchData();
         this.timerIntervalID = setInterval(
-            () => this.setState({date: new Date()}), 1000
+            () => this.setState({date: convertTZ(new Date(), this.state.timezone)}), 1000
         );
     }
 

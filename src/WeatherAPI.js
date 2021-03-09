@@ -128,7 +128,7 @@ const microsoftIconMap = {
     3: "WiDayCloudyHigh",
     4: "WiDayCloudy",
     5: "WiDayHazy",
-    6: "WiDayCloudyHigh",
+    6: "WiCloud",
     7: "WiCloud",
     8: "WiCloudy",
     11: "WiFog",
@@ -166,7 +166,7 @@ const microsoftIconMap = {
 
 }
 
-function convertTZ(date, tzString) {
+export function convertTZ(date, tzString) {
     return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
 }
 
@@ -176,7 +176,6 @@ export function getMinuteDataMicrosoft(sdata, callBack) {
     return fetch(url)
     .then(res => res.json())
     .then(result => {
-        console.log(result);
         let minutely = result["intervals"].map(function(item) {
             return (
                 {
@@ -220,7 +219,6 @@ export function getDailyDataMicrosoft(sdata, callBack) {
     .then(res => res.json())
     .then(result => {
         let daily = result["forecasts"].map(function(item) {
-            console.log(item);
             return (
                 {
                     time: convertTZ(item.date, sdata.timezone),
