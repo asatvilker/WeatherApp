@@ -1,11 +1,11 @@
 #main{
-  margin-top: 1vh !important;
   border-radius: 5%;
-  padding-top: 4vh;
   font-size: 2vh;
 }
 
 #text{
+  margin-top: 1vh !important;
+  padding-top: 4vh;
   padding-bottom: 2vh;
 }
 
@@ -15,5 +15,10 @@ hr{
 }
 
 #swap{
-  position: relative;
+  float: left;
+}
+
+#flip{
+  background-color: transparent;
+  border-color: transparent;
 }
