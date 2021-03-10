@@ -240,22 +240,21 @@ export function getOpenWeatherData(sdata, callBack) {
     .then(res => res.json())
     .then(result => {
         console.log("API: URL: ", url)
-        let timezone = result["timezone_offset"] * 1000;
         let daily = result["daily"].map(function(item) {
             return (
                 {
-                    time: new Date((item.dt * 1000) + timezone),
+                    time: convertTZ(new Date(item.dt*1000), sdata.timezone),
                     temperature: item.temp.day,
                     weatherIcon: openWeatherIconMap[item.weather[0].id],
                     weatherDesc: item.weather[0].description
                 }
             )
         });
-        let startTime = new Date(result["hourly"][0].dt * 1000 + result["timezone_offset"]*1000);
+        let startTime = convertTZ(new Date(result["hourly"][0].dt * 1000), sdata.timezone)
         let hourly = result["hourly"].slice(0, 29 - startTime.getHours()).map(function(item) {
             return (
                 {
-                    time: new Date((item.dt * 1000) + timezone),
+                    time: convertTZ(new Date(item.dt*1000), sdata.timezone),
                     temperature: item.temp,
                     weatherIcon: openWeatherIconMap[item.weather[0].id],
                     weatherDesc: item.weather[0].description
@@ -265,7 +264,7 @@ export function getOpenWeatherData(sdata, callBack) {
         let minutely = result["minutely"].map(function(item) {
             return (
                 {
-                    time: new Date((item.dt * 1000) + timezone),
+                    time: convertTZ(new Date(item.dt*1000), sdata.timezone),
                     intensity: item.precipitation
                 }
             )

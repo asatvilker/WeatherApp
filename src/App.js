@@ -20,7 +20,7 @@ class App extends Component {
             hourly: [],
             minutely: [{temperature: 0}],
             daily: [],
-            api: "microsoft",
+            api: "openweather",
             timezone: "Europe/London"
         }
     }
