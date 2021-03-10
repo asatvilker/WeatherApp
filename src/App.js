@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell, getOpenWeatherData, getMinuteDataMicrosoft, getHourDataMicrosoft, getDailyDataMicrosoft, convertTZ } from './WeatherAPI'
+import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell, getOpenWeatherData } from './WeatherAPI'
 import Overview from './components/DropDown/overview';
 import AddressBar from "./components/AddressBar/AddressBar";
 import Daily from './components/daily/daily';
 import Clothes from './components/clothes/clothes';
 import Settings from './components/Settings/Settings';
+import Suggest from './components/suggestions/suggestion';
 import React, { Component } from "react";
 
 class App extends Component {
@@ -61,24 +62,19 @@ class App extends Component {
     }
 
     fetchData() {
-        console.log("fetching");
         if (this.state.api == "openweather") {
             getOpenWeatherData(this.state, this.setSettings.bind(this));
-        } else if (this.state.api == "climacell") {
+        } else {
             getHourForecastClimaCell(this.state, this.setSettings.bind(this));
             getMinuteData(this.state, this.setSettings.bind(this));
             getDayForecastClimaCell(this.state, this.setSettings.bind(this));
-        } else if (this.state.api == "microsoft") {
-            getMinuteDataMicrosoft(this.state, this.setSettings.bind(this)); 
-            getHourDataMicrosoft(this.state, this.setSettings.bind(this)); 
-            getDailyDataMicrosoft(this.state, this.setSettings.bind(this));
         }
     }
 
     componentDidMount(){
         this.fetchData();
         this.timerIntervalID = setInterval(
-            () => this.setState({date: convertTZ(new Date(), this.state.timezone)}), 1000
+            () => this.setState({date: new Date()}), 1000
         );
     }
 
@@ -89,10 +85,11 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                
+
                 <Settings/>
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
                 <Overview data={this.state} date={this.state.date} address={this.state.address} timeZone={this.state.timezone}/>
+                <Suggest data={this.state} hourly={this.state.hourly}/>
                 <Clothes data={this.state} hourly={this.state.hourly}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>
             </div>

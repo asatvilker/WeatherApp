@@ -1,0 +1,19 @@
+#main{
+  margin-top: 1vh !important;
+  border-radius: 5%;
+  padding-top: 4vh;
+  font-size: 2vh;
+}
+
+#text{
+  padding-bottom: 2vh;
+}
+
+hr{
+  border-color: white;
+  border-width: 1.55px;
+}
+
+#swap{
+  position: relative;
+}
