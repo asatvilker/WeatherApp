@@ -19,9 +19,9 @@ class App extends Component {
             celsius: true,
             date: new Date(),
             hourly: [],
-            minutely: [{temperature: 0}],
+            minutely: [],
             daily: [],
-            api: "openweather",
+            api: "microsoft",
             timezone: "Europe/London",
             data: ""
         }
@@ -32,7 +32,6 @@ class App extends Component {
         if (newSettings.hasOwnProperty("celsius")) {
             if (newSettings.celsius != this.state.celsius) {
                 if (newSettings.celsius) {
-                    //convert to celsius
                     newSettings["hourly"] = this.state.hourly.map((item) => {
                         item.temperature = 5/9*(item.temperature-32);
                         return (item)
@@ -42,7 +41,6 @@ class App extends Component {
                         return (item)
                     });
                 } else {
-                    //convert to faren
                     newSettings["hourly"] = this.state.hourly.map((item) => {
                         item.temperature = (9/5*item.temperature)+32;
                         return (item)
@@ -55,7 +53,6 @@ class App extends Component {
             }
         }
         this.setState(newSettings);
-        //refresh data
         if (newSettings.hasOwnProperty("lat")) {
             console.log("APP: FETCHING NEW DATA");
             this.fetchData();
@@ -63,19 +60,24 @@ class App extends Component {
     }
 
     fetchData() {
+        console.log("fetching");
         if (this.state.api == "openweather") {
             getOpenWeatherData(this.state, this.setSettings.bind(this));
-        } else {
+        } else if (this.state.api == "climacell") {
             getHourForecastClimaCell(this.state, this.setSettings.bind(this));
             getMinuteData(this.state, this.setSettings.bind(this));
             getDayForecastClimaCell(this.state, this.setSettings.bind(this));
+        } else if (this.state.api == "microsoft") {
+            getMinuteDataMicrosoft(this.state, this.setSettings.bind(this)); 
+            getHourDataMicrosoft(this.state, this.setSettings.bind(this)); 
+            getDailyDataMicrosoft(this.state, this.setSettings.bind(this));
         }
     }
 
     componentDidMount(){
         this.fetchData();
         this.timerIntervalID = setInterval(
-            () => this.setState({date: new Date()}), 1000
+            () => this.setState({date: convertTZ(new Date(), this.state.timezone)}), 1000
         );
     }
 
@@ -90,9 +92,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-
-                <Settings parentCallback = {this.handleCallback} data = {this.state.data} />
-                {console.log(this.state.data)}
+                <Settings parentCallback={this.handleCallback} data={this.state.data} />
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
                 <Overview data={this.state} date={this.state.date} address={this.state.address} timeZone={this.state.timezone}/>
                 <Suggest data={this.state} hourly={this.state.hourly}/>
