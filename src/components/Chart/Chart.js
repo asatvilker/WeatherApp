@@ -29,15 +29,7 @@ class RainChart extends React.Component {
                         borderJoinStyle: "miter",
                         pointRadius: 0,
                         data: this.props.data.map((item) => {
-                            if (item <= 2.5) {
-                                return 2;
-                            } else if (item <= 7.6) {
-                                return 1 + (item-2.5)/5.1
-                            } else if (item <= 50) {
-                                return 2 + (item-7.6)/(50-7.6)
-                            } else {
-                                return 3;
-                            }
+                           return item;
                         })
                     }
                 ]
@@ -46,6 +38,9 @@ class RainChart extends React.Component {
     }
 
     areArraysEqual(a, b) {
+        if (!a || !b) {
+            console.log("NOT DEFINED");
+        }
         if (a.length != b.length) {
             return false;
         } else {
@@ -58,71 +53,44 @@ class RainChart extends React.Component {
         return true;
     }
 
-    /*componentDidUpdate() {
-        console.log("CHART: VALUES: ", this.props.data, this.chartRef.chartInstance.data.datasets[0].data)
-        if (!(this.areArraysEqual(this.props.data, this.chartRef.chartInstance.data.datasets[0].data))) {
-            console.log("CHART (BEFORE): ",this.props.data, this.chartRef.chartInstance.data.datasets[0].data);
-            this.chartRef.chartInstance.data.datasets[0].data = this.props.data.map((item) => {
-                if (item <= 2.5) {
-                    return item/2.5;
-                } else if (item <= 7.6) {
-                    return 1 + (item-2.5)/5.1
-                } else if (item <= 50) {
-                    return 2 + (item-7.6)/(50-7.6)
-                } else {
-                    return 3;
-                }
-            });
+    componentDidUpdate() {
+        if (!this.areArraysEqual(this.chartRef.chartInstance.data.datasets[0].data, this.props.data)) {
+            this.chartRef.chartInstance.data.datasets[0].data = this.props.data;
             this.chartRef.chartInstance.update();
-            console.log("CHART (AFTER): ",this.props.data, this.chartRef.chartInstance.data.datasets[0].data);
+            console.log("CHART: VALUES: ", this.props.data, this.chartRef.chartInstance.data.datasets[0].data);
+            console.log("CHART: ", this.chartRef.chartInstance.data.datasets[0].data);
             this.chartRef.chartInstance.update();
         }
-    }*/
-
-    componentDidMount() {
-        this.chartRef.chartInstance.update();
     }
 
     render() {
         return (
             <Line ref={(reference) => this.chartRef = reference} data={this.state.dataLine} options={{
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            fontColor: "black",
-                            max: 3,
-                            min: 0, 
-                            stepSize: 1,
-                            callback: function(value, index, values) {
-                                switch(index) {
-                                    case 3:
-                                        return ""
-                                    case 2:
-                                        return "Light"
-                                    case 1:
-                                        return "Medium"
-                                    case 0:
-                                        return "Heavy"
-                                }
-                            }
-                        }
-                    }],
-                    xAxes: [{
-                        ticks: {
-                            display: true
-                        },
-                        gridLines: {
-                            color: "rgba(0, 0, 0, 0)",
-                        }
-                    }]
-                },
                 legend: {
-                    display: false
+                    display: false,
+                    labels: {
+                        fontColor: "#212529"
+                    }
                 },
                 tooltips: {
                     enabled: false
                 },
-                responsive: true
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            min: 0,
+                            max: 65,
+                            stepSize: 5,
+                            autoSkip: false,
+                            beginAtZero: true
+                        }
+                    }],
+                    xAxes: [{
+                        display:false
+                    }]
+                }
             }}/>
         )
     }

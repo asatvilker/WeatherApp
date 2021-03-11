@@ -19,9 +19,9 @@ class App extends Component {
             celsius: true,
             date: new Date(),
             hourly: [],
-            minutely: [{temperature: 0}],
+            minutely: [],
             daily: [],
-            api: "openweather",
+            api: "microsoft",
             timezone: "Europe/London"
         }
     }
