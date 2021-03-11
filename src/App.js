@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Background from './components/Background/Background';
 import {getHourForecastClimaCell, getMinuteData, getMinuteDataMicrosoft, getDailyDataMicrosoft,getHourDataMicrosoft, convertTZ, getDayForecastClimaCell, getOpenWeatherData } from './WeatherAPI'
@@ -86,6 +85,10 @@ class App extends Component {
         clearInterval(this.timerIntervalID);
     }
 
+    componentWillUnmount() {
+        console.log("APP: UPDATED");
+    }
+
     handleCallback = (childData) =>{
       this.setState({data: childData})
     }
@@ -93,11 +96,8 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-
-                <Background date={this.state.date}/>
-
+                {/*<Background date={this.state.date}/>*/}
                 <Settings parentCallback={this.handleCallback} data={this.state.data} />
-
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
                 <Overview data={this.state} date={this.state.date} address={this.state.address} timeZone={this.state.timezone}/>
                 <Suggest data={this.state} hourly={this.state.hourly}/>
