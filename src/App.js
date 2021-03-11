@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell, getOpenWeatherData } from './WeatherAPI'
+import {getHourForecastClimaCell, getMinuteData, getMinuteDataMicrosoft, getDailyDataMicrosoft,getHourDataMicrosoft, convertTZ, getDayForecastClimaCell, getOpenWeatherData } from './WeatherAPI'
 import Overview from './components/DropDown/overview';
 import AddressBar from "./components/AddressBar/AddressBar";
 import Daily from './components/daily/daily';
