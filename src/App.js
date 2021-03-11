@@ -22,7 +22,8 @@ class App extends Component {
             minutely: [{temperature: 0}],
             daily: [],
             api: "openweather",
-            timezone: "Europe/London"
+            timezone: "Europe/London",
+            data: ""
         }
     }
 
@@ -82,11 +83,16 @@ class App extends Component {
         clearInterval(this.timerIntervalID);
     }
 
+    handleCallback = (childData) =>{
+      this.setState({data: childData})
+    }
+
     render() {
         return (
             <div className="App">
 
-                <Settings/>
+                <Settings parentCallback = {this.handleCallback} data = {this.state.data} />
+                {console.log(this.state.data)}
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
                 <Overview data={this.state} date={this.state.date} address={this.state.address} timeZone={this.state.timezone}/>
                 <Suggest data={this.state} hourly={this.state.hourly}/>
