@@ -65,33 +65,36 @@ class RainChart extends React.Component {
 
     render() {
         return (
-            <Line ref={(reference) => this.chartRef = reference} data={this.state.dataLine} options={{
-                legend: {
-                    display: false,
-                    labels: {
-                        fontColor: "#212529"
-                    }
-                },
-                tooltips: {
-                    enabled: false
-                },
-                responsive: true,
-                scales: {
-                    yAxes: [{
-                        display: true,
-                        ticks: {
-                            min: 0,
-                            max: 65,
-                            stepSize: 5,
-                            autoSkip: false,
-                            beginAtZero: true
+            <Line ref={(reference) => this.chartRef = reference} data={this.state.dataLine}
+                options={{
+                    legend: {
+                        labels: {
+                            fontColor: "#212529"
                         }
-                    }],
-                    xAxes: [{
-                        display:false
-                    }]
-                }
-            }}/>
+                    },
+                    tooltips: {
+                        enabled: false
+                    },
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                min: 0,
+                                max: 65,
+                                stepSize: 5,
+                                autoSkip: false,
+                                beginAtZero: true,
+                            }
+                        }],
+                        xAxes: [{
+                            display: true,
+                            ticks: {
+                                autoSkip: false
+                            }
+                        }]
+                    }
+                }}/>
         )
     }
 }
