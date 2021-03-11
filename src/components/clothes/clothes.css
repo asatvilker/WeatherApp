@@ -1,21 +1,19 @@
-#clothes{
-    margin-top: 2vh !important;
-    background-color: #f8f9fa33;
-    border-radius: 5%;
-    padding-top: 4vh;
-    padding-bottom: 4vh;
-    margin-left: 1vh !important;
-    margin-right: 1vh !important;
+#clothes {
+  margin-top: 2vh !important;
+  background-color: #f8f9fa33;
+  border-radius: 5%;
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+  margin-left: 1vh !important;
+  margin-right: 1vh !important;
+  position: relative;
 }
-#clothesHead{
-    font-size: 2vh;
-    margin-top: 5vh;
+#clothesHead {
+  font-size: 2vh;
+  margin-top: 5vh;
 }
-#clothes .col-6{
-    
-    
-    
+#clothes .col-6 {
 }
-#clothes .col-6 p{
-    font-size: 2.5vh;
+#clothes .col-6 p {
+  font-size: 2.5vh;
 }

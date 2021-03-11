@@ -1,24 +1,25 @@
-#main{
+#main {
   border-radius: 5%;
   font-size: 2vh;
+  position: relative;
 }
 
-#text{
+#text {
   margin-top: 1vh !important;
   padding-top: 4vh;
   padding-bottom: 2vh;
 }
 
-hr{
+hr {
   border-color: white;
   border-width: 1.55px;
 }
 
-#swap{
+#swap {
   float: left;
 }
 
-#flip{
+#flip {
   background-color: transparent;
   border-color: transparent;
 }
