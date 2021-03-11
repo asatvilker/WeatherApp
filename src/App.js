@@ -42,7 +42,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Background />
+                <Background date={this.state.date}/>
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
                 <Overview data={this.state} date={this.state.date} address={this.state.address}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>
