@@ -94,6 +94,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
+                <Chart data={this.state.minutely.map((item) => item.intensity)}/>
                 {<Background date={this.state.date}/>}
                 <Settings parentCallback={this.handleCallback} data={this.state.data} />
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
