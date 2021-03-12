@@ -97,9 +97,9 @@ class App extends Component {
                 {<Background date={this.state.date} timeZone={this.state.timezone}/>}
                 <Settings parentCallback={this.handleCallback} data={this.state.data} />
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
-                <Overview data={this.state} address={this.state.address} timeZone={this.state.timezone}/>
-                <Suggest data={this.state} hourly={this.state.hourly}/>
-                <Clothes data={this.state} hourly={this.state.hourly}/>
+                <Overview data={this.state}/>
+                <Suggest hourly={this.state.hourly}/> 
+                <Clothes hourly={this.state.hourly}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>
             </div>
         )
