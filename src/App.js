@@ -94,7 +94,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                {<Background date={this.state.date} timeZone={this.state.timezone}/>}
+                <Background date={this.state.date} timeZone={this.state.timezone}/>
                 <Settings parentCallback={this.handleCallback} data={this.state.data} />
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
                 <Overview data={this.state}/>
