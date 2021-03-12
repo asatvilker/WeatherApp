@@ -4,9 +4,6 @@ import './clothes.css';
 import codes from './clothes.json'
 import ClothesIcon from "./clothesIcons";
 
-
-
-
 class Clothes extends Component {
     
 state = {
@@ -71,23 +68,18 @@ render() {
       <>
         <h1 id="clothesHead">Suggestion for the day</h1>
         <MDBRow id="clothes" className="z-depth-1"> {/* a bootstrap layout component that breaks the layout up into responsive rows and columns */}
-            
-
          {
-             this.state.selection.map((item)=>{//map function loops through our selection array (each item of clothing)
-                 
-                
-                 return(
-                        <MDBCol size="6" className="flex-center flex-column">
-                           
-                             <ClothesIcon iconName={codes[item]} size="10vh"/> {/*for each item we have a icon component, we first map the selection name to the icon name which is stored as in a json file */}
-                            
-                            <p>{item.toUpperCase()}</p>{/* displays the name of the clothing in capital letters */}
-                        </MDBCol>
-             )})
-         }
-            
+            this.state.selection.map((item)=>{//map function loops through our selection array (each item of clothing)
+                return(
+                    <MDBCol size="6" className="flex-center flex-column">
+                        <ClothesIcon iconName={codes[item]} size="10vh"/> {/*for each item we have a icon component, we first map the selection name to the icon name which is stored as in a json file */}
+                        <p>{item.toUpperCase()}</p>{/* displays the name of the clothing in capital letters */}
+                    </MDBCol>
+                )
+            })
+         }   
         </MDBRow>
+        <hr/>
     </>
     );
   }
