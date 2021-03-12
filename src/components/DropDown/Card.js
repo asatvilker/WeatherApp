@@ -12,7 +12,7 @@ class Card extends Component {
 
     render() {
         return (
-            <MDBContainer className="hourlyComponent"> {/*although the classname is hourly, this was because originally for just hourly but was then abstracted to reuse for daily too, thats why component was renamed to just card */}
+            <MDBContainer className="card"> {/*although the classname is hourly, this was because originally for just hourly but was then abstracted to reuse for daily too, thats why component was renamed to just card */}
                 <WeatherIcon iconName={this.props.icon} size="9vh"></WeatherIcon> {/*displays icon component passing through name of icon */}
                 <h1>{this.props.hour}</h1> {/*if hourly then this displays hour, if daily it will be the day */}
                 <p>{this.props.condition}</p>

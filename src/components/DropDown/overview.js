@@ -1,21 +1,39 @@
 import React, { Component } from "react";
 import { MDBBtn, MDBCol, MDBCollapse, MDBContainer, MDBIcon, MDBRow } from "mdbreact";
+import { convertTZ } from "../../WeatherAPI";
 import './dropdown.css'
 import Dropdown from './dropdown';
 import WeatherIcon from "../weatherIcons.js";
 
 class Overview extends Component {
     state = {
-
+        date: new Date(),
+        open: false
     }
-    componentDidMount() {
 
+    toggleCollapse = () => () => { //function to toggle the state of the dropdown
+        console.log(this.state);
+        this.setState(prevState => ({
+            open: !prevState.open
+        })); //switches the state of the dropdown in state, causing the bootstrap dropdown to open and close (alternates between height:0 and height:100%)
+        // var element = document.getElementsByClassName("dropButton")[0] //gets the button elelment for the dropdown
+        // element.classList.contains("turn")? element.classList.remove("turn"): element.classList.add("turn") //adding class to spin button when selected
+    }
+
+    componentDidMount() {
+        this.timerIntervalID = setInterval(
+            () => this.setState({date: convertTZ(new Date(), this.props.timeZone)}), 1000
+        );   
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timerIntervalID);
     }
 
     render() {
         return (
             <>
-                <MDBRow className="pt-4 overview"> {/*This component is for the overview section which consists of current time, weather, then also the dropdown component, which then contains the hourly sections (see dropdown.js) */}
+                <MDBRow className="pt-4 overview" onClick={this.toggleCollapse()}> {/*This component is for the overview section which consists of current time, weather, then also the dropdown component, which then contains the hourly sections (see dropdown.js) */}
                     <MDBCol size="6">{/*splitting overview into 2 columns, one for the data, one for the icon of current temperature */}
                         {
                             this.props.data.hourly[0] == undefined ? //important- has to check data has been passed through or on initital load it will be undefined and cause an error, this waits for props to update and only displays when data is available
@@ -30,7 +48,7 @@ class Overview extends Component {
                                         <h1 className="overviewHeader" >{Math.round(this.props.data.hourly[0].temperature)}</h1>{/*shows temperature of first hour in array as this would be now */}
                                         <h1 className="overviewHeader" >&#176;{this.props.data.celsius ? "C" : "F"}</h1>{/*conditional display of correct symbol */}
                                     </div>
-                                    <p>{`${this.props.address}, ${this.props.date.toLocaleTimeString()}, ${this.props.date.toString().split(" ")[2]}`}</p> {/*extra information on location, time */}
+                                    <p>{`${this.props.address}, ${this.state.date.toLocaleTimeString()}, ${this.state.date.getDate()}`}</p> {/*extra information on location, time */}
                                 </>
                         }
 
@@ -50,7 +68,7 @@ class Overview extends Component {
 
                     </MDBCol>
                 </MDBRow>
-                <Dropdown data={this.props.data.hourly} celsius={this.props.data.celsius} /> {/* passing hourly info to dropdown for hourly forecast*/}
+                <Dropdown data={this.props.data.hourly} celsius={this.props.data.celsius} open={this.state.open} toggleCollapse={this.toggleCollapse}/> {/* passing hourly info to dropdown for hourly forecast*/}
 
             </>
         );
