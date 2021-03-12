@@ -1,15 +1,22 @@
 import React, { Component } from "react";
 import { MDBBtn, MDBCol, MDBCollapse, MDBContainer, MDBIcon, MDBRow } from "mdbreact";
+import { convertTZ } from "../../WeatherAPI";
 import './dropdown.css'
 import Dropdown from './dropdown';
 import WeatherIcon from "../weatherIcons.js";
 
 class Overview extends Component {
     state = {
-
+        date: new Date()
     }
     componentDidMount() {
+        this.timerIntervalID = setInterval(
+            () => this.setState({date: convertTZ(new Date(), this.props.timeZone)}), 1000
+        );   
+    }
 
+    componentWillUnmount() {
+        clearInterval(this.timerIntervalID);
     }
 
     render() {
@@ -30,7 +37,7 @@ class Overview extends Component {
                                         <h1 className="overviewHeader" >{Math.round(this.props.data.hourly[0].temperature)}</h1>{/*shows temperature of first hour in array as this would be now */}
                                         <h1 className="overviewHeader" >&#176;{this.props.data.celsius ? "C" : "F"}</h1>{/*conditional display of correct symbol */}
                                     </div>
-                                    <p>{`${this.props.address}, ${this.props.date.toLocaleTimeString()}, ${this.props.date.toString().split(" ")[2]}`}</p> {/*extra information on location, time */}
+                                    <p>{`${this.props.address}, ${this.state.date.toLocaleTimeString()}, ${this.state.date.getDate()}`}</p> {/*extra information on location, time */}
                                 </>
                         }
 

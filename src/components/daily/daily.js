@@ -3,10 +3,9 @@ import { MDBBtn, MDBCol, MDBCollapse, MDBContainer, MDBIcon, MDBRow } from "mdbr
 import '../DropDown/dropdown.css'
 import './daily.css'
 import { MDBAnimation } from "mdbreact";
-import Card from '../DropDown/FcstComponent';
+import Card from '../DropDown/Card';
 class Daily extends Component {
     state = {
-
     }
 
     componentDidMount() {
