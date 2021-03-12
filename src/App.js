@@ -86,6 +86,7 @@ class App extends Component {
         console.log("APP: UPDATED");
     }
 
+    //Reuse existing method pls
     handleCallback = (childData) =>{
       this.setState({data: childData})
     }
