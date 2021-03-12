@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { convertTZ } from "../../WeatherAPI";
+import React from "react";
 import './Background.css';
 
 //Displays the mountains for the background
@@ -45,7 +44,6 @@ function TimeChange(props) {
     //currentColor and bodyColor store the appropriate colours from the variables colors and backgrounds (respectively) which is then used to set the colour for the background divs
     let currentColor;
     let bodyColor;
-    console.log(time, new Date().toLocaleTimeString("en-US", {timeZone: props.timeZone}))
     
     //The if statements check the current hour at the location being displayed on screen using the variable curTime
     //meridiem is used to check if its AM or PM
