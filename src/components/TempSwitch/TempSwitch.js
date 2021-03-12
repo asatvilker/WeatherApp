@@ -5,38 +5,31 @@ class TempSwitch extends Component{
     constructor(props){
         super(props);
         this.state = {
-            isToggled:true
+            isToggled:false
         }
-        this.checktoggled = this.checktoggled.bind(this);
     }
-    checktoggled(e){
-        const{isToggled} = this.state;
-        if (isToggled){
-            this.props.setSettings({celsius: false})
-            this.setState({
-                isToggled:false
-            });
-        }
-        else{
-            this.props.setSettings({celsius: true})
-            this.setState({
-                isToggled: true
-            });
-        }
 
-    }
+    //Updates the temperature by listening to the checkbox and send the respective info the parent class where temeperature state is stored
+    handleChange = event => {
+        const{isToggled} = this.state;
+        this.setState({isToggled : event.target.checked});
+        this.props.setSettings({celsius: isToggled})
+    };
+
+    
     render(){
         return(
             <div>
                 <div id="switch-wrapper">
-                <div>C</div>
-                <label class="switch">
-                    <input type="checkbox" onClick={this.checktoggled}></input>
-                    <span class="slider round"></span>
-                </label>  
-                <div>F</div>
+                    <div>C</div>
+                    <div>
+                        <label class="switch">
+                            <input type="checkbox" check={this.state.isToggled} onChange={this.handleChange} ></input>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>  
+                    <div>F</div>
                 </div>
-                
             </div>
         )
     }

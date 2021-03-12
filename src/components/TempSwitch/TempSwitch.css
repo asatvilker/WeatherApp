@@ -25,6 +25,7 @@
     -webkit-transition: .4s;
     transition: .4s;
     border: solid;
+    max-width: 40px;
   }
 
 .slider:before {
