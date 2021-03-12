@@ -112,7 +112,7 @@
 }
 
 @keyframes upDown {
-    0,
+    0%,
     100% {
         transform: translateY(-15px);
     }
