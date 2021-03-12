@@ -94,11 +94,11 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Chart data={this.state.minutely.map((item) => item.intensity)}/>
                 {<Background date={this.state.date}/>}
                 <Settings parentCallback={this.handleCallback} data={this.state.data} />
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
                 <Overview data={this.state} address={this.state.address} timeZone={this.state.timezone}/>
+                <Chart data={this.state.minutely.map((item) => item.intensity)}/>
                 <Suggest data={this.state} hourly={this.state.hourly}/>
                 <Clothes data={this.state} hourly={this.state.hourly}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>
