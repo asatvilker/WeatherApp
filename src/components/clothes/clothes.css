@@ -17,3 +17,7 @@
 #clothes .col-6 p {
   font-size: 2.5vh;
 }
+
+hr {
+  position: relative;
+}
