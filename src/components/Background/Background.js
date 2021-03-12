@@ -34,8 +34,8 @@ function TimeChange(props) {
     let curTime = parseInt(props.date.toString().split(" ")[4].split(":")[0], 10);
     const colors = ['248, 177, 149', '255, 125, 69', '246, 114, 128', '192, 108, 132', '53, 92, 125', '192, 108, 180', '246, 114, 128', '248, 177, 149']
     const backgrounds = ['linear-gradient(180deg, #FF7D45 20%, rgba(248, 177, 149, 1) 100%)', 'linear-gradient(180deg, #F8B195 20%, rgba(255, 125, 69, 1) 100%)', 'linear-gradient(180deg, #F8B195 20%, rgba(246, 114, 128, 1) 100%)', 'linear-gradient(180deg, rgba(246, 114, 128, 0.7) 20%, rgba(192, 108, 132, 0.8) 100%)', 'linear-gradient(180deg, #6C5B7B 20%, rgba(53, 92, 125, 1) 100%)', 'linear-gradient(180deg, #6C5B7B 20%, #6C5B7B, rgba(192, 108, 180, 1) 100%)', 'linear-gradient(180deg, #C06CB4 20%, rgba(246, 114, 128, 1) 100%)', 'linear-gradient(180deg, #F67280 20%, rgba(248, 177, 149, 1) 100%)'];
-    var currentColor;
-    var bodyColor;
+    let currentColor;
+    let bodyColor;
     // The night background lasts from 10pm to 4am so all times that are 12am to 4am are set as 11pm within curTime so that it is true for curTime >=22 branch.
     if (curTime >= 0 && curTime < 4) {
         curTime = 23;
