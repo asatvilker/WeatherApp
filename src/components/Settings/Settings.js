@@ -7,10 +7,19 @@ class Settings extends Component{
         super(props);
         this.state = {
             isListOpen: false,
-            focus: false
+            focus: false,
+            data: props.data
         }
         this.setFocus = this.setFocus.bind(this);
 
+    }
+
+    onTrigger = (event) => {
+        if (this.props.data === "unchange"){
+          this.props.parentCallback("change");
+        } else {
+          this.props.parentCallback("unchange");
+      }
     }
 
     setFocus(e) {
@@ -51,6 +60,8 @@ class Settings extends Component{
                       clickable
                       id="popper3"
                       >
+
+
                       <MDBBtn color="orange"><MDBIcon icon="info-circle" /> Info</MDBBtn>
                       <div>
                         <MDBPopoverHeader>Product Info</MDBPopoverHeader>
@@ -62,6 +73,10 @@ class Settings extends Component{
                             </MDBPopover>
                       <br />
                       <br />
+
+                      <MDBBtn onClick = {this.onTrigger}>
+                          Submit
+                      </MDBBtn>
 
                     </MDBBox>
                   </React.Fragment>

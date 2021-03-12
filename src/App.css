@@ -1,8 +1,6 @@
 .App {
   text-align: center;
-  background-color: orange;
   overflow-x: hidden;
-  background-image: url('./images/backgroupWeather.png');
   min-height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
@@ -10,7 +8,6 @@
   background-attachment: fixed;
   padding-left: 1vh;
   padding-right: 1vh;
-  
 }
 
 .App-logo {

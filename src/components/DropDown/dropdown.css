@@ -4,32 +4,30 @@
     background-color: transparent !important;
     border: 0.1vh solid white !important;
     position: relative;
-    top:-4vh;
+    top: -4vh;
 }
 
 #dropdown .line {
     border-top: 0.1vh solid white;
 }
-#dropdown .column
-{
-    height: 0vh;
+#dropdown .column {
+    height: 0;
 }
 
 #dropdown {
     width: 100%;
     margin-top: 4vh;
-    
-    margin-bottom: 0vh;
+    margin-bottom: 0;
 }
 
-.hourlyContainer{
+.hourlyContainer {
     max-width: 100%;
     margin: 0;
     width: 100%;
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 2vh;
-    scroll-snap-type: x mandatory;    
+    scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -ms-overflow-style: none;
     overflow-x: scroll;
@@ -40,33 +38,36 @@
 }
 
 .row {
-    margin:0 !important;
+    margin: 0 !important;
 }
 
 .collapse::-webkit-scrollbar {
     display: none;
 }
 
-.hourlyComponent {
+.card {
+    z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: #f8f9fa33;
     padding: 2vh;
-    border-radius: 5%;
+    border-radius: 0.5em;
     min-height: 23vh;
     min-width: 14vh;
     scroll-snap-align: start;
     margin: 0 5px;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12) !important;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
 }
 
-.hourlyComponent h1 {
+.card h1 {
     font-size: 3.2vh;
-
 }
-.hourlyComponent h2 {
+.card h2 {
     font-size: 3vh;
+}
+.card p {
+    font-size: 1.5vh;
 }
 
 .turn {
@@ -76,16 +77,24 @@
 .weatherIcon {
     color: floralwhite;
 }
-.overviewHeaderContainer h1{
-    font-size:8vh;
-    font-weight:400;
+.overviewHeaderContainer h1 {
+    font-size: 8vh;
+    font-weight: 400;
 }
-.overviewHeaderContainer{
+.overviewHeaderContainer {
     display: flex;
 }
-.overview .col-6{
+.overview .col-6 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.rotated {
+    transform: rotate(180deg);
+}
+
+#dropIcon {
+    transition: all 0.5s;
 }

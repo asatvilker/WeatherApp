@@ -1,11 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell, getOpenWeatherData, getMinuteDataMicrosoft, getHourDataMicrosoft, getDailyDataMicrosoft, convertTZ } from './WeatherAPI'
+import Background from './components/Background/Background';
+import {getHourForecastClimaCell, getMinuteData, getMinuteDataMicrosoft, getDailyDataMicrosoft,getHourDataMicrosoft, convertTZ, getDayForecastClimaCell, getOpenWeatherData } from './WeatherAPI'
 import Overview from './components/DropDown/overview';
 import AddressBar from "./components/AddressBar/AddressBar";
 import Daily from './components/daily/daily';
 import Clothes from './components/clothes/clothes';
 import Settings from './components/Settings/Settings';
+import Suggest from './components/suggestions/suggestion';
 import React, { Component } from "react";
 import Chart from "./components/Chart/Chart";
 
@@ -22,7 +23,8 @@ class App extends Component {
             minutely: [],
             daily: [],
             api: "microsoft",
-            timezone: "Europe/London"
+            timezone: "Europe/London",
+            data: ""
         }
     }
 
@@ -31,7 +33,6 @@ class App extends Component {
         if (newSettings.hasOwnProperty("celsius")) {
             if (newSettings.celsius != this.state.celsius) {
                 if (newSettings.celsius) {
-                    //convert to celsius
                     newSettings["hourly"] = this.state.hourly.map((item) => {
                         item.temperature = 5/9*(item.temperature-32);
                         return (item)
@@ -41,7 +42,6 @@ class App extends Component {
                         return (item)
                     });
                 } else {
-                    //convert to faren
                     newSettings["hourly"] = this.state.hourly.map((item) => {
                         item.temperature = (9/5*item.temperature)+32;
                         return (item)
@@ -54,7 +54,6 @@ class App extends Component {
             }
         }
         this.setState(newSettings);
-        //refresh data
         if (newSettings.hasOwnProperty("lat")) {
             console.log("APP: FETCHING NEW DATA");
             this.fetchData();
@@ -78,22 +77,28 @@ class App extends Component {
 
     componentDidMount(){
         this.fetchData();
-        this.timerIntervalID = setInterval(
-            () => this.setState({date: convertTZ(new Date(), this.state.timezone)}), 1000
-        );
     }
 
     componentWillUnmount() {
         clearInterval(this.timerIntervalID);
     }
 
+    componentWillUnmount() {
+        console.log("APP: UPDATED");
+    }
+
+    handleCallback = (childData) =>{
+      this.setState({data: childData})
+    }
+
     render() {
         return (
             <div className="App">
-                <Chart data={this.state.minutely.map((item) => item.intensity)}/>
-                <Settings/>
+                {<Background date={this.state.date}/>}
+                <Settings parentCallback={this.handleCallback} data={this.state.data} />
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
-                <Overview data={this.state} date={this.state.date} address={this.state.address} timeZone={this.state.timezone}/>
+                <Overview data={this.state} address={this.state.address} timeZone={this.state.timezone}/>
+                <Suggest data={this.state} hourly={this.state.hourly}/>
                 <Clothes data={this.state} hourly={this.state.hourly}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>
             </div>

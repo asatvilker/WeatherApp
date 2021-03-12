@@ -127,7 +127,7 @@ const microsoftIconMap = {
     2: "WiDaySunnyOvercast",
     3: "WiDayCloudyHigh",
     4: "WiDayCloudy",
-    5: "WiDayHazy",
+    5: "WiDayHaze",
     6: "WiCloud",
     7: "WiCloud",
     8: "WiCloudy",
@@ -176,16 +176,18 @@ export function getMinuteDataMicrosoft(sdata, callBack) {
     return fetch(url)
     .then(res => res.json())
     .then(result => {
-        let minutely = result["intervals"].map(function(item) {
-            return (
-                {
-                    minute: item.minute,
-                    intensity: item.dbz
-                }
-            )
-        });
-        if (callBack) {
-            callBack({minutely: minutely});
+        if (result["intervals"]) {
+            let minutely = result["intervals"].map(function(item) {
+                return (
+                    {
+                        minute: item.minute,
+                        intensity: item.dbz
+                    }
+                )
+            });
+            if (callBack) {
+                callBack({minutely: minutely});
+            }
         }
     });
 }
