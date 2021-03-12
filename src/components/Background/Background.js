@@ -20,7 +20,9 @@ function Mountain() {
 function Sun() {
     return (
         <div className="sun-wrap">
-            <div className="sun"></div>
+            <div className="sun">
+                <div className="rays"></div>
+            </div>
         </div>
     );
 }
@@ -81,28 +83,8 @@ function TimeChange(props) {
         }
 
 
-        .sun {
-          background-color: rgb(${currentColor});
-          box-shadow: 0 0 0 60px rgba(${currentColor}, 0.4),
-          0 0 0 120px rgba(${currentColor}, 0.3), 0 0 0 180px rgba(${currentColor}, 0.2),
-          0 0 0 240px rgba(${currentColor}, 0.1), 0 0 0 300px rgba(${currentColor}, 0),
-          0 0 200px 300px rgba(${currentColor}, 0);
-        }
-      
-        @keyframes rays {
-          0% {
-            box-shadow: 0 0 0 0px rgba(${currentColor}, 0.4),
-              0 0 0 60px rgba(${currentColor}, 0.4), 0 0 0 120px rgba(${currentColor}, 0.3),
-              0 0 0 180px rgba(${currentColor}, 0.2), 0 0 0 240px rgba(${currentColor}, 0.1),
-              0 0 200px 240px rgba(${currentColor}, 0.1);
-          }
-          100% {
+        .sun, .sun::before, .sun::after, .rays::before, .rays::after {
             background-color: rgb(${currentColor});
-          box-shadow: 0 0 0 60px rgba(${currentColor}, 0.4),
-          0 0 0 120px rgba(${currentColor}, 0.3), 0 0 0 180px rgba(${currentColor}, 0.2),
-          0 0 0 240px rgba(${currentColor}, 0.1), 0 0 0 300px rgba(${currentColor}, 0),
-          0 0 200px 300px rgba(${currentColor}, 0);
-          }
         }
       `}</style>
             <Sun />

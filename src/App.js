@@ -78,7 +78,7 @@ class App extends Component {
         this.fetchData();
         this.timerIntervalID = setInterval(
             () => this.setState({date: convertTZ(new Date(), this.state.timezone)}), 1000
-        );
+        );   
     }
 
     componentWillUnmount() {
@@ -96,7 +96,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                {/*<Background date={this.state.date}/>*/}
+                {<Background date={this.state.date}/>}
                 <Settings parentCallback={this.handleCallback} data={this.state.data} />
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
                 <Overview data={this.state} date={this.state.date} address={this.state.address} timeZone={this.state.timezone}/>

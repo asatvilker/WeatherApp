@@ -1,115 +1,155 @@
 /****************************** MOUNTAINS ******************************/
 .mountains {
-  position: fixed;
-  bottom: -10px;
-  width: 100%;
+    position: fixed;
+    bottom: -10px;
+    width: 100%;
 }
 
 .midWrap,
 .leftWrap,
 .rightWrap {
-  filter: drop-shadow(0px 4px 60px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0px 4px 60px rgba(0, 0, 0, 0.5));
 }
 
 .mountainMid {
-  height: 25em;
-  width: 120%;
-  left: -1em;
-  position: fixed;
-  bottom: 0;
-  clip-path: polygon(
-    0 100%,
-    100% 100%,
-    75% 75%,
-    60% 63%,
-    54% 53%,
-    45% 40%,
-    34% 50%,
-    29% 62%,
-    19% 74%,
-    7% 86%
-  );
+    height: 25em;
+    width: 120%;
+    left: -1em;
+    position: fixed;
+    bottom: 0;
+    clip-path: polygon(0 100%, 100% 100%, 75% 75%, 60% 63%, 54% 53%, 45% 40%, 34% 50%, 29% 62%, 19% 74%, 7% 86%);
 }
 
 .mountainLeft {
-  height: 20em;
-  width: 70%;
-  position: fixed;
-  bottom: 0;
-  left: -1em;
-  clip-path: polygon(
-    0 100%,
-    100% 100%,
-    87% 81%,
-    75% 63%,
-    54% 52%,
-    30% 38%,
-    13% 54%,
-    0 74%
-  );
+    height: 20em;
+    width: 70%;
+    position: fixed;
+    bottom: 0;
+    left: -1em;
+    clip-path: polygon(0 100%, 100% 100%, 87% 81%, 75% 63%, 54% 52%, 30% 38%, 13% 54%, 0 74%);
 }
 
 .mountainRight {
-  height: 23em;
-  width: 70%;
-  position: fixed;
-  bottom: 0;
-  right: -1.5em;
-  clip-path: polygon(
-    0 100%,
-    100% 100%,
-    100% 73%,
-    89% 60%,
-    66% 43%,
-    53% 56%,
-    34% 64%,
-    25% 78%
-  );
+    height: 23em;
+    width: 70%;
+    position: fixed;
+    bottom: 0;
+    right: -1.5em;
+    clip-path: polygon(0 100%, 100% 100%, 100% 73%, 89% 60%, 66% 43%, 53% 56%, 34% 64%, 25% 78%);
 }
 
 /****************************** SUN ******************************/
 
 .sun-wrap {
-  position: fixed;
-  filter: drop-shadow(0px 4px 60px rgba(0, 0, 0, 0.3));
-  z-index: 0;
+    position: fixed;
+    /* filter: drop-shadow(0px 4px 60px rgba(0, 0, 0, 0.3)); */
+    z-index: 0;
 }
 
 .sun {
-  width: 180px;
-  height: 180px;
-  margin-top: 100px;
-  border-radius: 50%;
-  position: relative;
-  animation: upDown 10s linear infinite, sunrise 4s infinite linear forwards,
-    rays 5s 4s infinite linear;
+    width: 180px;
+    height: 180px;
+    margin-top: 100px;
+    border-radius: 50%;
+    position: relative;
+    animation: upDown 10s linear infinite, sunrise 4s infinite linear forwards, rays 5s 4s infinite linear;
+    background: rgb(255, 120, 50);
+}
+
+.sun::before {
+    left: 0;
+    top: 0;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: pulse 10s 0s linear infinite;
+    background-color: rgb(255, 120, 50);
+}
+
+.sun::after {
+    content: "";
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: pulse 10s 2.5s linear infinite;
+    background-color: rgb(255, 120, 50);
+}
+
+.rays {
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.rays::before {
+    left: 0;
+    top: 0;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: pulse 10s 5s linear infinite;
+    background-color: rgb(255, 120, 50);
+}
+
+.rays::after {
+    content: "";
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: pulse 10s 7.5s linear infinite;
+    background-color: rgb(255, 120, 50);
 }
 
 @keyframes upDown {
-  0%,
-  100% {
-    bottom: 0;
-  }
-  50% {
-    bottom: 15px;
-  }
+    0,
+    100% {
+        transform: translateY(-15px);
+    }
+    50% {
+        transform: translateY(15px);
+    }
 }
 
-@keyframes sunrise {
+/*@keyframes sunrise {
   0% {
     box-shadow: none;
   }
+}*/
+
+
+@keyframes pulse {
+    0% {
+        opacity: 60%;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(3.5);
+    }
 }
 
 /****************************** BIRDS ******************************/
 
 .bird-wrap {
-  width: 100%;
-  height: 40%;
-  /* height: 350px; */
-  position: absolute;
-  left: 0;
-  filter: drop-shadow(0px 4px 60px rgba(0, 0, 0, 0.3));
+    width: 100%;
+    height: 40%;
+    /* height: 350px; */
+    position: absolute;
+    left: 0;
+    filter: drop-shadow(0px 4px 60px rgba(0, 0, 0, 0.3));
 }
 
 .birdA,
@@ -117,79 +157,61 @@
 .birdC,
 .birdD,
 .birdE {
-  background: black;
-  clip-path: polygon(
-    50% 100%,
-    75% 80%,
-    100% 75%,
-    75% 75%,
-    50% 95%,
-    25% 75%,
-    0 75%,
-    25% 80%
-  );
-  position: relative;
-  animation: fly 3.5s infinite;
+    background: black;
+    clip-path: polygon(50% 100%, 75% 80%, 100% 75%, 75% 75%, 50% 95%, 25% 75%, 0 75%, 25% 80%);
+    position: relative;
+    animation: fly 3.5s infinite;
 }
 
 .birdA {
-  animation-delay: -1.5s;
-  height: 50px;
-  width: 89px;
-  top: 80%;
-  left: 70%;
+    animation-delay: -1.5s;
+    height: 50px;
+    width: 89px;
+    top: 80%;
+    left: 70%;
 }
 
 .birdB {
-  animation-delay: -2.7s;
-  height: 35px;
-  width: 69px;
-  top: 85%;
-  left: 10%;
+    animation-delay: -2.7s;
+    height: 35px;
+    width: 69px;
+    top: 85%;
+    left: 10%;
 }
 
 .birdC {
-  animation-delay: -3.8s;
-  height: 25px;
-  width: 49px;
-  top: 8%;
-  left: 20%;
+    animation-delay: -3.8s;
+    height: 25px;
+    width: 49px;
+    top: 8%;
+    left: 20%;
 }
 
 @keyframes fly {
-  50% {
-    clip-path: polygon(
-      50% 90%,
-      75% 80%,
-      100% 90%,
-      75% 75%,
-      50% 85%,
-      25% 75%,
-      0 90%,
-      25% 80%
-    );
-  }
+    50% {
+        clip-path: polygon(50% 90%, 75% 80%, 100% 90%, 75% 75%, 50% 85%, 25% 75%, 0 90%, 25% 80%);
+    }
 }
 
-@media screen and (max-height: 900px) {
-  .birdA {
-    top: 90%;
-  }
+@media screen and(max-height: 900px) {
+    .birdA {
+        top: 90%;
+    }
 }
 
-@media screen and (min-width: 700px) {
-  .birdD {
-    height: 35px;
-    width: 69px;
-    top: 40%;
-    left: 45%;
-  }
+@media screen and(min-width: 700px) {
+    .birdD {
+        height: 35px;
+        width: 69px;
+        top: 40%;
+        left: 45%;
+    }
 }
 
-@media screen and (min-width: 400px) {
-  .birdE {
-    height: 25px;
-    width: 43px;
-    left: 55%;
-  }
+@media screen and(min-width: 400px) {
+    .birdE {
+        height: 25px;
+        width: 43px;
+        left: 55%;
+    }
 }
