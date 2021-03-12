@@ -1,3 +1,4 @@
+import ChartJsAnnotation from "chartjs-plugin-annotation";
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 
@@ -65,35 +66,91 @@ class RainChart extends React.Component {
 
     render() {
         return (
-            <Line ref={(reference) => this.chartRef = reference} data={this.state.dataLine}
+            <Line 
+                ref={(reference) => this.chartRef = reference} 
+                data={this.state.dataLine}
                 options={{
                     legend: {
                         labels: {
-                            fontColor: "#212529"
+                            fontColor: "#212529",
+                            display: false
                         }
                     },
                     tooltips: {
                         enabled: false
                     },
-                    responsive: true,
-                    scales: {
-                        yAxes: [{
-                            display: true,
-                            ticks: {
-                                min: 0,
-                                max: 65,
-                                stepSize: 5,
-                                autoSkip: false,
-                                beginAtZero: true,
-                            }
-                        }],
-                        xAxes: [{
-                            display: true,
-                            ticks: {
-                                autoSkip: false
-                            }
-                        }]
-                    }
+                    responsive: true
+                    // scales: {
+                    //     xAxes: [{
+                    //         id: "x-axis-0",
+                    //         display: true,
+                    //         gridLines: { 
+                    //             zeroLineColor: "#131c2b",
+                    //             zeroLineWidth: 5,
+                    //             drawTicks: false,
+                    //         },
+                    //         ticks: {
+                    //             autoSkip: false,
+                    //             display: false
+                    //         }
+                    //     }],
+                    //     yAxes: [{
+                    //         display: true,
+                    //         gridLines: { 
+                    //             zeroLineColor: "#131c2b",
+                    //             zeroLineWidth: 5,
+                    //             drawTicks: false,
+                    //             drawOnChartArea: false,
+                    //         },
+                    //         ticks: {
+                    //             fontColor: "#212529",
+                    //             fontFamily: "Sen",
+                    //             beginAtZero: true,
+                    //             callback: function(value, index, values) {
+                    //                 if (value == 20) {
+                    //                     return "Light";
+                    //                 } else if (value == 35) {
+                    //                     return "Medium";
+                    //                 } else if (value == 50) {
+                    //                     return "Heavy";
+                    //                 } else {
+                    //                     return "";
+                    //                 }
+                    //             },
+                    //             padding: 5,
+                    //             autoSkip: false
+                    //         }
+                    //     }]
+                        
+                    // },
+                    // annotation: {
+                    //     annotations: [
+                    //         {
+                    //             type: "line",
+                    //             drawTime: "afterDatasetsDraw",
+                    //             scaleID: "y-axis-0",
+                    //             value: 20,
+                    //             mode: "horizontal",
+                    //             borderColor: '#212529',	
+                    //         },
+                    //         {
+                    //             type: "line",
+                    //             drawTime: "afterDatasetsDraw",
+                    //             scaleID: "y-axis-0",
+                    //             value: 35,
+                    //             mode: "horizontal",
+                    //             borderColor: '#212529',	
+                    //         },
+                    //         {
+                    //             type: "line",
+                    //             drawTime: "afterDatasetsDraw",
+                    //             scaleID: "y-axis-0",
+                    //             value: 50,
+                    //             mode: "horizontal",
+                    //             borderColor: "#212529",
+                    //         }
+                    //     ]
+                    // }
                 }}/>
         )
     }
