@@ -98,6 +98,7 @@ function TimeChange(props) {
                 `
                     body {
                         background: ${bodyColor};
+                        /*color: #f8f8ff;*/
                     }
                     
                     .mountainMid,
