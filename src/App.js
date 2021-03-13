@@ -101,6 +101,7 @@ class App extends Component {
                 <Suggest hourly={this.state.hourly}/> 
                 <Clothes hourly={this.state.hourly}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>
+
             </div>
         )
     }

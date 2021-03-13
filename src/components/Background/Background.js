@@ -43,11 +43,8 @@ const backgrounds = [
 ];
 // Colour chosen changes based on time and is stored inside variables that are used to change the colour of the sun and the background.
 // The colours and backgrounds are stored in arrays and the right element is stored in the variables based on the time.
-function TimeChange(props) {
-    console.log(props);
-    let time = convertTZ(props.date, props.timeZone); //gets the current local time using the timezone data passed through
-    let hour = time.getHours(); //Get current hours
-
+function TimeChange(date) {
+    let hour = date.getHours(); //Get current hours
     //colors and backgrounds store the required colours for the background set and is used to change the colours based on the time
     //currentColor and bodyColor store the appropriate colours from the variables colors and backgrounds (respectively) which is then used to set the colour for the background divs
     let currentColor;
@@ -63,7 +60,7 @@ function TimeChange(props) {
         20 -> 21 = 3
     */
 
-    if (hour >= 22 && hour <= 3) {
+    if (hour >= 22 || hour <= 3) {
         currentColor = colors[4];
         bodyColor = backgrounds[4];
     } else if (hour == 4 || hour == 5) {
@@ -138,9 +135,9 @@ function Background(props) {
     //Mountain is called again here (first time is in TimeChange along with the Sun) to provide a realistic look with the shadows
     return (
         <>
-            <TimeChange date={props.date} timeZone={props.timeZone}/>
-            <Birds />
-            <Mountain />
+            {TimeChange(convertTZ(props.date, props.timeZone))}
+            {Birds()}
+            {Mountain()}
         </>
     );
 }
