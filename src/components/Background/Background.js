@@ -63,7 +63,7 @@ function TimeChange(props) {
         20 -> 21 = 3
     */
 
-    if (hour >= 22 && hour <= 3) {
+    if (hour >= 22 || hour <= 3) {
         currentColor = colors[4];
         bodyColor = backgrounds[4];
     } else if (hour == 4 || hour == 5) {
