@@ -95,6 +95,7 @@ function TimeChange(date) {
                 `
                     body {
                         background: ${bodyColor};
+                        /*color: #f8f8ff;*/
                     }
                     
                     .mountainMid,
