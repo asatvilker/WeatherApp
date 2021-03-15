@@ -175,7 +175,6 @@ body {
 .bird-wrap {
   width: 100%;
   height: 40%;
-  /* height: 350px; */
   position: absolute;
   left: 0;
   filter: drop-shadow(0px 4px 60px rgba(0, 0, 0, 0.3));
@@ -260,5 +259,83 @@ body {
     height: 25px;
     width: 43px;
     left: 55%;
+  }
+}
+
+
+/****************************** STARS ******************************/
+
+.star-wrap{
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  left: 0;
+}
+
+.starA,
+.starB,
+.starC,
+.starD,
+.starE{
+  position: relative;
+  clip-path: polygon(
+      50% 0%,
+      60% 40%,
+      100% 50%,
+      60% 60%,
+      50% 100%,
+      40% 60%,
+      0% 50%,
+      40% 40%
+    );
+  background: ghostwhite;
+  animation: star 5s ease alternate infinite;
+}
+
+.starA {
+  top: 80%;
+  left: 50%;
+  height: 35px;
+  width: 35px;
+  animation-delay: 3s;
+}
+
+.starB {
+  top: 25%;
+  left: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.starC {
+  top: 70%;
+  left: 70%;
+  height: 20px;
+  width: 20px;
+  animation-delay: 2s;
+}
+
+.starD {
+  top: 70%;
+  left: 10%;
+  height: 55px;
+  width: 55px;
+  animation-delay: 5s;
+}
+
+.starE {
+  top: 100%;
+  left: 80%;
+  height: 55px;
+  width: 55px;
+  animation-delay: -2s;
+}
+
+@keyframes star {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
   }
 }

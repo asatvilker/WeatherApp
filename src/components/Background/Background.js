@@ -60,6 +60,10 @@ function TimeChange(date) {
         20 -> 21 = 3
     */
 
+    //Sets the variable to birds or stars depending on the time of day
+    //During 8pm to 7am it will display stars else it will display birds 
+    var complement = (hour>=20 || hour <=7)? Stars() : Birds(); 
+
     if (hour >= 22 || hour <= 3) {
         currentColor = colors[4];
         bodyColor = backgrounds[4];
@@ -85,6 +89,7 @@ function TimeChange(date) {
         currentColor = colors[3];
         bodyColor = backgrounds[3];
     }
+    
 
     // The variable bodyColor is used to set the colour of the background of the page
     // The variable currentColor is used to set the color of the mountains and the sun and its rays
@@ -110,8 +115,9 @@ function TimeChange(date) {
                     }
                 `
             }</style>
-            <Sun />
-            <Mountain />
+            {Sun()}
+            {Mountain()}
+            {complement}
         </>
     );
 }
@@ -129,15 +135,28 @@ function Birds() {
     );
 }
 
+//Displays the stars
+function Stars() {
+    return (
+        <div className="star-wrap">
+            <div className="starA"></div>
+            <div className="starB"></div>
+            <div className="starC"></div>
+            <div className="starD"></div>
+            <div className="starE"></div>
+        </div>
+    );
+}
+
 function Background(props) {
+    
     //This function recieves 2 arguments : the current time and the timezone of the location being displayed on the screen
     //These arguments are then passed onto the TimeChange function which uses the information to set the correct background colours for the body and the divs
     //Then the Bird and Mountain functions are called so they can be displayed on the screen
     //Mountain is called again here (first time is in TimeChange along with the Sun) to provide a realistic look with the shadows
     return (
         <>
-            {TimeChange(convertTZ(props.date, props.timeZone))}
-            {Birds()}
+            {TimeChange( convertTZ(props.date, props.timeZone))}
             {Mountain()}
         </>
     );
