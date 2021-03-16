@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell } from '../WeatherAPI'
+import { MDBIcon } from 'mdbreact';
+
 import Settings from './Settings/Settings';
 import AddressBar from "./AddressBar/AddressBar";
 import TempSwitch from './TempSwitch/TempSwitch';
@@ -20,7 +22,7 @@ class TopBar extends Component{
         return(
             <div className="topbar-parent">
                 <div class="topbar-spacing1">
-                    <TempSwitch setSettings={this.props.setSettings}/>
+                    <MDBIcon far icon="bookmark" size="2x" />
                 </div>
                 <div class="topbar-spacing2">
                     <AddressBar setSettings={this.props.setSettings}/>

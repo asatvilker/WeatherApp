@@ -1,80 +1,90 @@
 import React, { Component } from "react";
 import "./Settings.css";
 import { MDBBox, MDBContainer, MDBRow, MDBCol, MDBIcon, MDBPopover, MDBPopoverBody, MDBPopoverHeader, MDBBtn } from 'mdbreact';
+import AddressBar from "../AddressBar/AddressBar";
+import TempSwitch  from "../TempSwitch/TempSwitch";
 
 class Settings extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            isListOpen: false,
-            focus: false
-        }
-        this.setFocus = this.setFocus.bind(this);
+            isSettingsOpen: false,
 
+            isLightTheme:false
+        }
     }
 
-    setFocus(e) {
-        const {focus,isListOpen} = this.state;
-        if (focus){
-            this.setState({
-                focus: false,
-                isListOpen: false
-            });
+    setFocus = event => {
+        const {isSettingsOpen} = this.state;
+        console.log(this.state)
+        if (isSettingsOpen){
+            this.setState({isSettingsOpen: false} );   
         }
         else{
-            this.setState({
-                focus: true,
-                isListOpen: true
-            });
-        }
+            this.setState({ isSettingsOpen: true}, ()=>{console.log(this.state) });
+        } 
+    }   
+
+    setThemeDark = event =>{
+        this.setState({isLightTheme:false})
+         
+    }    
+    setThemeLight= event =>{
+        this.setState({isLightTheme:true})
+        
     }
 
-
     render(){
-        const {focus, isListOpen } = this.state;
-        const addOverlay = () => {
-            if (focus) {
-                return <div className="settings-overlay" />
-            }
-        }
+        const {isSettingsOpen } = this.state;
         const addSettingsOverlay = () => {
-            if (isListOpen){
+            if (isSettingsOpen){
                 return(
                     <React.Fragment>
                     <br />
                     <MDBBox className='Container'>
-                      <MDBIcon fab icon="creative-commons-by" /> Accessibility
-                      <hr />
-                      <MDBPopover
-                      placement="bottom"
-                      popover
-                      clickable
-                      id="popper3"
-                      >
-                      <MDBBtn color="orange"><MDBIcon icon="info-circle" /> Info</MDBBtn>
-                      <div>
-                        <MDBPopoverHeader>Product Info</MDBPopoverHeader>
-                          <MDBPopoverBody>
-                            Sed posuere consectetur est at lobortis. Aenean eu leo quam.
-                            Pellentesque ornare sem lacinia quam venenatis vestibulum.
-                            </MDBPopoverBody>
+                        <div className="settings-header">Settings</div>
+                            <div calssname="settings-item">
+                                Theme
+                                <button class="button1" onClick={this.setThemeLight}>Light</button>
+                                <button class="button1" onClick={this.setThemeDark}>Dark</button> 
                             </div>
-                            </MDBPopover>
-                      <br />
-                      <br />
-
+                            <div>
+                                Time Format
+                                <button class="button1" >12</button>
+                                <button class="button1" >24</button> 
+                            </div>
+                            <div>
+                                Temperature
+                                <button class="button1" >F</button>
+                                <button class="button1" >C</button> 
+                                
+                            </div>
+                            <div>
+                                Wind Speed
+                                <button class="button1" >mph</button>
+                                <button class="button1" >km/h</button> 
+                            </div>
+                            <div>
+                                Default location
+                                <button>Test</button>
+                            </div> 
+                            <div>
+                            <MDBIcon far icon="thumbs-up" /> Send Feedback
+                            </div>
                     </MDBBox>
-                  </React.Fragment>
+                    </React.Fragment>
                 )
             }
         }
 
         return(
-            //{addOverlay()} removed from first div
+            //removed after first div
+            //{this.state.isSettingsOpen? <div className="settings-overlay"/> : null }
             <div>
+                
                 <div className="settings-wrapper">
                     <div>
-                        <MDBIcon icon="bars" size="3x" onClick={this.setFocus} />
+                        <MDBIcon  class="settingsicon" icon="bars" size="2x"  onClick={this.setFocus} />
                     </div>
                     <div className="settings-suggestions">
                         {addSettingsOverlay()}
