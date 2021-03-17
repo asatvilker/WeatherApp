@@ -4,32 +4,24 @@ import "./TempSwitch.css";
 class TempSwitch extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            isToggled:false
+        this.state = {  
+             
         }
     }
 
     //Updates the temperature by listening to the checkbox and send the respective info the parent class where temeperature state is stored
     handleChange = event => {
-        const{isToggled} = this.state;
-        this.setState({isToggled : event.target.checked});
-        this.props.setSettings({celsius: isToggled})
+        this.props.setSettings({darkMode: event.target.checked})
+        console.log("isToggled1223", this.props.data.darkMode);
     };
 
     
     render(){
         return(
-            <div>
-                <div id="switch-wrapper">
-                    <div>C</div>
-                    <div>
-                        <label class="switch">
-                            <input type="checkbox" check={this.state.isToggled} onChange={this.handleChange} ></input>
-                            <span class="slider round"></span>
-                        </label>
-                    </div>  
-                    <div>F</div>
-                </div>
+            <div id="test12" class="custom-control custom-switch">
+                <div>Light</div>
+                <input type="checkbox" class="custom-control-input" id="customSwitch1" checked={this.props.data.darkMode} onChange={this.handleChange}></input>    
+                <label class="custom-control-label" for="customSwitch1"> Dark</label>
             </div>
         )
     }

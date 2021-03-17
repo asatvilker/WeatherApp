@@ -13,13 +13,18 @@ class App extends Component {
             lat: 51.5073509,
             lon: -0.1277583,
             address: "London, UK",
-            celsius: true,
             date: new Date(),
             hourly: [],
             minutely: [],
             daily: [],
             api: "openweather",
-            timezone: "Europe/London"
+            timezone: "Europe/London",
+
+            //settings variables
+            darkMode:false,
+            timePm:false,
+            celsius: true,
+            kmh:false
         }
     }
 
@@ -35,6 +40,7 @@ class App extends Component {
                     });
                     newSettings["daily"] = this.state.daily.map((item) => {
                         item.temperature = 5/9*(item.temperature-32);
+                        console.log("Bruh look at me",item)
                         return (item)
                     });
                 } else {
@@ -50,7 +56,27 @@ class App extends Component {
                 }
             }
         }
+        ////////////////////////////////////
+        if (newSettings.hasOwnProperty("timePm")){
+            if (newSettings.timePm !=this.state.timePm){
+                if (newSettings.timePm){
+                    //convert in 24
+                    newSettings["hourly"]=this.state.hourly.map((item)=>{
+                        item.dt = (item.dt)+12
+                        return(item) 
+                   })
+                }
+               else{
+                    newSettings["hourly"]=this.state.hourly.map((item)=>{
+                        item.time = (item.time)-12
+                        return(item) 
+                    })
+               }
+             }
+
+        }
         this.setState(newSettings);
+        console.log("APP: NEW SETTINGS2: ", this.state);
         //refresh data
         if (newSettings.hasOwnProperty("lat")) {
             console.log("APP: FETCHING NEW DATA");
@@ -82,7 +108,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <TopBar setSettings={this.setSettings.bind(this)}/>
+                <TopBar setSettings={this.setSettings.bind(this)} data={this.state}/>
                 <Overview data={this.state} date={this.state.date} address={this.state.address} timeZone={this.state.timezone}/>
                 <Clothes data={this.state} hourly={this.state.hourly}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>

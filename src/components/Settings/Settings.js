@@ -10,30 +10,32 @@ class Settings extends Component{
         this.state = {
             isSettingsOpen: false,
 
-            isLightTheme:false
         }
     }
 
     setFocus = event => {
         const {isSettingsOpen} = this.state;
-        console.log(this.state)
         if (isSettingsOpen){
             this.setState({isSettingsOpen: false} );   
         }
         else{
-            this.setState({ isSettingsOpen: true}, ()=>{console.log(this.state) });
+            this.setState({isSettingsOpen : true});
+
         } 
     }   
-
-    setThemeDark = event =>{
-        this.setState({isLightTheme:false})
-         
-    }    
-    setThemeLight= event =>{
-        this.setState({isLightTheme:true})
-        
+    handleChange = (event, fieldName)=> {
+        this.props.setSettings({[fieldName]:event.target.checked})
+        if (fieldName ===("darkMode")){
+            if (this.props.data.darkMode){
+                   document.getElementById("settings-colour").classList.remove('item-white');
+                     document.getElementById("settingslist").classList.remove('settings-suggestions-black');
+            }
+            else{
+                document.getElementById("settings-colour").classList.add('item-white');
+                document.getElementById("settingslist").classList.add('settings-suggestions-black');
+            }
+        }
     }
-
     render(){
         const {isSettingsOpen } = this.state;
         const addSettingsOverlay = () => {
@@ -41,33 +43,30 @@ class Settings extends Component{
                 return(
                     <React.Fragment>
                     <br />
-                    <MDBBox className='Container'>
-                        <div className="settings-header">Settings</div>
-                            <div calssname="settings-item">
-                                Theme
-                                <button class="button1" onClick={this.setThemeLight}>Light</button>
-                                <button class="button1" onClick={this.setThemeDark}>Dark</button> 
+                    <MDBBox id="settings-colour">
+                            <div className="settings-header">Settings</div>
+                            <div  class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch1" checked={this.props.data.darkMode} onChange={ (event)=>this.handleChange(event,"darkMode")}></input>    
+                                <label class="custom-control-label" for="customSwitch1"> Dark</label>
+                                <label class="test12" > White</label> 
                             </div>
-                            <div>
-                                Time Format
-                                <button class="button1" >12</button>
-                                <button class="button1" >24</button> 
+
+                            <div  class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch2" checked={this.props.data.timePm} onChange={(event) =>this.handleChange(event,"timePm")}></input>    
+                                <label class="custom-control-label" for="customSwitch2"> 12</label>
+                                <label class="test12" >24</label> 
                             </div>
-                            <div>
-                                Temperature
-                                <button class="button1" >F</button>
-                                <button class="button1" >C</button> 
-                                
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch3" checked={this.props.data.celsius} onChange={(event) =>this.handleChange(event,"celsius")}></input>    
+                                <label class="custom-control-label" for="customSwitch3">F</label>
+                                <label class="test12" >C</label> 
                             </div>
-                            <div>
-                                Wind Speed
-                                <button class="button1" >mph</button>
-                                <button class="button1" >km/h</button> 
+                            <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch4" checked={this.props.data.kmh} onChange={(event) =>this.handleChange(event,"kmh")}></input>    
+                                <label class="custom-control-label" for="customSwitch4">km/h</label>
+                                <label class="test12" >mph</label> 
                             </div>
-                            <div>
-                                Default location
-                                <button>Test</button>
-                            </div> 
+                              
                             <div>
                             <MDBIcon far icon="thumbs-up" /> Send Feedback
                             </div>
@@ -86,7 +85,7 @@ class Settings extends Component{
                     <div>
                         <MDBIcon  class="settingsicon" icon="bars" size="2x"  onClick={this.setFocus} />
                     </div>
-                    <div className="settings-suggestions">
+                    <div id="settingslist" >
                         {addSettingsOverlay()}
                     </div>
                 </div>

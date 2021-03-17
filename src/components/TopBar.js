@@ -28,7 +28,7 @@ class TopBar extends Component{
                     <AddressBar setSettings={this.props.setSettings}/>
                 </div>
                 <div class="topbar-spacing1">
-                    <Settings setSettings={this.props.setSettings}/>
+                    <Settings setSettings={this.props.setSettings} data={this.props.data}/>
                 </div> 
             </div>
         )
