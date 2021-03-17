@@ -9,7 +9,6 @@ class Settings extends Component{
         super(props);
         this.state = {
             isSettingsOpen: false,
-
         }
     }
 

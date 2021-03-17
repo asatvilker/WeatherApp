@@ -1,0 +1,25 @@
+#main {
+  border-radius: 0.5em;
+  font-size: 2vh;
+  position: relative;
+}
+
+#text {
+  margin-top: 1vh !important;
+  padding-top: 4vh;
+  padding-bottom: 2vh;
+}
+
+hr {
+  border-color: white;
+  border-width: 1.55px;
+}
+
+#swap {
+  float: left;
+}
+
+#flip {
+  background-color: transparent;
+  border-color: transparent;
+}
