@@ -1,47 +1,42 @@
-#settingslist{
-    width: 80%;
-    position: fixed;
-    margin: 0 auto;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    background: rgb(250, 250, 250);
-    border-radius: 18px;
-    left: 50%;
-    transform: translate(-50%, 0%);
-} 
-
+#settingslist {
+  width: 80%;
+  position: fixed;
+  margin: 0 auto;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  background: rgb(250, 250, 250);
+  border-radius: 18px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
 
 .settings-suggestions-black {
-    background: #080808  !important;   
-    
+  background: #080808 !important;
 }
-.item-white{
-    color: rgb(252, 252, 248) ;
+.item-white {
+  color: rgb(252, 252, 248);
 }
-.settings-item{
-    padding-top: 5%;
-}
-
-
-
-.settings-overlay{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(196,196,196,0.6);
-    z-index: 10;
-}
-.Settings-List{
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+.settings-item {
+  padding-top: 5%;
 }
 
-.test12{
-    position:absolute;
-    left:43%;
+.settings-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(196, 196, 196, 0.6);
+  z-index: 10;
+}
+.Settings-List {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
+.test12 {
+  position: absolute;
+  left: 43%;
+}

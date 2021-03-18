@@ -12,6 +12,7 @@ class Settings extends Component{
         }
     }
 
+    //Change name to something more obvious
     setFocus = event => {
         const {isSettingsOpen} = this.state;
         if (isSettingsOpen){
@@ -19,15 +20,14 @@ class Settings extends Component{
         }
         else{
             this.setState({isSettingsOpen : true});
-
         } 
     }   
     handleChange = (event, fieldName)=> {
         this.props.setSettings({[fieldName]:event.target.checked})
         if (fieldName ===("darkMode")){
             if (this.props.data.darkMode){
-                   document.getElementById("settings-colour").classList.remove('item-white');
-                     document.getElementById("settingslist").classList.remove('settings-suggestions-black');
+                document.getElementById("settings-colour").classList.remove('item-white');
+                document.getElementById("settingslist").classList.remove('settings-suggestions-black');
             }
             else{
                 document.getElementById("settings-colour").classList.add('item-white');
