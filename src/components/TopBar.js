@@ -4,7 +4,6 @@ import { MDBIcon } from 'mdbreact';
 
 import Settings from './Settings/Settings';
 import AddressBar from "./AddressBar/AddressBar";
-import TempSwitch from './TempSwitch/TempSwitch';
 import './TopBar.css';
 
 class TopBar extends Component{

@@ -11,14 +11,24 @@
   transform: translate(-50%, 0%);
 }
 
+#settings-colour {
+  margin-bottom: 30px;
+}
+
+.custom_switches {
+  margin-bottom: 20px;
+}
+
 .settings-suggestions-black {
   background: #080808 !important;
 }
 .item-white {
   color: rgb(252, 252, 248);
 }
-.settings-item {
-  padding-top: 5%;
+
+.settings-header {
+  font-size: 30px;
+  margin-bottom: 20px;
 }
 
 .settings-overlay {
@@ -28,11 +38,11 @@
   height: 100%;
   width: 100%;
   background-color: rgba(196, 196, 196, 0.6);
-  z-index: 10;
 }
+
 .Settings-List {
   margin: 0;
-  padding: 0;
+  padding-bottom: 0;
   list-style-type: none;
 }
 
@@ -40,3 +50,112 @@
   position: absolute;
   left: 43%;
 }
+
+.switchContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 96px;
+  height: 34px;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+label {
+  margin: 0px 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: white;
+  color: black;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px bisque;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(55px);
+  -ms-transform: translateX(55px);
+  transform: translateX(60px);
+}
+
+/*------ ADDED CSS ---------*/
+.on {
+  display: none;
+}
+
+.on,
+.off {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 15px;
+}
+
+.on {
+  transform: translate(-70%, -50%);
+  color: black;
+}
+
+.off {
+  transform: translate(-20%, -50%);
+  color: white;
+}
+
+input:checked + .slider .on {
+  display: block;
+}
+
+input:checked + .slider .off {
+  display: none;
+}
+
+input + .slider.round:before {
+  background-color: white;
+}
+
+input:checked + .slider.round:before {
+  background-color: black;
+}
+
+/*--------- END --------*/
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
