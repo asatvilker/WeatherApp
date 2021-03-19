@@ -12,8 +12,8 @@ class Settings extends Component{
         }
     }
 
-    //Change name to something more obvious
-    setFocus = event => {
+   
+    displaySettings = event => {
         const {isSettingsOpen} = this.state;
         if (isSettingsOpen){
             this.setState({isSettingsOpen: false} );   
@@ -82,7 +82,7 @@ class Settings extends Component{
                 
                 <div className="settings-wrapper">
                     <div>
-                        <MDBIcon  class="settingsicon" icon="bars" size="2x"  onClick={this.setFocus} />
+                        <MDBIcon  class="settingsicon" icon="bars" size="2x"  onClick={this.displaySettings} />
                     </div>
                     <div id="settingslist" >
                         {addSettingsOverlay()}
