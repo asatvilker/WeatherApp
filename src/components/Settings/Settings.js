@@ -11,15 +11,10 @@ class Settings extends Component{
         }
     }
 
-   
+   //display settings when button is clicked 
     displaySettings = event => {
         const {isSettingsOpen} = this.state;
-        if (isSettingsOpen){
-            this.setState({isSettingsOpen: false} );   
-        }
-        else{
-            this.setState({isSettingsOpen : true});
-        } 
+        this.setState({isSettingsOpen: !isSettingsOpen} );   
     }   
     handleChange = (event, fieldName)=> {
         this.props.setSettings({[fieldName]:event.target.checked})
@@ -43,11 +38,6 @@ class Settings extends Component{
 
     render(){
         const {isSettingsOpen } = this.state;
-        const addOverlay = () => {
-            if (isSettingsOpen) {
-                return <div className="settings-overlay" onClick={this.removeFocus}/>
-            }
-        }
         const addSettingsOverlay = () => {
             if (isSettingsOpen){
                 return(
@@ -97,10 +87,10 @@ class Settings extends Component{
         }
 
         return(
-            //removed after first div
-            //{this.state.isSettingsOpen? <div className="settings-overlay"/> : null }
+            //div used as filter when settings is open
             <div>
-                {addOverlay()}
+                {this.state.isSettingsOpen? <div className="settings-overlay" onClick={this.removeFocus} /> : null }
+                
                 <div className="settings-wrapper">
                     <div>
                         <MDBIcon  class="settingsicon" icon="bars" size="2x"  onClick={this.displaySettings} />
