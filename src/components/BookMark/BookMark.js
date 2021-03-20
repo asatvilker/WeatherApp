@@ -12,7 +12,7 @@ class BookMark extends Component{
     }
 
     newBookmark=()=>{
-        this.props.setBookmark(this.props.data.address, this.props.data.lat, this.props.data.lon)
+        this.props.setBookmark(this.props.data.address, this.props.data.lat, this.props.data.lon, this.props.data.timezone)
         console.log("saved positions", this.props.data.bookmark)
     }
     showPosition=()=>{
@@ -21,7 +21,7 @@ class BookMark extends Component{
 
         
         console.log("BookMakr 0",bookmark)
-        this.props.setSettings({"address":bookmarkName ,"lat": bookmark.lat,"lon": bookmark.lon  })
+        this.props.setSettings({"address":bookmarkName ,"lat": bookmark.lat,"lon": bookmark.lon, "timezone": bookmark.timezone})
 
        // this.props.setSettings({"lat": bookmark[Object.keys(bookmark)[0]].lat, })
         //this.props.setSettings({"lon": bookmark[Object.keys(bookmark)[0]].lon})

@@ -66,10 +66,10 @@ class App extends Component {
             }
         });
     }
-    
-    setBookmark=(name,lat,lon)=>{
+
+    setBookmark=(name,lat,lon, timezone)=>{
         let currentBookmark = this.state.bookmark;
-        currentBookmark[name]={"lat":lat, "lon":lon};
+        currentBookmark[name]={"lat":lat, "lon":lon, "timezone": timezone};
         this.setState({Bookmark:currentBookmark});
     }
 
