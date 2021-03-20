@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Chartist from "chartist";
-import "chartist-plugin-targetline";
+// /import "chartist-plugin-targetline";
 import "./Chart.css";
 
 const data =  {
@@ -18,18 +18,21 @@ class RainChart extends Component {
             },
             options: {
                 fullWidth: true,
+                fullHeight: true,
                 chartPadding: {
                     top: 50
                 },
-                showArea: true,
+                showArea: false,
                 showPoints: false,
-                high: 65,
+                high: 70,
                 low: 0,
-                divisor: 13,
-                ticks: [1,5,10,15,20,25,30,35,40,45,50,55,60,65],
+                divisor: 14,
+                ticks: [1,5,10,15,20,25,30,35,40,45,50,55,60,65, 70],
                 lineSmooth: Chartist.Interpolation.simple({
                     divisor: 2
-                })
+                }),
+                referenceValue: 65,
+                stretch: true
             },
             
         }
@@ -49,10 +52,10 @@ class RainChart extends Component {
             this.state.chart.update({
                 labels: this.props.data.map((item, i) => {return (i)}),
                 series: [this.props.data]
-            }, this.state.options, [Chartist.plugins.ctTargetLine({value: 20})]);
+            }, this.state.options);
         } else {
             console.log("shit doesnt exist");
-            this.state.chart = new Chartist.Line(this.chart, this.state.data, this.state.options, this.state.plugins);
+            this.state.chart = new Chartist.Line(this.chart, this.state.data, this.state.options);
         }
     }
 
