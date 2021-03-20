@@ -58,21 +58,24 @@ class App extends Component {
                 }
             }
         }
-        
-        this.setState(newSettings);
-        if (newSettings.hasOwnProperty("lat")) {
-            console.log("APP: FETCHING NEW DATA");
-            this.fetchData();
-        }
+        this.setState(newSettings, function() {
+            console.log("APP SETTINGS NOW: ", this.state);
+            if (newSettings.hasOwnProperty("lat")) {
+                console.log("APP: FETCHING NEW DATA");
+                this.fetchData();
+            }
+        });
     }
+    
     setBookmark=(name,lat,lon)=>{
         let currentBookmark = this.state.bookmark;
-        currentBookmark[name]={lat:lat, lon:lon}
-        this.setState({Bookmark:currentBookmark})
+        currentBookmark[name]={"lat":lat, "lon":lon};
+        this.setState({Bookmark:currentBookmark});
     }
 
     fetchData() {
         console.log("fetching");
+        console.log(this.state.hourly);
         if (this.state.api == "openweather") {
             getOpenWeatherData(this.state, this.setSettings.bind(this));
         } else if (this.state.api == "climacell") {
@@ -84,6 +87,7 @@ class App extends Component {
             getHourDataMicrosoft(this.state, this.setSettings.bind(this)); 
             getDailyDataMicrosoft(this.state, this.setSettings.bind(this));
         }
+        console.log(this.state.hourly);
     }
 
     componentDidMount(){
