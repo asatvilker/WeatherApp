@@ -52,11 +52,13 @@ class App extends Component {
                 }
             }
         }
-        this.setState(newSettings);
-        if (newSettings.hasOwnProperty("lat")) {
-            console.log("APP: FETCHING NEW DATA");
-            this.fetchData();
-        }
+        this.setState(newSettings, function() {
+            console.log("APP SETTINGS NOW: ", this.state);
+            if (newSettings.hasOwnProperty("lat")) {
+                console.log("APP: FETCHING NEW DATA");
+                this.fetchData();
+            }
+        });
     }
 
     fetchData() {
