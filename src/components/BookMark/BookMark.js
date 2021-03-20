@@ -48,7 +48,7 @@ class BookMark extends Component{
         }
         return(
             <div>
-                {this.state.isBookmarkOpen? <div className="bookmark-overlay" onClick={this.removeFocus} /> : null }
+                {this.state.isBookmarkOpen && Object.keys(this.props.data.bookmark).length != 0? <div className="bookmark-overlay" onClick={this.removeFocus} /> : null }
                 <div>
                     <MDBIcon far icon="bookmark" size="2x" onClick={this.newBookmark} />
                     <MDBIcon icon="arrow-down" onClick={this.openBookmarks}/>
