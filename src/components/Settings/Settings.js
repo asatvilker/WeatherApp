@@ -15,6 +15,7 @@ class Settings extends Component{
     displaySettings = event => {
         const {isSettingsOpen} = this.state;
         this.setState({isSettingsOpen: !isSettingsOpen} );   
+        
     }  
 
     handleChange = (event, fieldName)=> {

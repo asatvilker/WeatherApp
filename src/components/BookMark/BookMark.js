@@ -1,42 +1,59 @@
 import React, { Component } from "react";
-import {getGeoCoords} from "../../WeatherAPI.js";
 import { MDBIcon } from 'mdbreact';
+import './BookMark.css';
 
 class BookMark extends Component{
 
     constructor(props){
         super(props)
         this.state ={
-            hystory:{}
+            isBookmarkOpen:false,
+            bookmarkNames:[],
         };
     }
 
     newBookmark=()=>{
-        this.props.setBookmark(this.props.data.address, this.props.data.lat, this.props.data.lon, this.props.data.timezone)
+        this.props.setBookmark()
         console.log("saved positions", this.props.data.bookmark)
     }
-    showPosition=()=>{
-        let bookmarkName = Object.keys(this.props.data.bookmark)[0]
+
+    setPosition=(item)=>{
+        let bookmarkName = Object.keys(this.props.data.bookmark)[item]
         let bookmark = this.props.data.bookmark[bookmarkName]
-
-        
-        console.log("BookMakr 0",bookmark)
         this.props.setSettings({"address":bookmarkName ,"lat": bookmark.lat,"lon": bookmark.lon, "timezone": bookmark.timezone})
+        this.removeFocus()
+    }
 
-       // this.props.setSettings({"lat": bookmark[Object.keys(bookmark)[0]].lat, })
-        //this.props.setSettings({"lon": bookmark[Object.keys(bookmark)[0]].lon})
+    openBookmarks=()=>{
+        const {isBookmarkOpen} = this.state;
+        this.setState({isBookmarkOpen: !isBookmarkOpen}); 
+    }
 
-        //console.log("welcome back to",this.props.data.address)
-        //getGeoCoords("ChIJt7X11MvjSFER_R-tXLl6jUo", this.props.setSettings)
+    removeFocus = event => {
+        this.setState({
+            isBookmarkOpen: false
+        });
     }
 
     render(){
+        const {isBookmarkOpen} = this.state
+        const displaybookmark = () =>{
+            if (isBookmarkOpen){
+                return(
+                    <div id="bookmarkslist" >
+                        {Object.keys(this.props.data.bookmark).map((item, i) =>(<div onClick={()=> this.setPosition(i)}>{Object.keys(this.props.data.bookmark)[i]}</div>))}
+                    </div>
+                )
+            }
+        }
         return(
-            
             <div>
-                <MDBIcon far icon="bookmark" size="2x" onClick={this.newBookmark} />
-                <div></div>
-                <MDBIcon icon="arrow-down" onClick={this.showPosition}/>
+                {this.state.isBookmarkOpen? <div className="bookmark-overlay" onClick={this.removeFocus} /> : null }
+                <div>
+                    <MDBIcon far icon="bookmark" size="2x" onClick={this.newBookmark} />
+                    <MDBIcon icon="arrow-down" onClick={this.openBookmarks}/>
+                    {displaybookmark()}
+                </div>
             </div>
         )
        

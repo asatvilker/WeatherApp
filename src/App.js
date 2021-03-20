@@ -5,7 +5,6 @@ import Overview from './components/DropDown/overview';
 import TopBar from './components/TopBar'
 import Daily from './components/daily/daily';
 import Clothes from './components/clothes/clothes';
-import Settings from './components/Settings/Settings';
 import Suggest from './components/suggestions/suggestion';
 import React, { Component } from "react";
 
@@ -67,9 +66,10 @@ class App extends Component {
         });
     }
 
-    setBookmark=(name,lat,lon, timezone)=>{
+    //stores all bookmarks
+    setBookmark=()=>{
         let currentBookmark = this.state.bookmark;
-        currentBookmark[name]={"lat":lat, "lon":lon, "timezone": timezone};
+        currentBookmark[this.state.address]={"lat":this.state.lat, "lon":this.state.lon, "timezone": this.state.timezone};
         this.setState({Bookmark:currentBookmark});
     }
 

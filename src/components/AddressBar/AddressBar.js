@@ -27,9 +27,6 @@ class AddressBar extends Component {
     }
 
     click(placeId) {
-        //
-
-        //this.props.setSettings({"history":placeId})
         getGeoCoords(placeId, this.props.setSettings)
         this.removeFocus();
     }
