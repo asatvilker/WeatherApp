@@ -21,6 +21,7 @@ class App extends Component {
             minutely: [],
             daily: [],
             //settings variables
+            bookmark:{},
             darkMode:false,
             timePm:false,
             celsius: true,
@@ -57,11 +58,17 @@ class App extends Component {
                 }
             }
         }
+        
         this.setState(newSettings);
         if (newSettings.hasOwnProperty("lat")) {
             console.log("APP: FETCHING NEW DATA");
             this.fetchData();
         }
+    }
+    setBookmark=(name,lat,lon)=>{
+        let currentBookmark = this.state.bookmark;
+        currentBookmark[name]={lat:lat, lon:lon}
+        this.setState({Bookmark:currentBookmark})
     }
 
     fetchData() {
@@ -100,7 +107,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Background date={this.state.date} timeZone={this.state.timezone}/>
-                <TopBar setSettings={this.setSettings.bind(this)} data={this.state}/>
+                <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)}/>
                 <Overview data={this.state}/>
                 <Suggest hourly={this.state.hourly}/> 
                 <Clothes hourly={this.state.hourly}/>

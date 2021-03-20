@@ -15,9 +15,11 @@ class Settings extends Component{
     displaySettings = event => {
         const {isSettingsOpen} = this.state;
         this.setState({isSettingsOpen: !isSettingsOpen} );   
-    }   
+    }  
+
     handleChange = (event, fieldName)=> {
         this.props.setSettings({[fieldName]:event.target.checked})
+        // theme switch
         if (fieldName ===("darkMode")){
             if (this.props.data.darkMode){
                 document.getElementById("settings-colour").classList.remove('item-white');
@@ -87,10 +89,9 @@ class Settings extends Component{
         }
 
         return(
-            //div used as filter when settings is open
+            //div settigns overlay used as filter when settings is open
             <div>
                 {this.state.isSettingsOpen? <div className="settings-overlay" onClick={this.removeFocus} /> : null }
-                
                 <div className="settings-wrapper">
                     <div>
                         <MDBIcon  class="settingsicon" icon="bars" size="2x"  onClick={this.displaySettings} />

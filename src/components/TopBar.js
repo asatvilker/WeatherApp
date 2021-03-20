@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell } from '../WeatherAPI'
 import { MDBIcon } from 'mdbreact';
-
+import BookMark from "./BookMark/BookMark";
 import Settings from './Settings/Settings';
 import AddressBar from "./AddressBar/AddressBar";
 import './TopBar.css';
+
 
 class TopBar extends Component{
 
@@ -21,10 +22,10 @@ class TopBar extends Component{
         return(
             <div className="topbar-parent">
                 <div class="topbar-spacing1">
-                    <MDBIcon far icon="bookmark" size="2x" />
+                    <BookMark setSettings={this.props.setSettings} data={this.props.data} setBookmark={this.props.setBookmark}/>
                 </div>
                 <div class="topbar-spacing2">
-                    <AddressBar setSettings={this.props.setSettings}/>
+                    <AddressBar setSettings={this.props.setSettings} />
                 </div>
                 <div class="topbar-spacing1">
                     <Settings setSettings={this.props.setSettings} data={this.props.data}/>
