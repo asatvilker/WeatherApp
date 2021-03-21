@@ -8,14 +8,9 @@ class BookMark extends Component{
         super(props)
         this.state ={
             isBookmarkOpen:false,
-            bookmarkNames:[],
         };
     }
 
-    newBookmark=()=>{
-        this.props.setBookmark()
-        console.log("saved positions", this.props.data.bookmark)
-    }
 
     setPosition=(item)=>{
         let bookmarkName = Object.keys(this.props.data.bookmark)[item]
@@ -37,7 +32,6 @@ class BookMark extends Component{
 
     removeBookmark =(name)=>{
         this.props.removeBookmark(name)
-        console.log("HEloooooooooooooooooooooooooo",name)
     }
 
     render(){
@@ -83,8 +77,9 @@ class BookMark extends Component{
             <div>
                 {this.state.isBookmarkOpen ? <div className="bookmark-overlay" onClick={this.removeFocus} /> : null }
                 <div>
-                    <MDBIcon far icon="bookmark" className="bookmark-button" size="2x" onClick={this.newBookmark} />
-                    <MDBIcon icon="arrow-down" className="arrow-button" onClick={this.openBookmarks}/>
+                    <div style={{display:"flex" }}>
+                        <MDBIcon far icon="bookmark" className="bookmark-button" size="2x" onClick={this.openBookmarks} />
+                    </div>
                     {displaybookmark()}
                 </div>
             </div>

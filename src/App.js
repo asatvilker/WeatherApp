@@ -72,9 +72,9 @@ class App extends Component {
         currentBookmark[this.state.address]={"lat":this.state.lat, "lon":this.state.lon, "timezone": this.state.timezone};
         this.setState({Bookmark:currentBookmark});
     }
+
     removeBookmark=(name)=>{
         let newBookmark = this.state.bookmark;
-        console.log("Theeeeeeeeeeeeeeeeeeeeeeeeeee", newBookmark)
         delete newBookmark[name]
         this.setState({Bookmark:newBookmark})
     }

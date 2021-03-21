@@ -106,3 +106,19 @@
 .greyed {
   color: #383840;
 }
+
+.address-search-icon-star {
+
+  padding-left: 10px;
+  padding-right:5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 100%;
+  width: auto;
+  z-index: 15;
+  transition: all 0.1s;
+  cursor: pointer;
+}
+.address-search-icon-star:active {
+  transform: scale(0.65);
+}

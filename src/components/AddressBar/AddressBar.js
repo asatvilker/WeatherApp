@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {placeSuggestions, getGeoCoords} from "../../WeatherAPI.js";
 import "./AddressBar.css";
 import {BiSearch} from "react-icons/bi"
+import { MDBIcon } from 'mdbreact';
 
 class AddressBar extends Component {
 
@@ -44,6 +45,10 @@ class AddressBar extends Component {
             isListOpen: false
         });
     }
+    newBookmark=()=>{
+        this.props.setBookmark()
+        console.log("saved positions", this.props.data.bookmark)
+    }
 
     render() {
         const {focus, suggestions, isListOpen } = this.state;
@@ -61,16 +66,18 @@ class AddressBar extends Component {
             <div>
                 {addOverlay()}
                 <div className="address-wrapper">
-                    <div className="address-header-title" onClick={this.setFocus}>
+                    <div className="address-header-title" >
                         <BiSearch className="address-search-icon"/>
                         <input
                             type="text"
                             defaultValue={"Search"}
+                            onClick={this.setFocus}
                             onFocus={(e) => resetInput(e)}
                             className={focus ? "": "greyed"} 
                             style={{fontFamily: 'Sen'}}
                             onChange={this.createSuggestions}
                             />
+                        <MDBIcon far icon="star" className="address-search-icon-star" onClick={this.newBookmark}/>
                     </div>
                     {isListOpen && (
                         <div className="address-suggestions">
@@ -91,6 +98,7 @@ class AddressBar extends Component {
                         ))}
                     </div>
                     )}
+                    
                 </div>
             </div>
         )
