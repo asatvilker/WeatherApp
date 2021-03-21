@@ -20,19 +20,6 @@ class Settings extends Component{
 
     handleChange = (event, fieldName)=> {
         this.props.setSettings({[fieldName]:event.target.checked})
-        // theme switch
-        if (fieldName ===("darkMode")){
-            if (this.props.data.darkMode){
-                document.getElementById("settings-colour").classList.remove('item-white');
-                document.getElementById("settingslist").classList.remove('settings-suggestions-black');
-                document.querySelector(".slider").style.backgroundColor = "black";
-            }
-            else{
-                document.getElementById("settings-colour").classList.add('item-white');
-                document.getElementById("settingslist").classList.add('settings-suggestions-black');
-                document.querySelector(".slider").style.backgroundColor = "white";
-            }
-        }
     }
 
     removeFocus = event => {
@@ -63,15 +50,15 @@ class Settings extends Component{
                             </div>
 
                             <div className="switchContainerB">
-                                <div>F</div>
+                                <div>C</div>
                                 <label className="switch">
-                                    <input type="checkbox" id="togBtn" checked={this.props.data.celcius} onChange={(event) =>this.handleChange(event,"celsius")}/>
+                                    <input type="checkbox" id="togBtn" checked={this.props.data.celsius} onChange={(event) =>this.handleChange(event,"celsius")}/>
                                     <div className="slider round b">
-                                        <span className="on">C</span>
-                                        <span className="off">F</span>
+                                        <span className="on">F</span>
+                                        <span className="off">C</span>
                                     </div>
                                 </label>
-                                <div>C</div>
+                                <div>F</div>
                             </div>
 
                             <div className="switchContainerB">
@@ -85,17 +72,7 @@ class Settings extends Component{
                                 </label>
                                 <div>mph</div>
                             </div>
-                            <div className="switchContainerA">
-                                <div>White</div>
-                                <label className="switch">
-                                    <input type="checkbox" id="togBtn" checked={this.props.data.darkMode} onChange={ (event)=>this.handleChange(event,"darkMode")}/>
-                                    <div className="slider round">
-                                        <span className="on">Black</span>
-                                        <span className="off">White</span>
-                                    </div>
-                                </label>
-                                <div>Dark</div>
-                            </div>
+                            
                             <div>
                                 <MDBIcon far icon="thumbs-up" className="feedback"> Send Feedback </MDBIcon>
                             </div>

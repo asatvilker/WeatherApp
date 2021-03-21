@@ -72,6 +72,12 @@ class App extends Component {
         currentBookmark[this.state.address]={"lat":this.state.lat, "lon":this.state.lon, "timezone": this.state.timezone};
         this.setState({Bookmark:currentBookmark});
     }
+    removeBookmark=(name)=>{
+        let newBookmark = this.state.bookmark;
+        console.log("Theeeeeeeeeeeeeeeeeeeeeeeeeee", newBookmark)
+        delete newBookmark[name]
+        this.setState({Bookmark:newBookmark})
+    }
 
     fetchData() {
         console.log("fetching");
@@ -111,7 +117,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Background date={this.state.date} timeZone={this.state.timezone}/>
-                <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)}/>
+                <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)} removeBookmark={this.removeBookmark.bind(this)}/>
                 <Overview data={this.state}/>
                 <Suggest hourly={this.state.hourly}/> 
                 <Clothes hourly={this.state.hourly}/>

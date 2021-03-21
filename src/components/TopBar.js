@@ -22,7 +22,7 @@ class TopBar extends Component{
         return(
             <div className="topbar-parent">
                 <div class="topbar-spacing1">
-                    <BookMark setSettings={this.props.setSettings} data={this.props.data} setBookmark={this.props.setBookmark}/>
+                    <BookMark setSettings={this.props.setSettings} data={this.props.data} setBookmark={this.props.setBookmark} removeBookmark={this.props.removeBookmark}/>
                 </div>
                 <div class="topbar-spacing2">
                     <AddressBar setSettings={this.props.setSettings} />

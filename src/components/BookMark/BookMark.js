@@ -18,6 +18,7 @@ class BookMark extends Component{
     }
 
     setPosition=(item)=>{
+
         let bookmarkName = Object.keys(this.props.data.bookmark)[item]
         let bookmark = this.props.data.bookmark[bookmarkName]
         this.props.setSettings({"address":bookmarkName ,"lat": bookmark.lat,"lon": bookmark.lon, "timezone": bookmark.timezone})
@@ -34,6 +35,13 @@ class BookMark extends Component{
             isBookmarkOpen: false
         });
     }
+    removeBookmark =(name)=>{
+        this.props.removeBookmark(name)
+        console.log("HEloooooooooooooooooooooooooo",name)
+     
+    }
+
+
 
     render(){
         const {isBookmarkOpen} = this.state
@@ -41,7 +49,18 @@ class BookMark extends Component{
             if (isBookmarkOpen){
                 return(
                     <div id="bookmarkslist" >
-                        {Object.keys(this.props.data.bookmark).map((item, i) =>(<div onClick={()=> this.setPosition(i)}>{Object.keys(this.props.data.bookmark)[i]}</div>))}
+                        {Object.keys(this.props.data.bookmark).map((item, i) =>(
+                            <div id="bookMarkeditem">
+                                <div onClick={()=> this.setPosition(i)}>
+                                    {Object.keys(this.props.data.bookmark)[i]}
+                                </div>
+                                <div>
+                                <button onClick={()=>this.removeBookmark(Object.keys(this.props.data.bookmark)[i])}>x</button> 
+                                </div>
+                            </div>
+
+                            )
+                        )}
                     </div>
                 )
             }
