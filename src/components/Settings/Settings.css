@@ -23,7 +23,11 @@
   background: #080808 !important;
 }
 .item-white {
-  color: rgb(252, 252, 248);
+  color: white;
+}
+
+.item-white span {
+  color: black;
 }
 
 .settings-header {
@@ -51,7 +55,8 @@
   left: 43%;
 }
 
-.switchContainer {
+.switchContainerA,
+.switchContainerB {
   position: relative;
   display: flex;
   justify-content: center;
@@ -60,7 +65,7 @@
 
 .switch {
   position: relative;
-  display: inline-block;
+  display: block;
   width: 96px;
   height: 34px;
 }
@@ -72,7 +77,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: black;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -86,29 +90,26 @@ label {
   content: "";
   height: 26px;
   width: 26px;
-  left: 4px;
+  left: 5px;
   bottom: 4px;
-  background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
 input:checked + .slider {
   background-color: white;
-  color: black;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px bisque;
+input + .slider {
+  background-color: black;
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(55px);
-  -ms-transform: translateX(55px);
+  -webkit-transform: translateX(60px);
+  -ms-transform: translateX(60px);
   transform: translateX(60px);
 }
 
-/*------ ADDED CSS ---------*/
 .on {
   display: none;
 }
@@ -123,12 +124,10 @@ input:checked + .slider:before {
 
 .on {
   transform: translate(-70%, -50%);
-  color: black;
 }
 
 .off {
   transform: translate(-20%, -50%);
-  color: white;
 }
 
 input:checked + .slider .on {
@@ -139,6 +138,16 @@ input:checked + .slider .off {
   display: none;
 }
 
+/* Colour of the toggle circle */
+
+.switchContainerB input + .slider.round.b:before {
+  background-color: rgb(53, 248, 53);
+}
+
+.switchContainerB input:checked + .slider.round.b:before {
+  background-color: rgb(255, 0, 255);
+}
+
 input + .slider.round:before {
   background-color: white;
 }
@@ -147,9 +156,6 @@ input:checked + .slider.round:before {
   background-color: black;
 }
 
-/*--------- END --------*/
-
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
@@ -158,4 +164,10 @@ input:checked + .slider.round:before {
   border-radius: 50%;
 }
 
+span {
+  color: white;
+}
 
+.feedback {
+  margin-top: 20px;
+}

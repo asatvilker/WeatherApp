@@ -25,10 +25,12 @@ class Settings extends Component{
             if (this.props.data.darkMode){
                 document.getElementById("settings-colour").classList.remove('item-white');
                 document.getElementById("settingslist").classList.remove('settings-suggestions-black');
+                document.querySelector(".slider").style.backgroundColor = "black";
             }
             else{
                 document.getElementById("settings-colour").classList.add('item-white');
                 document.getElementById("settingslist").classList.add('settings-suggestions-black');
+                document.querySelector(".slider").style.backgroundColor = "white";
             }
         }
     }
@@ -48,40 +50,54 @@ class Settings extends Component{
                     <br />
                     <MDBBox id="settings-colour">
                             <div className="settings-header">Settings</div>
-                            <div  class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" className="custom_switches" id="customSwitch1" checked={this.props.data.darkMode} onChange={ (event)=>this.handleChange(event,"darkMode")}></input>    
-                                <label class="custom-control-label" for="customSwitch1"> Dark</label>
-                                <label class="test12" > White</label> 
+                            <div className="switchContainerB">
+                                <div>24H</div>
+                                <label className="switch">
+                                    <input type="checkbox" id="togBtn" checked={this.props.data.timePm} onChange={(event) =>this.handleChange(event,"timePm")}/>
+                                    <div className="slider round b">
+                                        <span className="on">12H</span>
+                                        <span className="off">24H</span>
+                                    </div>
+                                </label>
+                                <div>12H</div>
                             </div>
 
-                            <div  class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" className="custom_switches" id="customSwitch2" checked={this.props.data.timePm} onChange={(event) =>this.handleChange(event,"timePm")}></input>    
-                                <label class="custom-control-label" for="customSwitch2"> 12</label>
-                                <label class="test12" >24</label> 
+                            <div className="switchContainerB">
+                                <div>F</div>
+                                <label className="switch">
+                                    <input type="checkbox" id="togBtn" checked={this.props.data.celcius} onChange={(event) =>this.handleChange(event,"celsius")}/>
+                                    <div className="slider round b">
+                                        <span className="on">C</span>
+                                        <span className="off">F</span>
+                                    </div>
+                                </label>
+                                <div>C</div>
                             </div>
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" className="custom_switches" id="customSwitch3" checked={this.props.data.celsius} onChange={(event) =>this.handleChange(event,"celsius")}></input>    
-                                <label class="custom-control-label" for="customSwitch3">F</label>
-                                <label class="test12" >C</label> 
+
+                            <div className="switchContainerB">
+                                <div>km/h</div>
+                                <label className="switch">
+                                    <input type="checkbox" id="togBtn" checked={this.props.data.kmh} onChange={(event) =>this.handleChange(event,"kmh")}/>
+                                    <div className="slider round b">
+                                        <span className="on">mph</span>
+                                        <span className="off">km/h</span>
+                                    </div>
+                                </label>
+                                <div>mph</div>
                             </div>
-                            <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" className="custom_switches" id="customSwitch4" checked={this.props.data.kmh} onChange={(event) =>this.handleChange(event,"kmh")}></input>    
-                                <label class="custom-control-label" for="customSwitch4">km/h</label>
-                                <label class="test12" >mph</label> 
-                            </div>
-                            <div className="switchContainer">
+                            <div className="switchContainerA">
                                 <div>White</div>
-                                <label class="switch">
+                                <label className="switch">
                                     <input type="checkbox" id="togBtn" checked={this.props.data.darkMode} onChange={ (event)=>this.handleChange(event,"darkMode")}/>
-                                    <div class="slider round">
-                                        <span class="on">Black</span>
-                                        <span class="off">White</span>
+                                    <div className="slider round">
+                                        <span className="on">Black</span>
+                                        <span className="off">White</span>
                                     </div>
                                 </label>
                                 <div>Dark</div>
                             </div>
                             <div>
-                                <MDBIcon far icon="thumbs-up" /> Send Feedback
+                                <MDBIcon far icon="thumbs-up" className="feedback"> Send Feedback </MDBIcon>
                             </div>
                     </MDBBox>
                     </React.Fragment>
