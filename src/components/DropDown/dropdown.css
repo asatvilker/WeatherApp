@@ -68,6 +68,7 @@
 }
 .card p {
     font-size: 1.5vh;
+    margin-bottom: 0;
 }
 
 .turn {
