@@ -199,12 +199,14 @@ export function getHourDataMicrosoft(sdata, callBack) {
     .then(res => res.json())
     .then(result => {
         let hourly = result["forecasts"].slice(0, 29).map(function(item) {
+            
             return (
                 {
                     time: convertTZ(item.date, sdata.timezone),
                     temperature: item.temperature.value,
                     weatherIcon: microsoftIconMap[item.iconCode],
-                    weatherDesc: item.iconPhrase
+                    weatherDesc: item.iconPhrase,
+                    wind:item.wind
                 }
             )
         });
@@ -226,7 +228,8 @@ export function getDailyDataMicrosoft(sdata, callBack) {
                     time: convertTZ(item.date, sdata.timezone),
                     temperature: (item.temperature.maximum.value + item.temperature.minimum.value) / 2,
                     weatherIcon: microsoftIconMap[item.day.iconCode],
-                    weatherDesc: item.day.iconPhrase
+                    weatherDesc: item.day.iconPhrase,
+                    wind:item.day.wind
                 }
             )
         });
@@ -243,23 +246,28 @@ export function getOpenWeatherData(sdata, callBack) {
     .then(result => {
         console.log("API: URL: ", url)
         let daily = result["daily"].map(function(item) {
+            const wind ={speed:{value:Math.round(item.wind_speed*3.6)}} //same format as microsoft
+            
             return (
                 {
                     time: convertTZ(new Date(item.dt*1000), sdata.timezone),
                     temperature: item.temp.day,
                     weatherIcon: openWeatherIconMap[item.weather[0].id],
-                    weatherDesc: item.weather[0].description
+                    weatherDesc: item.weather[0].description,
+                    wind:wind
                 }
             )
         });
         let startTime = convertTZ(new Date(result["hourly"][0].dt * 1000), sdata.timezone)
         let hourly = result["hourly"].slice(0, 29 - startTime.getHours()).map(function(item) {
+            const wind ={speed:{value:Math.round(item.wind_speed*3.6)}} //same format as microsoft
             return (
                 {
                     time: convertTZ(new Date(item.dt*1000), sdata.timezone),
                     temperature: item.temp,
                     weatherIcon: openWeatherIconMap[item.weather[0].id],
-                    weatherDesc: item.weather[0].description
+                    weatherDesc: item.weather[0].description,
+                    wind:wind
                 }
             )
         });

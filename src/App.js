@@ -31,59 +31,55 @@ class App extends Component {
         }
     }
 
+
     setSettings(newSettings) {
         console.log("APP: NEW SETTINGS: ", newSettings);
-        if (newSettings.hasOwnProperty("celsius")) {
-            if (newSettings.celsius != this.state.celsius) {
-                if (newSettings.celsius) {
-                    newSettings["hourly"] = this.state.hourly.map((item) => {
-                        item.temperature = 5/9*(item.temperature-32);
-                        return (item)
-                    });
-                    newSettings["daily"] = this.state.daily.map((item) => {
-                        item.temperature = 5/9*(item.temperature-32);
-                        console.log("Bruh look at me",item)
-                        return (item)
-                    });
-                } else {
-                    newSettings["hourly"] = this.state.hourly.map((item) => {
-                        item.temperature = (9/5*item.temperature)+32;
-                        return (item)
-                    });
-                    newSettings["daily"] = this.state.daily.map((item) => {
-                        item.temperature =  (9/5*item.temperature)+32;
-                        return (item)
-                    });
-                }
+        if (newSettings.hasOwnProperty("daily")) {
+            if (this.state.celsius) {
+                this.setState({daily: newSettings.daily});
+            } else {
+                this.setState({daily: newSettings.daily.map((item) => {
+                    item.temperature = (9/5*item.temperature)+32;
+                    return item;
+                })});
+            }
+        }
+        if (newSettings.hasOwnProperty("hourly")) {
+            if (this.state.celsius) {
+                this.setState({hourly: newSettings.hourly});
+            } else {
+                this.setState({hourly: newSettings.hourly.map((item) => {
+                    item.temperature = (9/5*item.temperature)+32;
+                    return item;
+                })});
             }
         }
         this.setState(newSettings, function() {
-            console.log("APP SETTINGS NOW: ", this.state);
             if (newSettings.hasOwnProperty("lat")) {
-                console.log("APP: FETCHING NEW DATA");
                 this.fetchData();
+            }
+            if (newSettings.hasOwnProperty("celsius")) {
+                this.convertTemperatureToggle();
             }
         });
     }
 
-    //stores all bookmarks
-    setBookmark=()=>{
-        let currentBookmark = this.state.bookmark;
-        currentBookmark[this.state.address]={"lat":this.state.lat, "lon":this.state.lon, "timezone": this.state.timezone};
-        this.setState({Bookmark:currentBookmark});
+
+    convertTemperatureToggle() {
+        this.setState({hourly: this.state.hourly.map((item) => {
+            item.temperature = this.state.celsius ? 5/9*(item.temperature-32) : (9/5*item.temperature)+32;
+            return (item)
+        })});
+        this.setState({daily: this.state.daily.map((item) => {
+            item.temperature = this.state.celsius ? 5/9*(item.temperature-32) : (9/5*item.temperature)+32;
+            return (item)
+        })});
     }
 
-    removeBookmark=(name)=>{
-        let newBookmark = this.state.bookmark;
-        delete newBookmark[name]
-        this.setState({Bookmark:newBookmark})
-    }
-
-    fetchData() {
+    fetchData() { //fetches api data
         console.log("fetching");
-        console.log(this.state.hourly);
-        if (this.state.api == "openweather") {
-            getOpenWeatherData(this.state, this.setSettings.bind(this));
+        if (this.state.api == "openweather") { //checks which api provider is selected in state and uses that to get the relevant weather data
+            getOpenWeatherData(this.state, this.setSettings.bind(this)); //gets all data required and as it is binded, it will update the state of this component with the new data
         } else if (this.state.api == "climacell") {
             getHourForecastClimaCell(this.state, this.setSettings.bind(this));
             getMinuteData(this.state, this.setSettings.bind(this));
@@ -96,7 +92,7 @@ class App extends Component {
         console.log(this.state.hourly);
     }
 
-    componentDidMount(){
+    componentDidMount(){//when components first loads it will fetch the weather data
         this.fetchData();
     }
 
@@ -115,7 +111,7 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div className="App"> {/* Here we display the different components and pass through the required api data */}
                 <Background date={this.state.date} timeZone={this.state.timezone}/>
                 <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)} removeBookmark={this.removeBookmark.bind(this)}/>
                 <Overview data={this.state}/>

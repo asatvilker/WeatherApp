@@ -61,7 +61,7 @@ function TimeChange(date) {
     */
 
     //Sets the variable to birds or stars depending on the time of day
-    //During 8pm to 7am it will display stars else it will display birds 
+    //During 8pm to 7am it will display stars and for all the other times it will display birds 
     var complement = (hour>=20 || hour <=7)? Stars() : Birds(); 
 
     if (hour >= 22 || hour <= 3) {
