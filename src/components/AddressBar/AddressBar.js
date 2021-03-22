@@ -64,13 +64,10 @@ class AddressBar extends Component {
             e.target.value = "";
         }
         const changeStarColour = () => {
-            
             let col = document.getElementById("star");
             if (bookmarked_check == undefined && col!=null) {
-                console.log(col)
                 col.style.color="black";
             } else if (bookmarked_check != undefined && col!=null) {
-                console.log(bookmarked_check)
                 col.style.color="blue";
             } 
         }
