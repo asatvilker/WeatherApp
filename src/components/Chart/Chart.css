@@ -37,16 +37,22 @@
     stroke: none;
 } 
 
-.jeff {
+.chart-targetline {
     stroke: red;
-}
-
-@keyframes draw {
-    to {
-      stroke-dashoffset: 0;
-    }
 }
 
 .chart-text {
     font-size: 0.75em;
 }
+
+/* .ct-series .ct-line, .ct-area{
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 5s linear forwards;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+} */

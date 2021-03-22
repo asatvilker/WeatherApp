@@ -1,13 +1,10 @@
-import React, { PureComponent, useContext } from "react";
+import React, { Component, useContext } from "react";
 import Chartist from "chartist";
 import "./Chart.css";
 import "chartist-plugin-targetline";
 
 function ctTargetLineWithLabel(options) {
     return function ctTargetLineWithLabel(chart) {
-        var defaultOptions = {
-        }
-        options = Chartist.extend({}, defaultOptions, options);
         chart.on("created", function(data) {
             let projectedY = data.chartRect.height() - data.axisY.projectValue(options.value, 0) + data.chartRect.y2;
             data.svg.elem("text", {
@@ -20,12 +17,31 @@ function ctTargetLineWithLabel(options) {
                 x2: data.chartRect.x2,
                 y1: projectedY,
                 y2: projectedY
-            }, "jeff", true)
+            }, "chart-targetline", true)
         });
     };
 };
 
-class RainChart extends PureComponent {
+function drawUp(options) {
+    return function drawUp(chart) {
+        chart.on('draw', function(data) {
+            if(data.type === 'line' || data.type === 'area') {
+                console.log(data);
+                data.element.animate({
+                    d: {
+                        begin: 2000 * data.index,
+                        dur: 2000,
+                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.y1).stringify(),
+                        to: data.path.clone().stringify(),
+                        easing: Chartist.Svg.Easing.easeOutQuint
+                    }
+                });
+            }
+        });
+    }
+}
+
+class RainChart extends Component {
     state = {
             options: {
                 chartPadding: {
@@ -48,6 +64,7 @@ class RainChart extends PureComponent {
                     showLabel: false
                 },
                 plugins: [
+                    drawUp(),
                     ctTargetLineWithLabel({value: 20, text: "Light", offset: 5, className: "chart-light"}),
                     ctTargetLineWithLabel({value: 35, text: "Medium", offset: 5, className: "chart-medium"}),
                     ctTargetLineWithLabel({value: 50, text: "Heavy", offset: 5, className: "chart-heavy"}),
@@ -60,7 +77,11 @@ class RainChart extends PureComponent {
     }
 
     componentDidUpdate() {
-        console.log("CHART: UPDATINGGGGG");
+        this.updateChart(this.props.data);
+    }
+    
+    shouldComponentUpdate(nextProps, nextState) {
+        return JSON.stringify(nextProps) != JSON.stringify(this.props) || JSON.stringify(nextState) != JSON.stringify(this.state);
     }
 
     updateChart(incomingData) {
@@ -70,7 +91,7 @@ class RainChart extends PureComponent {
             series: [incomingData]
         }
         if (this.chartist) {
-            this.chartist.update(data, this.state.options)
+            this.chartist.update(data, this.state.options);
         } else {
             this.chartist = new Chartist.Line(this.chart, data, this.state.options);
         }
@@ -83,6 +104,5 @@ class RainChart extends PureComponent {
     }
 
 }
-
 
 export default RainChart;
