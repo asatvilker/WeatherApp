@@ -27,7 +27,7 @@ class App extends Component {
         }
     }
 
-    setSettings(newSettings) {
+    setSettings(newSettings) { //will adjust weather data when location is changed
         console.log("APP: NEW SETTINGS: ", newSettings);
         if (newSettings.hasOwnProperty("celsius")) {
             if (newSettings.celsius != this.state.celsius) {
@@ -52,6 +52,7 @@ class App extends Component {
                 }
             }
         }
+        //new settings are put into state and then the api is called again to update the weather data stored in state
         this.setState(newSettings, function() {
             console.log("APP SETTINGS NOW: ", this.state);
             if (newSettings.hasOwnProperty("lat")) {
@@ -61,10 +62,10 @@ class App extends Component {
         });
     }
 
-    fetchData() {
+    fetchData() { //fetches api data
         console.log("fetching");
-        if (this.state.api == "openweather") {
-            getOpenWeatherData(this.state, this.setSettings.bind(this));
+        if (this.state.api == "openweather") { //checks which api provider is selected in state and uses that to get the relevant weather data
+            getOpenWeatherData(this.state, this.setSettings.bind(this)); //gets all data required and as it is binded, it will update the state of this component with the new data
         } else if (this.state.api == "climacell") {
             getHourForecastClimaCell(this.state, this.setSettings.bind(this));
             getMinuteData(this.state, this.setSettings.bind(this));
@@ -76,7 +77,7 @@ class App extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount(){//when components first loads it will fetch the weather data
         this.fetchData();
     }
 
@@ -95,14 +96,14 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div className="App"> {/* Here we display the different components and pass through the required api data */}
                 <Background date={this.state.date} timeZone={this.state.timezone}/>
                 <Settings parentCallback={this.handleCallback} data={this.state.data} />
-                <AddressBar setSettings={this.setSettings.bind(this)}/>
+                <AddressBar setSettings={this.setSettings.bind(this)}/>{/* this function passed as props to address will cause the method in this class to run (setSettings()) and this will update location data and refresh the api weather data */}
                 <Overview data={this.state}/>
                 <Suggest hourly={this.state.hourly}/> 
                 <Clothes hourly={this.state.hourly}/>
-                <Daily data={this.state.daily} celsius={this.state.celsius}/>
+                <Daily data={this.state.daily} celsius={this.state.celsius}/>{/* celcius will tell us what unit of measure we need to use */}
 
             </div>
         )
