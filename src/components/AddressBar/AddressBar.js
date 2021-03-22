@@ -51,7 +51,7 @@ class AddressBar extends Component {
         console.log("saved positions", this.props.data.bookmark[this.props.data.address])
     }
     alreadyBookmark=()=>{
-        //TODO
+        this.props.removeBookmark(this.props.data.address)
     }
     render() {
         const {focus, suggestions, isListOpen } = this.state;
