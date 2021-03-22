@@ -28,8 +28,11 @@
   margin: 5px;
 }
 
+button:focus {
+  outline-style: none;
+}
+
 .close {
-  vertical-align: middle;
   border: none;
   color: inherit;
   border-radius: 50%;
@@ -77,13 +80,6 @@
   cursor: pointer;
 }
 
-.arrow-button {
-  font-size: 2rem;
-  transition: all 0.1s;
-  cursor: pointer;
-}
-
-.bookmark-button:active,
-.arrow-button:active {
+.bookmark-button:active {
   transform: scale(0.65);
 }

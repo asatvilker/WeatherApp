@@ -7,7 +7,7 @@ class BookMark extends Component{
     constructor(props){
         super(props)
         this.state ={
-            isBookmarkOpen:false,
+            isBookmarkOpen:false
         };
     }
 
@@ -45,7 +45,6 @@ class BookMark extends Component{
                                 <div>No bookmarks saved</div>
                             </div>  
                         </div>
-                        
                     )
                 }
                 else {
@@ -77,7 +76,7 @@ class BookMark extends Component{
             <div>
                 {this.state.isBookmarkOpen ? <div className="bookmark-overlay" onClick={this.removeFocus} /> : null }
                 <div>
-                    <div style={{display:"flex" }}>
+                    <div>
                         <MDBIcon far icon="bookmark" className="bookmark-button" size="2x" onClick={this.openBookmarks} />
                     </div>
                     {displaybookmark()}

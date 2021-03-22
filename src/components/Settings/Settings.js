@@ -37,7 +37,7 @@ class Settings extends Component{
                     <br />
                     <MDBBox id="settings-colour">
                             <div className="settings-header">Settings</div>
-                            <div className="switchContainerB">
+                            <div className="switchContainer">
                                 <div>24H</div>
                                 <label className="switch">
                                     <input type="checkbox" id="togBtn" checked={this.props.data.timePm} onChange={(event) =>this.handleChange(event,"timePm")}/>
@@ -49,7 +49,7 @@ class Settings extends Component{
                                 <div>12H</div>
                             </div>
 
-                            <div className="switchContainerB">
+                            <div className="switchContainer">
                                 <div>C</div>
                                 <label className="switch">
                                     <input type="checkbox" id="togBtn" checked={this.props.data.celsius} onChange={(event) =>this.handleChange(event,"celsius")}/>
@@ -61,7 +61,7 @@ class Settings extends Component{
                                 <div>F</div>
                             </div>
 
-                            <div className="switchContainerB">
+                            <div className="switchContainer">
                                 <div>km/h</div>
                                 <label className="switch">
                                     <input type="checkbox" id="togBtn" checked={this.props.data.kmh} onChange={(event) =>this.handleChange(event,"kmh")}/>

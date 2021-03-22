@@ -11,7 +11,8 @@ class AddressBar extends Component {
         this.state = {
             isListOpen: false,
             suggestions: [],
-            focus: false
+            focus: false,
+            message:""
         }
         this.createSuggestions = this.createSuggestions.bind(this);
         this.setFocus = this.setFocus.bind(this);
@@ -47,19 +48,31 @@ class AddressBar extends Component {
     }
     newBookmark=()=>{
         this.props.setBookmark()
-        console.log("saved positions", this.props.data.bookmark)
+        console.log("saved positions", this.props.data.bookmark[this.props.data.address])
     }
 
     render() {
         const {focus, suggestions, isListOpen } = this.state;
+        const bookmarked_check = this.props.data.bookmark[this.props.data.address];
+        console.log(bookmarked_check)
         const addOverlay = () => {
             if (focus) {
                 return <div className="address-overlay" onClick={this.removeFocus}/>
             }
         }
-
         const resetInput = (e) => {
             e.target.value = "";
+        }
+        const changeStarColour = () => {
+            
+            let col = document.getElementById("star");
+            if (bookmarked_check == undefined && col!=null) {
+                console.log(col)
+                col.style.color="black";
+            } else if (bookmarked_check != undefined && col!=null) {
+                console.log(bookmarked_check)
+                col.style.color="blue";
+            } 
         }
 
         return (
@@ -77,8 +90,10 @@ class AddressBar extends Component {
                             style={{fontFamily: 'Sen'}}
                             onChange={this.createSuggestions}
                             />
-                        <MDBIcon far icon="star" className="address-search-icon-star" onClick={this.newBookmark}/>
+                        <MDBIcon far icon="star" id="star" className="address-search-icon-star" onClick={this.newBookmark}/>
+                        {changeStarColour()}
                     </div>
+
                     {isListOpen && (
                         <div className="address-suggestions">
                         {suggestions.map((item, i) => (

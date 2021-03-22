@@ -55,12 +55,12 @@
   left: 43%;
 }
 
-.switchContainerA,
-.switchContainerB {
+.switchContainer{
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .switch {
@@ -79,6 +79,7 @@
   bottom: 0;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  background-color: rgb(95, 95, 95);
 }
 
 label {
@@ -94,14 +95,6 @@ label {
   bottom: 4px;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: white;
-}
-
-input + .slider {
-  background-color: black;
 }
 
 input:checked + .slider:before {
@@ -140,21 +133,14 @@ input:checked + .slider .off {
 
 /* Colour of the toggle circle */
 
-.switchContainerB input + .slider.round.b:before {
+input + .slider.round.b:before {
   background-color: rgb(53, 248, 53);
 }
 
-.switchContainerB input:checked + .slider.round.b:before {
+input:checked + .slider.round.b:before {
   background-color: rgb(255, 0, 255);
 }
 
-input + .slider.round:before {
-  background-color: white;
-}
-
-input:checked + .slider.round:before {
-  background-color: black;
-}
 
 .slider.round {
   border-radius: 34px;

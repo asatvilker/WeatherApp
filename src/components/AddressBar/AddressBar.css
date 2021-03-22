@@ -9,11 +9,11 @@
 }
 
 .address-wrapper {
-    position: relative;
-    z-index: 11;
-    width: 80%;
-    left: 10%;
-    height: auto;
+  position: relative;
+  z-index: 11;
+  width: 80%;
+  left: 10%;
+  height: auto;
 }
 
 .address-header-title {
@@ -25,22 +25,20 @@
   font-family: Sen;
 }
 
-
-
-.address-header-title input, input:focus{
-    width: 100%;
-    margin-left: 5px;
-    font-size: 14px;
-    border:none;
-    background-image:none;
-    background-color:transparent;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    outline: none;
-    -webkit-user-select: text;
-    user-select: text;
-
+.address-header-title input,
+input:focus {
+  width: 100%;
+  margin-left: 5px;
+  font-size: 14px;
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 .address-suggestions {
@@ -94,13 +92,11 @@
 }
 
 .address-search-icon {
-
-    padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    height: 100%;
-    width: auto;
-
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 100%;
+  width: auto;
 }
 
 .greyed {
@@ -108,9 +104,8 @@
 }
 
 .address-search-icon-star {
-
   padding-left: 10px;
-  padding-right:5px;
+  padding-right: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
   height: 100%;
@@ -119,6 +114,37 @@
   transition: all 0.1s;
   cursor: pointer;
 }
+
 .address-search-icon-star:active {
   transform: scale(0.65);
+}
+
+#star {
+  color: black;
+}
+
+.message-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.message {
+  animation: hide 4s forwards;
+  background-color: rgba(231, 231, 231, 0.71);
+  border-radius: 1rem;
+  margin-top: 15px;
+  opacity: 1;
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
