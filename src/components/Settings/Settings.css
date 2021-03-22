@@ -1,5 +1,5 @@
 #settingslist {
-  width: 80%;
+  width: 70%;
   position: fixed;
   margin: 0 auto;
   margin-top: 10px;
@@ -9,6 +9,26 @@
   border-radius: 18px;
   left: 50%;
   transform: translate(-50%, 0%);
+}
+
+@keyframes appear {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+.settingsicon {
+  padding: 0rem 2rem;
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.settingsicon:active {
+  transform: scale(0.65);
 }
 
 #settings-colour {
@@ -55,7 +75,7 @@
   left: 43%;
 }
 
-.switchContainer{
+.switchContainer {
   position: relative;
   display: flex;
   justify-content: center;
@@ -140,7 +160,6 @@ input + .slider.round.b:before {
 input:checked + .slider.round.b:before {
   background-color: rgb(255, 0, 255);
 }
-
 
 .slider.round {
   border-radius: 34px;

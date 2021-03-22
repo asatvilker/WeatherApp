@@ -14,7 +14,10 @@ class Settings extends Component{
    //display settings when button is clicked 
     displaySettings = event => {
         const {isSettingsOpen} = this.state;
-        this.setState({isSettingsOpen: !isSettingsOpen} );   
+        if(!isSettingsOpen) {
+            document.getElementById('settingslist').style.animation = 'appear 1s ease';
+        } 
+        this.setState({isSettingsOpen: !isSettingsOpen} );
         
     }  
 
@@ -26,56 +29,57 @@ class Settings extends Component{
         this.setState({
             isSettingsOpen: false
         });
+        
     }
 
     render(){
         const {isSettingsOpen } = this.state;
-        const addSettingsOverlay = () => {
+        const addSettings= () => {
             if (isSettingsOpen){
                 return(
                     <React.Fragment>
                     <br />
                     <MDBBox id="settings-colour">
-                            <div className="settings-header">Settings</div>
-                            <div className="switchContainer">
-                                <div>24H</div>
-                                <label className="switch">
-                                    <input type="checkbox" id="togBtn" checked={this.props.data.timePm} onChange={(event) =>this.handleChange(event,"timePm")}/>
-                                    <div className="slider round b">
-                                        <span className="on">12H</span>
-                                        <span className="off">24H</span>
-                                    </div>
-                                </label>
-                                <div>12H</div>
-                            </div>
+                        <div className="settings-header">Settings</div>
+                        <div className="switchContainer">
+                            <div>24H</div>
+                            <label className="switch">
+                                <input type="checkbox" id="togBtn" checked={this.props.data.timePm} onChange={(event) =>this.handleChange(event,"timePm")}/>
+                                <div className="slider round b">
+                                    <span className="on">12H</span>
+                                    <span className="off">24H</span>
+                                </div>
+                            </label>
+                            <div>12H</div>
+                        </div>
 
-                            <div className="switchContainer">
-                                <div>C</div>
-                                <label className="switch">
-                                    <input type="checkbox" id="togBtn" checked={this.props.data.celsius} onChange={(event) =>this.handleChange(event,"celsius")}/>
-                                    <div className="slider round b">
-                                        <span className="on">F</span>
-                                        <span className="off">C</span>
-                                    </div>
-                                </label>
-                                <div>F</div>
-                            </div>
+                        <div className="switchContainer">
+                            <div>C</div>
+                            <label className="switch">
+                                <input type="checkbox" id="togBtn" checked={this.props.data.celsius} onChange={(event) =>this.handleChange(event,"celsius")}/>
+                                <div className="slider round b">
+                                    <span className="on">F</span>
+                                    <span className="off">C</span>
+                                </div>
+                            </label>
+                            <div>F</div>
+                        </div>
 
-                            <div className="switchContainer">
-                                <div>km/h</div>
-                                <label className="switch">
-                                    <input type="checkbox" id="togBtn" checked={this.props.data.kmh} onChange={(event) =>this.handleChange(event,"kmh")}/>
-                                    <div className="slider round b">
-                                        <span className="on">mph</span>
-                                        <span className="off">km/h</span>
-                                    </div>
-                                </label>
-                                <div>mph</div>
-                            </div>
-                            
-                            <div>
-                                <MDBIcon far icon="thumbs-up" className="feedback"> Send Feedback </MDBIcon>
-                            </div>
+                        <div className="switchContainer">
+                            <div>km/h</div>
+                            <label className="switch">
+                                <input type="checkbox" id="togBtn" checked={this.props.data.kmh} onChange={(event) =>this.handleChange(event,"kmh")}/>
+                                <div className="slider round b">
+                                    <span className="on">mph</span>
+                                    <span className="off">km/h</span>
+                                </div>
+                            </label>
+                            <div>mph</div>
+                        </div>
+                        
+                        <div>
+                            <MDBIcon far icon="thumbs-up" className="feedback"> Send Feedback </MDBIcon>
+                        </div>
                     </MDBBox>
                     </React.Fragment>
                 )
@@ -88,10 +92,10 @@ class Settings extends Component{
                 {this.state.isSettingsOpen? <div className="settings-overlay" onClick={this.removeFocus} /> : null }
                 <div className="settings-wrapper">
                     <div>
-                        <MDBIcon  class="settingsicon" icon="bars" size="2x"  onClick={this.displaySettings} />
+                        <MDBIcon  className="settingsicon" icon="bars" size="2x"  onClick={this.displaySettings} />
                     </div>
                     <div id="settingslist" >
-                        {addSettingsOverlay()}
+                        {addSettings()}
                     </div>
                 </div>
             </div>

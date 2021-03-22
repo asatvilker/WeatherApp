@@ -119,32 +119,26 @@ input:focus {
   transform: scale(0.65);
 }
 
-#star {
-  color: black;
-}
 
-.message-container {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-}
-
-.message {
-  animation: hide 4s forwards;
-  background-color: rgba(231, 231, 231, 0.71);
-  border-radius: 1rem;
-  margin-top: 15px;
-  opacity: 1;
-}
-
-@keyframes hide {
+@keyframes turnR{
   0% {
-    opacity: 1;
+    transform: rotate(0deg);
+    transform-origin: center;
   }
-  90% {
-    opacity: 1;
-  }
+
   100% {
-    opacity: 0;
+    transform: rotate(720deg);
+    transform-origin: center;
+  }
+}
+
+@keyframes turnL{
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-720deg);
+    transform-origin: center;
   }
 }

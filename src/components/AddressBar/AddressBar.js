@@ -47,12 +47,16 @@ class AddressBar extends Component {
     }
 
     newBookmark=()=>{
+        document.getElementById('emptyStar').style.animation = 'turnR 2s ease';
         this.props.setBookmark()
         console.log("saved positions", this.props.data.bookmark[this.props.data.address])
     }
+
     alreadyBookmark=()=>{
+        document.getElementById('filledStar').style.animation = 'turnL 2s ease';
         this.props.removeBookmark(this.props.data.address)
     }
+
     render() {
         const {focus, suggestions, isListOpen } = this.state;
         const bookmarked_check = this.props.data.bookmark[this.props.data.address];
@@ -66,7 +70,7 @@ class AddressBar extends Component {
         const resetInput = (e) => {
             e.target.value = "";
         }
-    
+
         return (
             <div>
                 {addOverlay()}
@@ -82,7 +86,9 @@ class AddressBar extends Component {
                             style={{fontFamily: 'Sen'}}
                             onChange={this.createSuggestions}
                             />
-                        {bookmarked_check !== undefined?<MDBIcon  icon="star" className="address-search-icon-star"onClick={this.alreadyBookmark} />: <MDBIcon  far icon="star" className="address-search-icon-star" onClick={this.newBookmark}/>}
+                        {bookmarked_check !== undefined?
+                            <MDBIcon  icon="star" className="address-search-icon-star" id="filledStar" onClick={this.alreadyBookmark}  />: 
+                            <MDBIcon  far icon="star" id="emptyStar" className="address-search-icon-star" onClick={this.newBookmark} />}
                     </div>
                     {isListOpen && (
                         <div className="address-suggestions">
