@@ -53,11 +53,13 @@ class App extends Component {
                 }
             }
         }
-        this.setState(newSettings);
-        if (newSettings.hasOwnProperty("lat")) {
-            console.log("APP: FETCHING NEW DATA");
-            this.fetchData();
-        }
+        this.setState(newSettings, function() {
+            console.log("APP SETTINGS NOW: ", this.state);
+            if (newSettings.hasOwnProperty("lat")) {
+                console.log("APP: FETCHING NEW DATA");
+                this.fetchData();
+            }
+        });
     }
 
     fetchData() {
@@ -87,6 +89,7 @@ class App extends Component {
         console.log("APP: UPDATED");
     }
 
+    //Reuse existing method pls
     handleCallback = (childData) =>{
       this.setState({data: childData})
     }
@@ -94,13 +97,13 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                {<Background date={this.state.date}/>}
+                <Background date={this.state.date} timeZone={this.state.timezone}/>
                 <Settings parentCallback={this.handleCallback} data={this.state.data} />
                 <AddressBar setSettings={this.setSettings.bind(this)}/>
-                <Overview data={this.state} address={this.state.address} timeZone={this.state.timezone}/>
-                <Chart data={this.state.minutely.map((item) => item.intensity)}/>
-                <Suggest data={this.state} hourly={this.state.hourly}/>
-                <Clothes data={this.state} hourly={this.state.hourly}/>
+                <Overview data={this.state}/>
+                <Chart data={this.state.minutely.map((item) => {return (item.intensity)})}/>
+                <Suggest hourly={this.state.hourly}/> 
+                <Clothes hourly={this.state.hourly}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>
             </div>
         )

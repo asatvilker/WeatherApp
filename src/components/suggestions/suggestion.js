@@ -16,25 +16,25 @@ class Suggest extends Component{
     if (this.props.hourly[0] !== prevProps.hourly[0])
     {
       if (Math.round(this.props.hourly[0].temperature) >= 30) {
-        this.setState({selection:["bring some sunglasses"]});
+        this.setState({selection:["Bring some sunglasses"]});
       } else if (Math.round(this.props.hourly[0].temperature) >= 25) {
-        this.setState({selection:["wear a sun hat"]});
+        this.setState({selection:["Might want a sun hat"]});
       } else if (Math.round(this.props.hourly[0].temperature) >= 20) {
         this.setState({selection:["wear a T-shirt"]});
       } else if (Math.round(this.props.hourly[0].temperature) >= 15) {
-        this.setState({selection:["wear a jacket"]});
+        this.setState({selection:["Grab a jacket"]});
       } else if (Math.round(this.props.hourly[0].temperature) >= 10) {
-        this.setState({selection:["wear a jumper"]});
+        this.setState({selection:["Wear a jumper"]});
       } else if (Math.round(this.props.hourly[0].temperature) >= 5) {
-        this.setState({selection:["wear a scarf"]});
+        this.setState({selection:["Don't forget a scarf"]});
       } else if (Math.round(this.props.hourly[0].temperature) >= 0) {
-        this.setState({selection:["wear a wooly hat"]});
+        this.setState({selection:["Might want a wooly hat"]});
       } else if (Math.round(this.props.hourly[0].temperature) >= -5) {
-        this.setState({selection:["wear a coat"]});
+        this.setState({selection:["Grab a coat"]});
       } else if (Math.round(this.props.hourly[0].temperature) < -5) {
-        this.setState({selection:["wear a snowsuit"]});
+        this.setState({selection:["Wear a snowsuit"]});
       } else {
-        this.setState({selection:["wear a hoody"]});
+        this.setState({selection:["Wear a hoodie"]});
       }
       if (this.props.hourly[0].weatherDesc.includes("rain")){
         this.setState({addRain:"and bring an umbrella"});
@@ -51,7 +51,7 @@ class Suggest extends Component{
           <button id='flip'><MDBIcon icon="exchange-alt" size="lg" /></button>
         </div>
         <div id='text'>
-          Suggestion: {this.state.selection} {this.state.addRain}
+          {this.state.selection} {this.state.addRain}
         </div>
         <hr />
       </div>

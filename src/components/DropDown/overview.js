@@ -22,7 +22,7 @@ class Overview extends Component {
 
     componentDidMount() {
         this.timerIntervalID = setInterval(
-            () => this.setState({date: convertTZ(new Date(), this.props.timeZone)}), 1000
+            () => this.setState({date: convertTZ(new Date(), this.props.data.timeZone)}), 1000
         );   
     }
 
@@ -48,7 +48,7 @@ class Overview extends Component {
                                         <h1 className="overviewHeader" >{Math.round(this.props.data.hourly[0].temperature)}</h1>{/*shows temperature of first hour in array as this would be now */}
                                         <h1 className="overviewHeader" >&#176;{this.props.data.celsius ? "C" : "F"}</h1>{/*conditional display of correct symbol */}
                                     </div>
-                                    <p>{`${this.props.address}, ${this.state.date.toLocaleTimeString()}, ${this.state.date.getDate()}`}</p> {/*extra information on location, time */}
+                                    <p>{`${this.props.data.address}, ${this.state.date.toLocaleTimeString("en-US", {timeZone: this.props.data.timezone})}, ${this.state.date.getDate()}`}</p> {/*extra information on location, time */}
                                 </>
                         }
 

@@ -1,0 +1,52 @@
+.rain-chart {
+    width: 100%;
+    position: relative;
+}
+
+.ct-chart-line {
+}
+
+.ct-line {
+    fill: none;
+}
+
+.chart-light, .chart-medium, .chart-heavy {
+    stroke: blue;
+    stroke-width: 2px;
+    stroke-dasharray: 4px;
+    shape-rendering: crispEdges;
+    width: 200px;
+}
+
+.ct-line {
+    stroke:rgba(0, 0, 255, 1);
+}
+
+.ct-area {
+    fill: rgba(59, 84, 155, 0.5)
+}
+
+.ct-grids line {
+    stroke: black;
+}
+
+.ct-vertical ~ .ct-vertical {
+    stroke: none;
+}
+ .ct-horizontal ~ .ct-horizontal {
+    stroke: none;
+} 
+
+.jeff {
+    stroke: red;
+}
+
+@keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+}
+
+.chart-text {
+    font-size: 0.75em;
+}
