@@ -77,7 +77,7 @@ class App extends Component {
     }
 
     fetchData() { //fetches api data
-        console.log("fetching");
+        console.log("APP: FETCHING NEW DATA");
         if (this.state.api == "openweather") { //checks which api provider is selected in state and uses that to get the relevant weather data
             getOpenWeatherData(this.state, this.setSettings.bind(this)); //gets all data required and as it is binded, it will update the state of this component with the new data
         } else if (this.state.api == "climacell") {
@@ -117,10 +117,18 @@ class App extends Component {
                 <Overview data={this.state}/>
                 <Suggest hourly={this.state.hourly}/> 
                 <Clothes hourly={this.state.hourly}/>
+<<<<<<< HEAD
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>
+=======
+                <Daily data={this.state.daily} celsius={this.state.celsius}/>{/* celcius will tell us what unit of measure we need to use */}
+>>>>>>> 7d224f279d9c2e04b562a1a50f6ca6db98af2d51
             </div>
         )
     }
 }
 
+<<<<<<< HEAD
 export default App;
+=======
+export default App;
+>>>>>>> 7d224f279d9c2e04b562a1a50f6ca6db98af2d51
