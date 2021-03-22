@@ -22,7 +22,7 @@ class Daily extends Component {
                 <p>Next 7 days</p> {/* shows forecast for 7 days*/}
                 <MDBContainer className="d-flex flex-row hourlyContainer" style={{ margin: "0 0" }}> {/*bootsrap classes to make display felex and as a row */}
                     {
-                        this.props.data.splice(1,7).map(data => { /* loops through each element (each day) */
+                        this.props.data.slice(1,8).map(data => { /* loops through each element (each day) */
                             let day = days[data.time.getDay()]; //converting date to string
                             let temp = Math.round(data.temperature); //rounding temperature so easier to read
                           
