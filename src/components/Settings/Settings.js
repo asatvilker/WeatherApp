@@ -26,6 +26,7 @@ class Settings extends Component{
     }
 
     removeFocus = event => {
+         document.getElementById('settingslist').style.animation = '';
         this.setState({
             isSettingsOpen: false
         });
