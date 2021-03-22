@@ -27,39 +27,49 @@ class App extends Component {
         }
     }
 
-    setSettings(newSettings) { //will adjust weather data when location is changed
+
+    setSettings(newSettings) {
         console.log("APP: NEW SETTINGS: ", newSettings);
-        if (newSettings.hasOwnProperty("celsius")) {
-            if (newSettings.celsius != this.state.celsius) {
-                if (newSettings.celsius) {
-                    newSettings["hourly"] = this.state.hourly.map((item) => {
-                        item.temperature = 5/9*(item.temperature-32);
-                        return (item)
-                    });
-                    newSettings["daily"] = this.state.daily.map((item) => {
-                        item.temperature = 5/9*(item.temperature-32);
-                        return (item)
-                    });
-                } else {
-                    newSettings["hourly"] = this.state.hourly.map((item) => {
-                        item.temperature = (9/5*item.temperature)+32;
-                        return (item)
-                    });
-                    newSettings["daily"] = this.state.daily.map((item) => {
-                        item.temperature =  (9/5*item.temperature)+32;
-                        return (item)
-                    });
-                }
+        if (newSettings.hasOwnProperty("daily")) {
+            if (this.state.celsius) {
+                this.setState({daily: newSettings.daily});
+            } else {
+                this.setState({daily: newSettings.daily.map((item) => {
+                    item.temperature = (9/5*item.temperature)+32;
+                    return item;
+                })});
             }
         }
-        //new settings are put into state and then the api is called again to update the weather data stored in state
+        if (newSettings.hasOwnProperty("hourly")) {
+            if (this.state.celsius) {
+                this.setState({hourly: newSettings.hourly});
+            } else {
+                this.setState({hourly: newSettings.hourly.map((item) => {
+                    item.temperature = (9/5*item.temperature)+32;
+                    return item;
+                })});
+            }
+        }
         this.setState(newSettings, function() {
-            console.log("APP SETTINGS NOW: ", this.state);
             if (newSettings.hasOwnProperty("lat")) {
-                console.log("APP: FETCHING NEW DATA");
                 this.fetchData();
             }
+            if (newSettings.hasOwnProperty("celsius")) {
+                this.convertTemperatureToggle();
+            }
         });
+    }
+
+
+    convertTemperatureToggle() {
+        this.setState({hourly: this.state.hourly.map((item) => {
+            item.temperature = this.state.celsius ? 5/9*(item.temperature-32) : (9/5*item.temperature)+32;
+            return (item)
+        })});
+        this.setState({daily: this.state.daily.map((item) => {
+            item.temperature = this.state.celsius ? 5/9*(item.temperature-32) : (9/5*item.temperature)+32;
+            return (item)
+        })});
     }
 
     fetchData() { //fetches api data
