@@ -109,6 +109,18 @@ class App extends Component {
       this.setState({data: childData})
     }
 
+    setBookmark=()=>{
+        let currentBookmark = this.state.bookmark;
+        currentBookmark[this.state.address]={"lat":this.state.lat, "lon":this.state.lon, "timezone": this.state.timezone};
+        this.setState({Bookmark:currentBookmark});
+    }
+
+    removeBookmark=(name)=>{
+        let newBookmark = this.state.bookmark;
+        delete newBookmark[name]
+        this.setState({Bookmark:newBookmark})
+    }
+
     render() {
         return (
             <div className="App"> {/* Here we display the different components and pass through the required api data */}
@@ -117,18 +129,10 @@ class App extends Component {
                 <Overview data={this.state}/>
                 <Suggest hourly={this.state.hourly}/> 
                 <Clothes hourly={this.state.hourly}/>
-<<<<<<< HEAD
-                <Daily data={this.state.daily} celsius={this.state.celsius}/>
-=======
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>{/* celcius will tell us what unit of measure we need to use */}
->>>>>>> 7d224f279d9c2e04b562a1a50f6ca6db98af2d51
             </div>
         )
     }
 }
 
-<<<<<<< HEAD
 export default App;
-=======
-export default App;
->>>>>>> 7d224f279d9c2e04b562a1a50f6ca6db98af2d51
