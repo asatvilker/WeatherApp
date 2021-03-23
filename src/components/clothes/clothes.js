@@ -43,7 +43,14 @@ componentDidUpdate(prevProps){ //this function is called whenever props or state
                 }
                 else // warm and raining
                 {
-                    this.setState({selection:["raincoat","T-shirt","joggers","trainers"]}) 
+                    if ( Math.round(this.props.hourly[0].temperature) >= 21 )
+                    {
+                        this.setState({selection:["raincoat","T-shirt","joggers","trainers"]})
+                    }
+                    else{
+                        this.setState({selection:["raincoat","hoodie","joggers","trainers"]})
+                    }
+                     
                 }
             }
             
@@ -55,7 +62,14 @@ componentDidUpdate(prevProps){ //this function is called whenever props or state
                 }
                 else //warm and not raining
                 {
-                    this.setState({selection:["hoodie","joggers","cap"]})
+                    if ( Math.round(this.props.hourly[0].temperature) >= 21 )
+                    {
+                        this.setState({selection:["T-shirt","joggers","cap"]})
+                    }
+                    else{
+                        this.setState({selection:["hoodie","joggers","cap"]})
+                    }
+                    
                 }
             }
         } 
