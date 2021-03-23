@@ -57,7 +57,7 @@ class Settings extends Component{
                         <div className="switchContainer">
                             <div>C</div>
                             <label className="switch">
-                                <input type="checkbox" id="togBtn" checked={this.props.data.celsius} onChange={(event) =>this.handleChange(event,"celsius")}/>
+                                <input type="checkbox" id="togBtn" checked={this.props.data.fahrenheit} onChange={(event) =>this.handleChange(event,"fahrenheit")}/>
                                 <div className="slider round b">
                                     <span className="on">F</span>
                                     <span className="off">C</span>

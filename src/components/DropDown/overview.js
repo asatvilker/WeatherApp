@@ -46,7 +46,7 @@ class Overview extends Component {
                                 <>
                                     <div className="overviewHeaderContainer">
                                         <h1 className="overviewHeader" >{Math.round(this.props.data.hourly[0].temperature)}</h1>{/*shows temperature of first hour in array as this would be now */}
-                                        <h1 className="overviewHeader" >&#176;{this.props.data.celsius ? "C" : "F"}</h1>{/*conditional display of correct symbol */}
+                                        <h1 className="overviewHeader" >&#176;{this.props.data.fahrenheit ? "F" : "C"}</h1>{/*conditional display of correct symbol */}
                                     </div>
                                     <p>{`${this.props.data.address}, ${this.state.date.toLocaleTimeString("en-US", {timeZone: this.props.data.timezone})}, ${this.state.date.getDate()}`}</p> {/*extra information on location, time */}
                                 </>
@@ -68,7 +68,7 @@ class Overview extends Component {
 
                     </MDBCol>
                 </MDBRow>
-                <Dropdown data={this.props.data.hourly} celsius={this.props.data.celsius} open={this.state.open} toggleCollapse={this.toggleCollapse}/> {/* passing hourly info to dropdown for hourly forecast*/}
+                <Dropdown data={this.props.data.hourly} fahrenheit={this.props.data.fahrenheit} open={this.state.open} toggleCollapse={this.toggleCollapse}/> {/* passing hourly info to dropdown for hourly forecast*/}
 
             </>
         );

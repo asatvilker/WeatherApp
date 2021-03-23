@@ -21,9 +21,8 @@ class App extends Component {
             daily: [],
             //settings variables
             bookmark:{},
-            darkMode:false,
             timePm:false,
-            celsius: true,
+            fahrenheit:false,
             kmh: false,
             api: "microsoft",
             timezone: "Europe/London",
@@ -35,7 +34,7 @@ class App extends Component {
     setSettings(newSettings) {
         console.log("APP: NEW SETTINGS: ", newSettings);
         if (newSettings.hasOwnProperty("daily")) {
-            if (this.state.celsius) {
+            if (!this.state.fahrenheit) {
                 this.setState({daily: newSettings.daily});
             } else {
                 this.setState({daily: newSettings.daily.map((item) => {
@@ -45,7 +44,7 @@ class App extends Component {
             }
         }
         if (newSettings.hasOwnProperty("hourly")) {
-            if (this.state.celsius) {
+            if (!this.state.fahrenheit) {
                 this.setState({hourly: newSettings.hourly});
             } else {
                 this.setState({hourly: newSettings.hourly.map((item) => {
@@ -58,7 +57,7 @@ class App extends Component {
             if (newSettings.hasOwnProperty("lat")) {
                 this.fetchData();
             }
-            if (newSettings.hasOwnProperty("celsius")) {
+            if (newSettings.hasOwnProperty("fahrenheit")) {
                 this.convertTemperatureToggle();
             }
         });
@@ -67,11 +66,11 @@ class App extends Component {
 
     convertTemperatureToggle() {
         this.setState({hourly: this.state.hourly.map((item) => {
-            item.temperature = this.state.celsius ? 5/9*(item.temperature-32) : (9/5*item.temperature)+32;
+            item.temperature = this.state.fahrenheit ?  (9/5*item.temperature)+32 : 5/9*(item.temperature-32)
             return (item)
         })});
         this.setState({daily: this.state.daily.map((item) => {
-            item.temperature = this.state.celsius ? 5/9*(item.temperature-32) : (9/5*item.temperature)+32;
+            item.temperature = this.state.fahrenheit ?  (9/5*item.temperature)+32: 5/9*(item.temperature-32);
             return (item)
         })});
     }
@@ -129,7 +128,7 @@ class App extends Component {
                 <Overview data={this.state}/>
                 <Suggest hourly={this.state.hourly}/> 
                 <Clothes hourly={this.state.hourly}/>
-                <Daily data={this.state.daily} celsius={this.state.celsius}/>{/* celcius will tell us what unit of measure we need to use */}
+                <Daily data={this.state.daily} fahrenheit={this.state.fahrenheit}/>{/* celcius will tell us what unit of measure we need to use */}
             </div>
         )
     }

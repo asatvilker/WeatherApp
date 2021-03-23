@@ -13,7 +13,7 @@ class Dropdown extends Component {
             <div id="dropdown">
                 <MDBRow>
                     <MDBCollapse id="basicCollapse" isOpen={this.props.open} style={{marginBottom:"5vh", width:"100%"}}> {/*the bootstrap dropdown component, passes through the state value which indicates to the component whether to open drop down or not */}
-                        <Hourly data={this.props.data} celsius={this.props.celsius}/> {/* within the dropdown, we have the hourly component, shows data for next few hours, we pass through the data as props */}
+                        <Hourly data={this.props.data} fahrenheit={this.props.fahrenheit}/> {/* within the dropdown, we have the hourly component, shows data for next few hours, we pass through the data as props */}
                     </MDBCollapse>
                     <MDBCol className="line column" size="5"></MDBCol>{/*this if for design, create the lines either side of button */}
                     <MDBCol size="2"  className="d-flex p-0 justify-content-center column">
