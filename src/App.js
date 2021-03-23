@@ -112,7 +112,7 @@ class App extends Component {
                 <AddressBar setSettings={this.setSettings.bind(this)}/>{/* this function passed as props to address will cause the method in this class to run (setSettings()) and this will update location data and refresh the api weather data */}
                 <Overview data={this.state}/>
                 <Suggest hourly={this.state.hourly}/> 
-                <Clothes hourly={this.state.hourly}/>
+                <Clothes hourly={this.state.hourly} timeZone={this.state.timezone}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>{/* celcius will tell us what unit of measure we need to use */}
             </div>
         )
