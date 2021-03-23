@@ -108,8 +108,7 @@ class AddressBar extends Component {
                             </div>
                         ))}
                     </div>
-                    )}
-                    
+                    )}  
                 </div>
             </div>
         )

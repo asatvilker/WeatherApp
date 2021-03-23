@@ -15,7 +15,7 @@ class Settings extends Component{
     displaySettings = event => {
         const {isSettingsOpen} = this.state;
         if(!isSettingsOpen) {
-            document.getElementById('settingslist').style.animation = 'appear 1s ease';
+            document.getElementById('settingslist').style.animation = 'appear 1s linear';
         } 
         this.setState({isSettingsOpen: !isSettingsOpen} );
         
