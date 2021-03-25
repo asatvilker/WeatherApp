@@ -49,6 +49,8 @@ function TimeChange(date) {
     //currentColor and bodyColor store the appropriate colours from the variables colors and backgrounds (respectively) which is then used to set the colour for the background divs
     let currentColor;
     let bodyColor;
+    let fontColor;
+    let complement;
     /*
         22 -> 3 = 4
         4 -> 5 = 5
@@ -62,7 +64,14 @@ function TimeChange(date) {
 
     //Sets the variable to birds or stars depending on the time of day
     //During 8pm to 7am it will display stars and for all the other times it will display birds 
-    var complement = (hour>=20 || hour <=7)? Stars() : Birds(); 
+    if (hour>=20 || hour <=7) {
+        complement = Stars();
+        fontColor='white';
+    } else {
+        complement=Birds();
+        fontColor='black';
+    }
+
 
     if (hour >= 22 || hour <= 3) {
         currentColor = colors[4];
@@ -109,6 +118,15 @@ function TimeChange(date) {
                         background-color: rgb(${currentColor});
                     }
 
+                    .slider,
+                    .on,
+                    .off {
+                        color: ${fontColor}
+                    }
+
+                    .slider {
+                        background:  rgb(${currentColor});
+                    }
 
                     .sun, .sun::before, .sun::after, .rays::before, .rays::after {
                         background-color: rgb(${currentColor});
