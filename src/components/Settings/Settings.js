@@ -25,7 +25,7 @@ class Settings extends Component{
     }  
 
     handleChange = (event, fieldName)=> {
-        this.props.setSettings({[fieldName]:event.target.checked})
+        this.props.setSettings({[fieldName]:!event.target.checked})
     }
 
     removeFocus = event => {
@@ -47,7 +47,7 @@ class Settings extends Component{
                         <div className="switchContainer">
                             <div>24H</div>
                             <label className="switch">
-                                <input type="checkbox" id="togBtn" checked={this.props.data.timePm} onChange={(event) =>this.handleChange(event,"timePm")}/>
+                                <input type="checkbox" id="togBtn" checked={!this.props.data.fullDay} onChange={(event) =>this.handleChange(event,"fullDay")}/>
                                 <div className="slider round b">
                                     <span className="on">12H</span>
                                     <span className="off">24H</span>
@@ -59,7 +59,7 @@ class Settings extends Component{
                         <div className="switchContainer">
                             <div>C</div>
                             <label className="switch">
-                                <input type="checkbox" id="togBtn" checked={this.props.data.fahrenheit} onChange={(event) =>this.handleChange(event,"fahrenheit")}/>
+                                <input type="checkbox" id="togBtn" checked={!this.props.data.celsius} onChange={(event) =>this.handleChange(event,"celsius")}/>
                                 <div className="slider round b">
                                     <span className="on">F</span>
                                     <span className="off">C</span>
@@ -69,15 +69,15 @@ class Settings extends Component{
                         </div>
 
                         <div className="switchContainer">
-                            <div>mph</div>
+                            <div>km/h</div>
                             <label className="switch">
-                                <input type="checkbox" id="togBtn" checked={this.props.data.kmh} onChange={(event) =>this.handleChange(event,"kmh")}/>
+                                <input type="checkbox" id="togBtn" checked={!this.props.data.kmh} onChange={(event) =>this.handleChange(event,"kmh")}/>
                                 <div className="slider round b">
-                                    <span className="on">km/h</span>
-                                    <span className="off">mph</span>
+                                    <span className="on">m/h</span>
+                                    <span className="off">km/h</span>
                                 </div>
                             </label>
-                            <div>km/h</div>
+                            <div>m/h</div>
                         </div>
                         
                         <div>

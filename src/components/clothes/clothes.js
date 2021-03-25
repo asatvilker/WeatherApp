@@ -15,6 +15,8 @@ state = {
 componentDidUpdate(prevProps){ //this function is called whenever props or state update and so when the api data if passed through, once it is all there, props will update and this function is invoked
     if (this.props.hourly[0] !== prevProps.hourly[0]) //this ensure there is an actual change, otherwise we get stuck in an infinite loop and it crashes
     {
+        const hour=this.props.hourly[0].time.getHours() //time of day
+        
         if (Math.round(this.props.hourly[0].temperature) <= 15 ) //checks if it is cold or very cold
         {
             if (Math.round(this.props.hourly[0].temperature) <= 5 ) //very cold (doesnt check for rain as it will suggest a coat anyway)
@@ -43,7 +45,14 @@ componentDidUpdate(prevProps){ //this function is called whenever props or state
                 }
                 else // warm and raining
                 {
-                    this.setState({selection:["raincoat","T-shirt","joggers","trainers"]}) 
+                    if ( Math.round(this.props.hourly[0].temperature) >= 21 )
+                    {
+                        this.setState({selection:["raincoat","T-shirt","joggers","trainers"]})
+                    }
+                    else{
+                        this.setState({selection:["raincoat","hoodie","joggers","trainers"]})
+                    }
+                     
                 }
             }
             
@@ -51,11 +60,42 @@ componentDidUpdate(prevProps){ //this function is called whenever props or state
             {
                 if ( Math.round(this.props.hourly[0].temperature) >= 26 ) //hot and not raining
                 {
-                    this.setState({selection:["T-shirt","shorts/skirt","sunglasses"]})
+                    if ( hour >= 8 && hour < 19 ) //during the day
+                    {
+                        this.setState({selection:["T-shirt","shorts/skirt","sunglasses","cap"]})
+                    }
+                    else //night
+                    {
+                        this.setState({selection:["T-shirt","shorts/skirt","trainers"]})
+                    }
+                    
+                    
                 }
                 else //warm and not raining
                 {
-                    this.setState({selection:["hoodie","joggers","cap"]})
+                    if ( Math.round(this.props.hourly[0].temperature) >= 21 )
+                    {
+                        if ( hour >= 8 && hour < 19 ) //during the day
+                        {
+                            this.setState({selection:["T-shirt","joggers","cap"]})
+                        }
+                        else //night
+                        {
+                            this.setState({selection:["T-shirt","joggers","trainers"]})
+                        }
+                        
+                    }
+                    else{
+                        if ( hour >= 8 && hour < 19 ) //during the day
+                        {
+                            this.setState({selection:["hoodie","joggers","cap"]})
+                        }
+                        else //night
+                        {
+                            this.setState({selection:["hoodie","joggers","trainers"]})
+                        }
+                    }
+                    
                 }
             }
         } 
