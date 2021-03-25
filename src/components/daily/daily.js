@@ -25,9 +25,8 @@ class Daily extends Component {
                         this.props.data.slice(1,8).map(data => { /* loops through each element (each day) */
                             let day = days[data.time.getDay()]; //converting date to string
                             let temp = Math.round(data.temperature); //rounding temperature so easier to read
-                          
                             return (
-                                <Card time={day} temp={temp} icon={data.weatherIcon} condition={data.weatherDesc} celsius={this.props.celsius} wind={data.wind}/>
+                                <Card time={day} temp={temp} icon={data.weatherIcon} condition={data.weatherDesc} celsius={this.props.celsius} wind={data.wind} kmh={this.props.kmh}/>
                                 /*card element is reused for daily and hourly as they should look the same, only difference for each card is here we pass through the day not the hour */
                             )
                         })

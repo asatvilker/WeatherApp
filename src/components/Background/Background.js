@@ -49,6 +49,8 @@ function TimeChange(date) {
     //currentColor and bodyColor store the appropriate colours from the variables colors and backgrounds (respectively) which is then used to set the colour for the background divs
     let currentColor;
     let bodyColor;
+    let fontColor;
+    let complement;
     /*
         22 -> 3 = 4
         4 -> 5 = 5
@@ -60,9 +62,17 @@ function TimeChange(date) {
         20 -> 21 = 3
     */
 
-    //Sets the variable to birds or stars depending on the time of day
+    //Sets the variable complement to birds or stars depending on the time of day
     //During 8pm to 7am it will display stars and for all the other times it will display birds 
-    var complement = (hour>=20 || hour <=7)? Stars() : Birds(); 
+    //Also based on the time, the font colour of the text for the setting's buttons are set
+    if (hour>=20 || hour <=7) {
+        complement = Stars();
+        fontColor='white';
+    } else {
+        complement=Birds();
+        fontColor='black';
+    }
+
 
     if (hour >= 22 || hour <= 3) {
         currentColor = colors[4];
@@ -92,8 +102,9 @@ function TimeChange(date) {
     
 
     // The variable bodyColor is used to set the colour of the background of the page
-    // The variable currentColor is used to set the color of the mountains and the sun and its rays
-    // If the time changes then the if statement will change the value of these 2 variables accordingly and this will then change the colours of the background, mountains and the sun.
+    // The variable currentColor is used to set the color of the mountains, the sun and its rays and the background of the buttons in settings
+    // The variable fontColor is used set the text colour for the writting inside the buttons in settings
+    // If the time changes then the if statement will change the value of these 2 variables accordingly and this will then change the colours of the background, mountains, settings' buttons and the sun.
     return (
         <>
             <style>{
@@ -109,6 +120,15 @@ function TimeChange(date) {
                         background-color: rgb(${currentColor});
                     }
 
+                    .slider,
+                    .on,
+                    .off {
+                        color: ${fontColor}
+                    }
+
+                    .slider {
+                        background:  rgb(${currentColor});
+                    }
 
                     .sun, .sun::before, .sun::after, .rays::before, .rays::after {
                         background-color: rgb(${currentColor});

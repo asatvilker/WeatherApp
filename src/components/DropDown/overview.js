@@ -13,6 +13,7 @@ class Overview extends Component {
 
     toggleCollapse = () => () => { //function to toggle the state of the dropdown
         console.log(this.state);
+        console.log(this.props.data.hourly[0])
         this.setState(prevState => ({
             open: !prevState.open
         })); //switches the state of the dropdown in state, causing the bootstrap dropdown to open and close (alternates between height:0 and height:100%)
@@ -29,6 +30,22 @@ class Overview extends Component {
     componentWillUnmount() {
         clearInterval(this.timerIntervalID);
     }
+
+    //calcuates the feels like temperature according to wind speed
+    feelsLike=()=>{
+        if (!this.props.data.celsius){
+            let tempF = (this.props.data.hourly[0].temperature) 
+            let windspeedmph = this.props.data.hourly[0].wind.speed.value *0.62 // made it into mph
+            let feelsLikeF = (35.74+(0.6215*tempF)-35.75*(Math.pow(windspeedmph,0.16))+(0.4275*tempF*(Math.pow(windspeedmph,0.16)))) //formula found on https://en.wikipedia.org/wiki/Wind_chill
+            return Math.round(feelsLikeF*10)/10
+        }
+        let tempF = 9/5*(this.props.data.hourly[0].temperature)+32 // made it into f
+        let windspeedmph = this.props.data.hourly[0].wind.speed.value *0.62 // made it into mph
+        let feelsLikeF = (35.74+(0.6215*tempF)-35.75*(Math.pow(windspeedmph,0.16))+(0.4275*tempF*(Math.pow(windspeedmph,0.16)))) //formula found on https://en.wikipedia.org/wiki/Wind_chill
+        let feelsLikeC = 5/9*(feelsLikeF-32) 
+        return Math.round(feelsLikeC*10)/10
+    }
+    
 
     render() {
         return (
@@ -48,7 +65,16 @@ class Overview extends Component {
                                         <h1 className="overviewHeader" >{Math.round(this.props.data.hourly[0].temperature)}</h1>{/*shows temperature of first hour in array as this would be now */}
                                         <h1 className="overviewHeader" >&#176;{this.props.data.celsius ? "C" : "F"}</h1>{/*conditional display of correct symbol */}
                                     </div>
+                                        
+                                    <div>
+                                        Feels Like: {this.feelsLike()} &#176;{this.props.data.celsius ? "C" : "F"} 
+                                    </div>
+                                    <div>
+                                        Wind: {this.props.data.hourly[0].wind.speed.value.toFixed(1)} {this.props.data.kmh?"km/h":"mph"}{/* for now hourly */}
+                                    </div>
+
                                     <p>{`${this.props.data.address}, ${this.state.date.toLocaleTimeString("en-US", {timeZone: this.props.data.timezone})}, ${this.state.date.getDate()}`}</p> {/*extra information on location, time */}
+                                    
                                 </>
                         }
 
@@ -68,7 +94,7 @@ class Overview extends Component {
 
                     </MDBCol>
                 </MDBRow>
-                <Dropdown data={this.props.data.hourly} celsius={this.props.data.celsius} open={this.state.open} toggleCollapse={this.toggleCollapse}/> {/* passing hourly info to dropdown for hourly forecast*/}
+                <Dropdown data={this.props.data.hourly} celsius={this.props.data.celsius} wind={this.props.data.kmh} open={this.state.open} toggleCollapse={this.toggleCollapse}/> {/* passing hourly info to dropdown for hourly forecast*/}
 
             </>
         );
