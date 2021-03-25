@@ -24,7 +24,7 @@ class App extends Component {
             bookmark:{},
             timePm:false,
             fahrenheit:false,
-            kmh: false,
+            kmh: true,
             api: "microsoft",
             timezone: "Europe/London",
             data: ""
