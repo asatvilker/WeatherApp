@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import './suggestion.css';
 import { MDBIcon } from 'mdbreact';
+import Chart from "../Chart/Chart";
 
 class Suggest extends Component{
   constructor(props){
@@ -47,11 +48,15 @@ class Suggest extends Component{
   render(){
     return(
       <div id='main'>
-        <div id='swap'> 
+        <div id='swap' className="flip-container flip"> 
           <button id='flip'><MDBIcon icon="exchange-alt" size="lg" /></button>
-        </div>
-        <div id='text'>
-          {this.state.selection} {this.state.addRain}
+          <div id='text' className="flip-front">
+            Hello
+            {this.state.selection} {this.state.addRain}
+          </div>
+          <div id="chart" className="flip-back">
+            <Chart data={this.props.minutely}/>
+          </div>
         </div>
         <hr />
       </div>

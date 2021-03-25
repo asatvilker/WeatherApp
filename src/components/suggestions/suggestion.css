@@ -23,3 +23,33 @@ hr {
   background-color: transparent;
   border-color: transparent;
 }
+
+.flip-container {
+    perspective: 1000px;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.flip-back {
+    transform: rotateY(180deg);
+}
+
+.flip-front {
+    transform: rotateY(0deg);
+}
+
+.flip-front, .flip-back {
+    backface-visibility: hidden;
+    position: absolute;
+    transition: 300ms ease-out;
+    transform-style: preserve-3d;
+}
+
+.flip-container.flip .flip-front {
+    transform: rotateY(180deg) scale(100%);
+}
+
+.flip-container.flip .flip-back {
+    transform: rotateY(0deg);
+}

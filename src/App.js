@@ -108,14 +108,14 @@ class App extends Component {
     render() {
         return (
             <div className="App"> {/* Here we display the different components and pass through the required api data */}
-                <Background date={this.state.date} timeZone={this.state.timezone}/>
+                {/* <Background date={this.state.date} timeZone={this.state.timezone}/>
                 <Settings parentCallback={this.handleCallback} data={this.state.data} />
                 <AddressBar setSettings={this.setSettings.bind(this)}/>{/* this function passed as props to address will cause the method in this class to run (setSettings()) and this will update location data and refresh the api weather data */}
-                <Overview data={this.state}/>
-                <Chart data={this.state.minutely.map((item) => {return (item.intensity)})}/>
-                <Suggest hourly={this.state.hourly}/> 
-                <Clothes hourly={this.state.hourly} timeZone={this.state.timezone}/>
-                <Daily data={this.state.daily} celsius={this.state.celsius}/>{/* celcius will tell us what unit of measure we need to use */}
+                {/* <Overview data={this.state}/> */}
+                {/* <Chart data={this.state.minutely.map((item) => {return (item.intensity)})}/> */}
+                <Suggest hourly={this.state.hourly} minutely={this.state.minutely.map((item) => {return (item.intensity)})}/> 
+                {/* <Clothes hourly={this.state.hourly} timeZone={this.state.timezone}/> */}
+                {/* <Daily data={this.state.daily} celsius={this.state.celsius}/>celcius will tell us what unit of measure we need to use */}
             </div>
         )
     }
