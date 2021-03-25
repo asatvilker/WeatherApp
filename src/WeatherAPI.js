@@ -246,7 +246,7 @@ export function getOpenWeatherData(sdata, callBack) {
     .then(result => {
         console.log("API: URL: ", url)
         let daily = result["daily"].map(function(item) {
-            const wind ={speed:{value:Math.round(item.wind_speed*3.6)}} //same format as microsoft
+            const wind ={speed:{value: item.wind_speed*3.6}} //same format as microsoft
             
             return (
                 {
@@ -260,7 +260,7 @@ export function getOpenWeatherData(sdata, callBack) {
         });
         let startTime = convertTZ(new Date(result["hourly"][0].dt * 1000), sdata.timezone)
         let hourly = result["hourly"].slice(0, 29 - startTime.getHours()).map(function(item) {
-            const wind ={speed:{value:Math.round(item.wind_speed*3.6)}} //same format as microsoft
+            const wind ={speed:{value: item.wind_speed*3.6}} //same format as microsoft
             return (
                 {
                     time: convertTZ(new Date(item.dt*1000), sdata.timezone),

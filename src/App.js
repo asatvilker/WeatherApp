@@ -24,7 +24,7 @@ class App extends Component {
             api: "microsoft",
             timezone: "Europe/London",
             data: "",
-            kmh: false,
+            kmh: true,
         }
     }
 
@@ -53,7 +53,6 @@ class App extends Component {
 
     applyConversions(array) {
         array.map((item) => {
-            console.log(item.wind);
             item.temperature = this.state.celsius ? item.temperature : (9/5*item.temperature)+32;
             item.wind.speed.value = this.state.kmh ? item.wind.speed.value : item.wind.speed.value/1.609;
             item.wind.speed.unit = this.state.kmh ? "km/h" : "m/h";
