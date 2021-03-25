@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Settings.css";
 import { MDBBox, MDBContainer, MDBRow, MDBCol, MDBIcon, MDBPopover, MDBPopoverBody, MDBPopoverHeader, MDBBtn } from 'mdbreact';
 import AddressBar from "../AddressBar/AddressBar";
-import { Spin as Hamburger } from 'hamburger-react'
+import { Spin as Hamburger } from 'hamburger-react';
 
 class Settings extends Component{
     constructor(props) {
@@ -29,7 +29,6 @@ class Settings extends Component{
     }
 
     removeFocus = event => {
-        
         this.setState({
             isSettingsOpen: false
         });
@@ -96,7 +95,7 @@ class Settings extends Component{
                 {this.state.isSettingsOpen? <div className="settings-overlay" onClick={this.removeFocus} /> : null }
                 <div className="settings-wrapper">
                     <div>
-                        <Hamburger onToggle={this.displaySettings} duration={0.8} />
+                        <Hamburger id="settingsIcon" onToggle={this.displaySettings} duration={0.8} rounded/>
                     </div>
                     <div id="settingslist" >
                         {addSettings()}
