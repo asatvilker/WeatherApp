@@ -140,7 +140,7 @@ class App extends Component {
                 <Overview data={this.state} />
                 <Suggest hourly={this.state.hourly}/> 
                 <Clothes hourly={this.state.hourly}/>
-                <Daily data={this.state.daily} fahrenheit={this.state.fahrenheit}/>{/* celcius will tell us what unit of measure we need to use */}
+                <Daily data={this.state.daily} fahrenheit={this.state.fahrenheit} kmh={this.state.kmh}/>{/* celcius will tell us what unit of measure we need to use */}
             </div>
         )
     }

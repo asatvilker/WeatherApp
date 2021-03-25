@@ -69,15 +69,15 @@ class Settings extends Component{
                         </div>
 
                         <div className="switchContainer">
-                            <div>km/h</div>
+                            <div>mph</div>
                             <label className="switch">
                                 <input type="checkbox" id="togBtn" checked={this.props.data.kmh} onChange={(event) =>this.handleChange(event,"kmh")}/>
                                 <div className="slider round b">
-                                    <span className="on">mph</span>
-                                    <span className="off">km/h</span>
+                                    <span className="on">km/h</span>
+                                    <span className="off">mph</span>
                                 </div>
                             </label>
-                            <div>mph</div>
+                            <div>km/h</div>
                         </div>
                         
                         <div>

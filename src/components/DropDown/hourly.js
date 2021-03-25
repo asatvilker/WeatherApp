@@ -18,7 +18,7 @@ class Hourly extends Component {
                         let hours = (data.time.getHours() + ":00").padStart(5, "0");
                         let temp = Math.round(data.temperature);
                         return (
-                            <Card time={hours} temp={temp} icon={data.weatherIcon} condition={data.weatherDesc} fahrenheit={this.props.fahrenheit} wind={data.wind}/>/*explained more in daily.js, here we are passing through the hour */
+                            <Card time={hours} temp={temp} icon={data.weatherIcon} condition={data.weatherDesc} fahrenheit={this.props.fahrenheit} wind={data.wind} kmh={this.props.wind}/>/*explained more in daily.js, here we are passing through the hour */
                         )
                     })
                 }

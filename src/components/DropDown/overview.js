@@ -70,7 +70,7 @@ class Overview extends Component {
                                         Feels Like: {this.feelsLike()} &#176;{this.props.data.fahrenheit ? "F" : "C"} 
                                     </div>
                                     <div>
-                                        Wind: {this.props.data.hourly[0].wind.speed.value} {this.props.data.kmh?"mph":"kmh"}{/* for now hourly */}
+                                        Wind: {this.props.data.hourly[0].wind.speed.value} {this.props.data.kmh?"kmh":"mph"}{/* for now hourly */}
                                     </div>
 
                                     <p>{`${this.props.data.address}, ${this.state.date.toLocaleTimeString("en-US", {timeZone: this.props.data.timezone})}, ${this.state.date.getDate()}`}</p> {/*extra information on location, time */}
@@ -94,7 +94,7 @@ class Overview extends Component {
 
                     </MDBCol>
                 </MDBRow>
-                <Dropdown data={this.props.data.hourly} fahrenheit={this.props.data.fahrenheit} open={this.state.open} toggleCollapse={this.toggleCollapse}/> {/* passing hourly info to dropdown for hourly forecast*/}
+                <Dropdown data={this.props.data.hourly} fahrenheit={this.props.data.fahrenheit} wind={this.props.data.kmh} open={this.state.open} toggleCollapse={this.toggleCollapse}/> {/* passing hourly info to dropdown for hourly forecast*/}
 
             </>
         );
