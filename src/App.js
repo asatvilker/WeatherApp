@@ -119,13 +119,13 @@ class App extends Component {
         delete newBookmark[name]
         this.setState({Bookmark:newBookmark})
     }
-
+   
     render() {
         return (
             <div className="App"> {/* Here we display the different components and pass through the required api data */}
                 <Background date={this.state.date} timeZone={this.state.timezone}/>
                 <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)} removeBookmark={this.removeBookmark.bind(this)}/>
-                <Overview data={this.state}/>
+                <Overview data={this.state} />
                 <Suggest hourly={this.state.hourly}/> 
                 <Clothes hourly={this.state.hourly}/>
                 <Daily data={this.state.daily} fahrenheit={this.state.fahrenheit}/>{/* celcius will tell us what unit of measure we need to use */}
