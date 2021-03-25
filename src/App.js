@@ -23,7 +23,8 @@ class App extends Component {
             daily: [],
             api: "microsoft",
             timezone: "Europe/London",
-            data: ""
+            data: "",
+            kmh: false,
         }
     }
 
@@ -31,24 +32,10 @@ class App extends Component {
     setSettings(newSettings) {
         console.log("APP: NEW SETTINGS: ", newSettings);
         if (newSettings.hasOwnProperty("daily")) {
-            if (this.state.celsius) {
-                this.setState({daily: newSettings.daily});
-            } else {
-                this.setState({daily: newSettings.daily.map((item) => {
-                    item.temperature = (9/5*item.temperature)+32;
-                    return item;
-                })});
-            }
+            this.applyConversions(newSettings["daily"]);
         }
         if (newSettings.hasOwnProperty("hourly")) {
-            if (this.state.celsius) {
-                this.setState({hourly: newSettings.hourly});
-            } else {
-                this.setState({hourly: newSettings.hourly.map((item) => {
-                    item.temperature = (9/5*item.temperature)+32;
-                    return item;
-                })});
-            }
+            this.applyConversions(newSettings["hourly"]);
         }
         this.setState(newSettings, function() {
             if (newSettings.hasOwnProperty("lat")) {
@@ -57,9 +44,22 @@ class App extends Component {
             if (newSettings.hasOwnProperty("celsius")) {
                 this.convertTemperatureToggle();
             }
+            if (newSettings.hasOwnProperty("kmh")) {
+                this.convertWindToggle();
+            }
         });
     }
 
+
+    applyConversions(array) {
+        array.map((item) => {
+            console.log(item.wind);
+            item.temperature = this.state.celsius ? item.temperature : (9/5*item.temperature)+32;
+            item.wind.speed.value = this.state.kmh ? item.wind.speed.value : item.wind.speed.value/1.609;
+            item.wind.speed.unit = this.state.kmh ? "km/h" : "m/h";
+            return (item)
+        })
+    }
 
     convertTemperatureToggle() {
         this.setState({hourly: this.state.hourly.map((item) => {
@@ -69,6 +69,19 @@ class App extends Component {
         this.setState({daily: this.state.daily.map((item) => {
             item.temperature = this.state.celsius ? 5/9*(item.temperature-32) : (9/5*item.temperature)+32;
             return (item)
+        })});
+    }
+    
+    convertWindToggle() {
+        this.setState({hourly: this.state.hourly.map((item) => {
+            item.wind.speed.value = this.state.kmh ? item.wind.speed.value*1.609 : item.wind.speed.value/1.609;
+            item.wind.speed.unit = this.state.kmh ? "km/h" : "m/h";
+            return item;
+        })});
+        this.setState({daily: this.state.daily.map((item) => {
+            item.wind.speed.value = this.state.kmh ? item.wind.speed.value*1.609 : item.wind.speed.value/1.609;
+            item.wind.speed.unit = this.state.kmh ? "km/h" : "m/h";
+            return item;
         })});
     }
 
