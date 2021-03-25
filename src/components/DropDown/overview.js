@@ -70,7 +70,7 @@ class Overview extends Component {
                                         Feels Like: {this.feelsLike()} &#176;{this.props.data.fahrenheit ? "F" : "C"} 
                                     </div>
                                     <div>
-                                        Wind: {this.props.data.hourly[0].wind.speed.value} {this.props.data.kmh?"kmh":"mph"}{/* for now hourly */}
+                                        Wind: {this.props.data.hourly[0].wind.speed.value} {this.props.data.kmh?"km/h":"mph"}{/* for now hourly */}
                                     </div>
 
                                     <p>{`${this.props.data.address}, ${this.state.date.toLocaleTimeString("en-US", {timeZone: this.props.data.timezone})}, ${this.state.date.getDate()}`}</p> {/*extra information on location, time */}
