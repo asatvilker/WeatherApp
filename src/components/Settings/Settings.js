@@ -95,7 +95,7 @@ class Settings extends Component{
                 {this.state.isSettingsOpen? <div className="settings-overlay" onClick={this.removeFocus} /> : null }
                 <div className="settings-wrapper">
                     <div>
-                        <Hamburger id="settingsIcon" onToggle={this.displaySettings} duration={0.8} rounded/>
+                        <Hamburger id="settingsIcon" toggled={this.state.isSettingsOpen} toggle={this.displaySettings} duration={0.8} rounded/>
                     </div>
                     <div id="settingslist" >
                         {addSettings()}
