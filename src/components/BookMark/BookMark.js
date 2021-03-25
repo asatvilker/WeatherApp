@@ -11,14 +11,14 @@ class BookMark extends Component{
         };
     }
 
-
+    //Set bookmark in apps.js as that is mounted only once, and states stay, add the variables to a dictionary
     setPosition=(item)=>{
         let bookmarkName = Object.keys(this.props.data.bookmark)[item]
         let bookmark = this.props.data.bookmark[bookmarkName]
         this.props.setSettings({"address":bookmarkName ,"lat": bookmark.lat,"lon": bookmark.lon, "timezone": bookmark.timezone})
         this.removeFocus()
     }
-
+    //display bookmark list
     openBookmarks=()=>{
         const {isBookmarkOpen} = this.state;
         this.setState({isBookmarkOpen: !isBookmarkOpen}); 
