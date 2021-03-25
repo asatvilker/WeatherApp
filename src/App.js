@@ -27,7 +27,6 @@ class App extends Component {
             api: "microsoft",
             timezone: "Europe/London",
             data: "",
-            kmh: true,
             fullDay: true,
         }
     }
@@ -139,7 +138,7 @@ class App extends Component {
                 <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)} removeBookmark={this.removeBookmark.bind(this)}/>
                 <Overview data={this.state} />
                 <Suggest hourly={this.state.hourly}/> 
-                <Clothes hourly={this.state.hourly} timeZone={this.state.timezone}/>
+                <Clothes hourly={this.state.hourly} timeZone={this.state.timezone} celsius={this.state.celsius}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>{/* celcius will tell us what unit of measure we need to use */}
             </div>
         )
