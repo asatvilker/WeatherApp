@@ -1,12 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { MDBBtn, MDBCol, MDBCollapse, MDBIcon, MDBRow } from "mdbreact";
 import './dropdown.css'
 import Hourly from './hourly';
 import { MDBAnimation } from "mdbreact";
 
 
-class Dropdown extends Component {
-
+class Dropdown extends PureComponent {
 
     render() {
         return (
