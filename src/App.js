@@ -137,7 +137,7 @@ class App extends Component {
                 <Background date={this.state.date} timeZone={this.state.timezone}/>
                 <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)} removeBookmark={this.removeBookmark.bind(this)}/>
                 <Overview data={this.state} />
-                <Suggest hourly={this.state.hourly}/> 
+                <Suggest hourly={this.state.hourly} celsius={this.state.celsius}/> 
                 <Clothes hourly={this.state.hourly} timeZone={this.state.timezone} celsius={this.state.celsius}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>{/* celcius will tell us what unit of measure we need to use */}
             </div>

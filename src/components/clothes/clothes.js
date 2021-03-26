@@ -8,7 +8,7 @@ class Clothes extends Component {
     
 state = {
     selection:[], //where we will store the selection of clothese determined by the logic
-    rainOption:["Drizzle","Rain","Light Rain","Heavy Rain","Flurries","Light Snow","Heavy Snow","Freezing Drizzle","Freezing Rain","Light Freezing Rain","Heavy Freezing Rain","Showers", "Mostly Cloudy with Showers", "Partly Sunny with Showers", "Rain and Snow"],
+    rainOption:["Drizzle","Rain","Light Rain","Heavy Rain","Flurries","Light Snow","Heavy Snow","Freezing Drizzle","Freezing Rain","Light Freezing Rain","Heavy Freezing Rain","Showers", "Mostly cloudy w/ showers", "Partly sunny w/ showers", "Rain and snow", "Partly cloudy w/ showers"],
     //these are the descriptions which correspond to rain so we will use these to determine if its raining as this part of our logic for deciding clothes
     hourly:[]
 }

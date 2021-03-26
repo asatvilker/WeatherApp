@@ -8,35 +8,39 @@ class Suggest extends Component{
     this.state = {
       selection:[],
       hourly:[],
-      addRain:""
+      addRain:"",
+      rainOption:["Drizzle","Rain","Light Rain","Heavy Rain","Flurries","Light Snow","Heavy Snow","Freezing Drizzle","Freezing Rain","Light Freezing Rain","Heavy Freezing Rain","Showers", "Mostly cloudy w/ showers", "Partly sunny w/ showers", "Rain and snow", "Partly cloudy w/ showers"],
+
     }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.hourly[0] !== prevProps.hourly[0])
     {
-      if (this.props.hourly[0].temperature >= 30) {
+      const temp=this.props.celsius? this.props.hourly[0].temperature: (this.props.hourly[0].temperature - 32)* 5/9 //ensures temperate is in celsius (consistent format which logic below is based on)
+      const isRaining= this.state.rainOption.includes(this.props.hourly[0].weatherDesc)
+      if (temp >= 30) {
         this.setState({selection:["Bring some sunglasses"]});
-      } else if (this.props.hourly[0].temperature >= 25) {
+      } else if (temp >= 25) {
         this.setState({selection:["Might want a sun hat"]});
-      } else if (this.props.hourly[0].temperature >= 20) {
+      } else if (temp >= 20) {
         this.setState({selection:["wear a T-shirt"]});
-      } else if (this.props.hourly[0].temperature >= 15) {
+      } else if (temp >= 15) {
         this.setState({selection:["Grab a jacket"]});
-      } else if (this.props.hourly[0].temperature >= 10) {
+      } else if (temp >= 10) {
         this.setState({selection:["Wear a jumper"]});
-      } else if (this.props.hourly[0].temperature >= 5) {
+      } else if (temp >= 5) {
         this.setState({selection:["Don't forget a scarf"]});
-      } else if (this.props.hourly[0].temperature >= 0) {
+      } else if (temp >= 0) {
         this.setState({selection:["Might want a wooly hat"]});
-      } else if (this.props.hourly[0].temperature >= -5) {
+      } else if (temp >= -5) {
         this.setState({selection:["Grab a coat"]});
-      } else if (this.props.hourly[0].temperature < -5) {
+      } else if (temp < -5) {
         this.setState({selection:["Wear a snowsuit"]});
       } else {
         this.setState({selection:["Wear a hoodie"]});
       }
-      if (this.props.hourly[0].weatherDesc.includes("rain")){
+      if (isRaining){
         this.setState({addRain:"and bring an umbrella"});
       } else {
         this.setState({addRain:""});
