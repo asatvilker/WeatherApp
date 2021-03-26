@@ -73,7 +73,7 @@ class Overview extends Component {
                                         Wind: {this.props.data.hourly[0].wind.speed.value.toFixed(1)} {this.props.data.kmh?"km/h":"mph"}{/* for now hourly */}
                                     </div>
 
-                                    <p>{`${this.props.data.address}, ${this.state.date.toLocaleTimeString("en-US", this.props.data.fullDay?{timeZone: this.props.data.timezone, hour12:false}:{timeZone: this.props.data.timezone})}, ${this.state.date.getDate()}`}</p> {/*extra information on location, time */}
+                                    <p>{`${this.props.data.address}, ${this.state.date.toLocaleTimeString("en-US", {timeZone: this.props.data.timezone, hour12:!this.props.data.fullDay})}, ${this.state.date.getDate()}`}</p> {/*extra information on location, time */}
                                     
                                 </>
                         }
