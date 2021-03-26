@@ -2,10 +2,9 @@ import './App.css';
 import Background from './components/Background/Background';
 import {getHourForecastClimaCell, getMinuteData, getMinuteDataMicrosoft, getDailyDataMicrosoft,getHourDataMicrosoft, convertTZ, getDayForecastClimaCell, getOpenWeatherData } from './WeatherAPI'
 import Overview from './components/DropDown/overview';
-import AddressBar from "./components/AddressBar/AddressBar";
+import TopBar from './components/TopBar'
 import Daily from './components/daily/daily';
 import Clothes from './components/clothes/clothes';
-import Settings from './components/Settings/Settings';
 import Suggest from './components/suggestions/suggestion';
 import React, { Component } from "react";
 import Chart from "./components/Chart/Chart";
@@ -17,14 +16,20 @@ class App extends Component {
             lat: 51.5073509,
             lon: -0.1277583,
             address: "London, UK",
-            celsius: true,
             date: new Date(),
             hourly: [],
             minutely: [],
             daily: [],
+
+            //settings variables
+            bookmark:{},
+            celsius:true,
+            kmh: true,
             api: "microsoft",
             timezone: "Europe/London",
-            data: ""
+            data: "",
+            kmh: true,
+            fullDay: true,
         }
     }
 
@@ -32,24 +37,10 @@ class App extends Component {
     setSettings(newSettings) {
         console.log("APP: NEW SETTINGS: ", newSettings);
         if (newSettings.hasOwnProperty("daily")) {
-            if (this.state.celsius) {
-                this.setState({daily: newSettings.daily});
-            } else {
-                this.setState({daily: newSettings.daily.map((item) => {
-                    item.temperature = (9/5*item.temperature)+32;
-                    return item;
-                })});
-            }
+            this.applyConversions(newSettings["daily"]);
         }
         if (newSettings.hasOwnProperty("hourly")) {
-            if (this.state.celsius) {
-                this.setState({hourly: newSettings.hourly});
-            } else {
-                this.setState({hourly: newSettings.hourly.map((item) => {
-                    item.temperature = (9/5*item.temperature)+32;
-                    return item;
-                })});
-            }
+            this.applyConversions(newSettings["hourly"]);
         }
         this.setState(newSettings, function() {
             if (newSettings.hasOwnProperty("lat")) {
@@ -58,9 +49,20 @@ class App extends Component {
             if (newSettings.hasOwnProperty("celsius")) {
                 this.convertTemperatureToggle();
             }
+            if (newSettings.hasOwnProperty("kmh")) {
+                this.convertWindToggle();
+            }
         });
     }
 
+    applyConversions(array) {
+        array.map((item) => {
+            item.temperature = this.state.celsius ? item.temperature : (9/5*item.temperature)+32;
+            item.wind.speed.value = this.state.kmh ? item.wind.speed.value : item.wind.speed.value/1.609;
+            item.wind.speed.unit = this.state.kmh ? "km/h" : "m/h";
+            return (item)
+        })
+    }
 
     convertTemperatureToggle() {
         this.setState({hourly: this.state.hourly.map((item) => {
@@ -70,6 +72,19 @@ class App extends Component {
         this.setState({daily: this.state.daily.map((item) => {
             item.temperature = this.state.celsius ? 5/9*(item.temperature-32) : (9/5*item.temperature)+32;
             return (item)
+        })});
+    }
+    
+    convertWindToggle() {
+        this.setState({hourly: this.state.hourly.map((item) => {
+            item.wind.speed.value = this.state.kmh ? item.wind.speed.value*1.609 : item.wind.speed.value/1.609;
+            item.wind.speed.unit = this.state.kmh ? "km/h" : "m/h";
+            return item;
+        })});
+        this.setState({daily: this.state.daily.map((item) => {
+            item.wind.speed.value = this.state.kmh ? item.wind.speed.value*1.609 : item.wind.speed.value/1.609;
+            item.wind.speed.unit = this.state.kmh ? "km/h" : "m/h";
+            return item;
         })});
     }
 
@@ -86,6 +101,7 @@ class App extends Component {
             getHourDataMicrosoft(this.state, this.setSettings.bind(this)); 
             getDailyDataMicrosoft(this.state, this.setSettings.bind(this));
         }
+        console.log(this.state.hourly);
     }
 
     componentDidMount(){//when components first loads it will fetch the weather data
@@ -105,17 +121,27 @@ class App extends Component {
       this.setState({data: childData})
     }
 
+    setBookmark=()=>{
+        let currentBookmark = this.state.bookmark;
+        currentBookmark[this.state.address]={"lat":this.state.lat, "lon":this.state.lon, "timezone": this.state.timezone};
+        this.setState({Bookmark:currentBookmark});
+    }
+
+    removeBookmark=(name)=>{
+        let newBookmark = this.state.bookmark;
+        delete newBookmark[name]
+        this.setState({Bookmark:newBookmark})
+    }
+   
     render() {
         return (
             <div className="App"> {/* Here we display the different components and pass through the required api data */}
                 {/* <Background date={this.state.date} timeZone={this.state.timezone}/>
-                <Settings parentCallback={this.handleCallback} data={this.state.data} />
-                <AddressBar setSettings={this.setSettings.bind(this)}/>{/* this function passed as props to address will cause the method in this class to run (setSettings()) and this will update location data and refresh the api weather data */}
-                {/* <Overview data={this.state}/> */}
-                {/* <Chart data={this.state.minutely.map((item) => {return (item.intensity)})}/> */}
+                <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)} removeBookmark={this.removeBookmark.bind(this)}/>
+                <Overview data={this.state} /> */}
                 <Suggest hourly={this.state.hourly} minutely={this.state.minutely.map((item) => {return (item.intensity)})}/> 
-                {/* <Clothes hourly={this.state.hourly} timeZone={this.state.timezone}/> */}
-                {/* <Daily data={this.state.daily} celsius={this.state.celsius}/>celcius will tell us what unit of measure we need to use */}
+                {/* <Clothes hourly={this.state.hourly} timeZone={this.state.timezone}/>
+                <Daily data={this.state.daily} celsius={this.state.celsius}/>celcius will tell us what unit of measure we need to use */}
             </div>
         )
     }

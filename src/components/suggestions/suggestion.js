@@ -16,23 +16,23 @@ class Suggest extends Component{
   componentDidUpdate(prevProps) {
     if (this.props.hourly[0] !== prevProps.hourly[0])
     {
-      if (Math.round(this.props.hourly[0].temperature) >= 30) {
+      if (this.props.hourly[0].temperature >= 30) {
         this.setState({selection:["Bring some sunglasses"]});
-      } else if (Math.round(this.props.hourly[0].temperature) >= 25) {
+      } else if (this.props.hourly[0].temperature >= 25) {
         this.setState({selection:["Might want a sun hat"]});
-      } else if (Math.round(this.props.hourly[0].temperature) >= 20) {
+      } else if (this.props.hourly[0].temperature >= 20) {
         this.setState({selection:["wear a T-shirt"]});
-      } else if (Math.round(this.props.hourly[0].temperature) >= 15) {
+      } else if (this.props.hourly[0].temperature >= 15) {
         this.setState({selection:["Grab a jacket"]});
-      } else if (Math.round(this.props.hourly[0].temperature) >= 10) {
+      } else if (this.props.hourly[0].temperature >= 10) {
         this.setState({selection:["Wear a jumper"]});
-      } else if (Math.round(this.props.hourly[0].temperature) >= 5) {
+      } else if (this.props.hourly[0].temperature >= 5) {
         this.setState({selection:["Don't forget a scarf"]});
-      } else if (Math.round(this.props.hourly[0].temperature) >= 0) {
+      } else if (this.props.hourly[0].temperature >= 0) {
         this.setState({selection:["Might want a wooly hat"]});
-      } else if (Math.round(this.props.hourly[0].temperature) >= -5) {
+      } else if (this.props.hourly[0].temperature >= -5) {
         this.setState({selection:["Grab a coat"]});
-      } else if (Math.round(this.props.hourly[0].temperature) < -5) {
+      } else if (this.props.hourly[0].temperature < -5) {
         this.setState({selection:["Wear a snowsuit"]});
       } else {
         this.setState({selection:["Wear a hoodie"]});

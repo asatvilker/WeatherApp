@@ -1,0 +1,16 @@
+.topbar-parent {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    z-index: 15;
+    margin-top: 5%;
+    
+  }
+
+.topbar-spacing1{
+  width: 20%;
+}
+.topbar-spacing2{
+  width: 60%;
+}

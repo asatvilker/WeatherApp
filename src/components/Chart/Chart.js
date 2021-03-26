@@ -1,7 +1,6 @@
 import React, { Component, useContext } from "react";
 import Chartist from "chartist";
 import "./Chart.css";
-import "chartist-plugin-targetline";
 
 function ctTargetLineWithLabel(options) {
     return function ctTargetLineWithLabel(chart) {
