@@ -13,7 +13,7 @@
 
 @keyframes appear {
   0% {
-    transform: translate(-100%, 0%);
+    transform: translate(100%, 0%);
   }
 
   100% {
