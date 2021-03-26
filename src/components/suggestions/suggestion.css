@@ -27,3 +27,13 @@ hr {
   background-color: transparent;
   border-color: transparent;
 }
+
+#flip {
+  padding: 0rem 2rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+#flip:active {
+  transform: scale(0.65);
+}
