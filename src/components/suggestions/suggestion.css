@@ -8,8 +8,12 @@
   margin-top: 1vh !important;
   padding-top: 4vh;
   padding-bottom: 2vh;
+  text-align: center;
 }
 
+#text strong{
+  font-weight: 600;
+}
 hr {
   border-color: white;
   border-width: 1.55px;
