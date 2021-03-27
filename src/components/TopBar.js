@@ -18,6 +18,8 @@ class TopBar extends Component{
         console.log("TOPBAR: ", this.state);
     }
 
+    
+    //redering the 3 main componets of the topbar, passing the requred data and methods
     render(){
         return(
             <div className="topbar-parent">

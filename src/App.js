@@ -19,14 +19,13 @@ class App extends Component {
             hourly: [],
             minutely: [],
             daily: [],
-
+            api: "microsoft",
+            timezone: "Europe/London",
+            data: "",
             //settings variables
             bookmark:{},
             celsius:true,
             kmh: true,
-            api: "microsoft",
-            timezone: "Europe/London",
-            data: "",
             fullDay: true,
         }
     }
@@ -118,13 +117,13 @@ class App extends Component {
     handleCallback = (childData) =>{
       this.setState({data: childData})
     }
-
+    //setting the bookmark by coping it in to a variable and changing it, so the state is not altered
     setBookmark=()=>{
         let currentBookmark = this.state.bookmark;
         currentBookmark[this.state.address]={"lat":this.state.lat, "lon":this.state.lon, "timezone": this.state.timezone};
         this.setState({Bookmark:currentBookmark});
     }
-
+    //same logic as setbookmark, the state bookmark is copied to a variable which is then changed and used in the setState function
     removeBookmark=(name)=>{
         let newBookmark = this.state.bookmark;
         delete newBookmark[name]
