@@ -5,10 +5,9 @@
 }
 
 #text {
-    margin-top: 1vh !important;
-    padding-top: 4vh;
-    padding-bottom: 2vh;
-    text-align: center;
+  margin-top: 1vh !important;
+  padding: 2.5%;
+  text-align: center;
 }
 
 #text strong {

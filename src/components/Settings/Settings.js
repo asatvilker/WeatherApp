@@ -24,6 +24,7 @@ class Settings extends Component{
         
     }  
 
+    //whenever a switch is switched, this method is called with respective fieldname, that willb then be passed in setSetting method in app.js
     handleChange = (event, fieldName)=> {
         this.props.setSettings({[fieldName]:!event.target.checked})
     }
@@ -83,6 +84,14 @@ class Settings extends Component{
                         <div>
                             <MDBIcon far icon="thumbs-up" className="feedback"> Send Feedback </MDBIcon>
                         </div>
+                        <div className="settings-header">Credits</div>
+                        <div className="switchContainer">
+                            Adam Satvilker, 
+                            Jay Patel, 
+                            Lian Arthofer,
+                            Max Jayatillake, 
+                            Tarikh Mukhtar
+                        </div>
                     </MDBBox>
                     </React.Fragment>
                 )
@@ -90,14 +99,16 @@ class Settings extends Component{
         }
 
         return(
-            //div settigns overlay used as filter when settings is open
+            
             <div>
+                {/*div settigns overlay used as filter when settings is open*/}
                 {this.state.isSettingsOpen? <div className="settings-overlay" onClick={this.removeFocus} /> : null }
                 <div className="settings-wrapper">
                     <div>
                         <Hamburger id="settingsIcon" toggled={this.state.isSettingsOpen} toggle={this.displaySettings} duration={0.8} rounded/>
                     </div>
                     <div id="settingslist" >
+                        {/*addSettings is only displaying if issettingsOpen is true */}
                         {addSettings()}
                     </div>
                 </div>

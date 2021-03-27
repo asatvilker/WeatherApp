@@ -53,7 +53,7 @@ class Suggest extends Component{
       <div id='main'>
         <div id='text'>
           <strong>{this.state.selection} {this.state.addRain}</strong>
-        </div>        
+        </div>
       </div>
     )
   }

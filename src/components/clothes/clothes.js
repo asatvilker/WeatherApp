@@ -110,7 +110,7 @@ render() {
   return (
       <>
         <h1 id="clothesHead">Suggestion for the day</h1>
-        <Suggest hourly={this.props.hourly}/>
+        <Suggest hourly={this.props.hourly} celsius={this.props.celsius}/>
         <MDBRow id="clothes" className="z-depth-1"> {/* a bootstrap layout component that breaks the layout up into responsive rows and columns */}
          {
             this.state.selection.map((item)=>{//map function loops through our selection array (each item of clothing)

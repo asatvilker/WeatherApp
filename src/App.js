@@ -5,7 +5,6 @@ import Overview from './components/DropDown/overview';
 import TopBar from './components/TopBar'
 import Daily from './components/daily/daily';
 import Clothes from './components/clothes/clothes';
-import Suggest from './components/suggestions/suggestion';
 import React, { Component } from "react";
 import Chart from "./components/Chart/Chart";
 import FlipCard from "./components/FlipCard/FlipCard";
@@ -21,14 +20,13 @@ class App extends Component {
             hourly: [],
             minutely: [],
             daily: [],
-
+            api: "microsoft",
+            timezone: "Europe/London",
+            data: "",
             //settings variables
             bookmark:{},
             celsius:true,
             kmh: true,
-            api: "microsoft",
-            timezone: "Europe/London",
-            data: "",
             fullDay: true,
         }
     }
@@ -120,13 +118,13 @@ class App extends Component {
     handleCallback = (childData) =>{
       this.setState({data: childData})
     }
-
+    //setting the bookmark by coping it in to a variable and changing it, so the state is not altered
     setBookmark=()=>{
         let currentBookmark = this.state.bookmark;
         currentBookmark[this.state.address]={"lat":this.state.lat, "lon":this.state.lon, "timezone": this.state.timezone};
         this.setState({Bookmark:currentBookmark});
     }
-
+    //same logic as setbookmark, the state bookmark is copied to a variable which is then changed and used in the setState function
     removeBookmark=(name)=>{
         let newBookmark = this.state.bookmark;
         delete newBookmark[name]
@@ -139,10 +137,8 @@ class App extends Component {
                 <Background date={this.state.date} timeZone={this.state.timezone}/>
                 <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)} removeBookmark={this.removeBookmark.bind(this)}/>
                 <Overview data={this.state} />
-                {/* <FlipCard/> */}
-                {/* <Suggest hourly={this.state.hourly} minutely={this.state.minutely.map((item) => {return (item.intensity)})}/> */}
-                <Clothes hourly={this.state.hourly} timeZone={this.state.timezone} celsius={this.state.celsius}/> 
-                <Daily data={this.state.daily} celsius={this.state.celsius}/>
+                <Clothes hourly={this.state.hourly} timeZone={this.state.timezone} celsius={this.state.celsius}/>
+                <Daily data={this.state.daily} celsius={this.state.celsius}/>{/* celcius will tell us what unit of measure we need to use */}
             </div>
         )
     }

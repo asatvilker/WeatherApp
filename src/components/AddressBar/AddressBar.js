@@ -45,16 +45,16 @@ class AddressBar extends Component {
             isListOpen: false
         });
     }
-
+    
     newBookmark=()=>{
         document.getElementById('emptyStar').style.animation = 'turnR 2s ease';
-        this.props.setBookmark()
+        this.props.setBookmark()// creates a bookmark by calling the function in app.js that will store the current states
         console.log("saved positions", this.props.data.bookmark[this.props.data.address])
     }
 
     alreadyBookmark=()=>{
         document.getElementById('filledStar').style.animation = 'turnL 2s ease';
-        this.props.removeBookmark(this.props.data.address)
+        this.props.removeBookmark(this.props.data.address)//removes bookmark by passing the address name to app.js method
     }
 
     render() {
@@ -86,6 +86,7 @@ class AddressBar extends Component {
                             style={{fontFamily: 'Sen'}}
                             onChange={this.createSuggestions}
                             />
+                        {/*if there is not an existing address in the bookmark dictinary in app.js, display empty start, otherwise full star*/}
                         {bookmarked_check !== undefined?
                             <MDBIcon  icon="star" className="address-search-icon-star" id="filledStar" onClick={this.alreadyBookmark}  />: 
                             <MDBIcon  far icon="star" id="emptyStar" className="address-search-icon-star" onClick={this.newBookmark} />}
