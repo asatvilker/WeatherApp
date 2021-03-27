@@ -1,55 +1,39 @@
 #main {
-  border-radius: 0.5em;
-  font-size: 2vh;
-  position: relative;
-}
-
-#text {
-  margin-top: 1vh !important;
-  padding-top: 4vh;
-  padding-bottom: 2vh;
-}
-
-hr {
-  border-color: white;
-  border-width: 1.55px;
-}
-
-#swap {
-  float: left;
-}
-
-#flip {
-  background-color: transparent;
-  border-color: transparent;
-}
-
-.flip-container {
-    perspective: 1000px;
-    height: 100%;
-    width: 100%;
+    border-radius: 0.5em;
+    font-size: 2vh;
     position: relative;
 }
 
-.flip-back {
-    transform: rotateY(180deg);
+#text {
+    margin-top: 1vh !important;
+    padding-top: 4vh;
+    padding-bottom: 2vh;
+    text-align: center;
 }
 
-.flip-front {
-    transform: rotateY(0deg);
+#text strong {
+    font-weight: 600;
+}
+hr {
+    border-color: white;
+    border-width: 1.55px;
 }
 
-.flip-front, .flip-back {
-    backface-visibility: hidden;
-    position: absolute;
-    transition: 300ms ease-out;
-    transform-style: preserve-3d;
+#swap {
+    float: left;
 }
 
-.flip-container.flip .flip-front {
-    transform: rotateY(180deg) scale(100%);
+#flip {
+    background-color: transparent;
+    border-color: transparent;
 }
 
-.flip-container.flip .flip-back {
-    transform: rotateY(0deg);
+#flip {
+    padding: 0 2rem;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+#flip:active {
+    transform: scale(0.65);
 }

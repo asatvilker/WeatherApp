@@ -113,6 +113,10 @@ class RainChart extends Component {
         return JSON.stringify(nextProps) != JSON.stringify(this.props) || JSON.stringify(nextState) != JSON.stringify(this.state);
     }
 
+    forceUpdate() {
+        console.log(this.chartist);
+    }
+
     updateChart(incomingData) {
         console.log("CHART: UPDATING", incomingData);
         let data = {
@@ -130,7 +134,7 @@ class RainChart extends Component {
 
     render() {
         return (
-            <div class="rain_chart" ref={(ref) => this.chart = ref} style={{ position: "relative" }}> </div>
+            <div class="rain_chart" ref={(ref) => this.chart = ref} style={{position: "relative"}}> </div>
         )
     }
 }

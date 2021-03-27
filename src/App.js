@@ -8,6 +8,7 @@ import Clothes from './components/clothes/clothes';
 import Suggest from './components/suggestions/suggestion';
 import React, { Component } from "react";
 import Chart from "./components/Chart/Chart";
+import FlipCard from "./components/FlipCard/FlipCard";
 
 class App extends Component {
     constructor(props) {
@@ -28,7 +29,6 @@ class App extends Component {
             api: "microsoft",
             timezone: "Europe/London",
             data: "",
-            kmh: true,
             fullDay: true,
         }
     }
@@ -136,12 +136,13 @@ class App extends Component {
     render() {
         return (
             <div className="App"> {/* Here we display the different components and pass through the required api data */}
-                {/* <Background date={this.state.date} timeZone={this.state.timezone}/>
+                <Background date={this.state.date} timeZone={this.state.timezone}/>
                 <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)} removeBookmark={this.removeBookmark.bind(this)}/>
-                <Overview data={this.state} /> */}
-                <Suggest hourly={this.state.hourly} minutely={this.state.minutely.map((item) => {return (item.intensity)})}/> 
-                {/* <Clothes hourly={this.state.hourly} timeZone={this.state.timezone}/>
-                <Daily data={this.state.daily} celsius={this.state.celsius}/>celcius will tell us what unit of measure we need to use */}
+                <Overview data={this.state} />
+                {/* <FlipCard/> */}
+                {/* <Suggest hourly={this.state.hourly} minutely={this.state.minutely.map((item) => {return (item.intensity)})}/> */}
+                <Clothes hourly={this.state.hourly} timeZone={this.state.timezone} celsius={this.state.celsius}/> 
+                <Daily data={this.state.daily} celsius={this.state.celsius}/>
             </div>
         )
     }
