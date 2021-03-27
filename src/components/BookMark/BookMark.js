@@ -52,7 +52,10 @@ class BookMark extends Component{
                 else {
                     return(
                         <div id="bookmarkslist" >
-                            {/*loops thorugth every item in bookaark*/}
+                            
+                            <div className="bookmarkHeader">FAVORITE:</div>
+                            <div className="bookmark-line"></div>
+                            {/*loops through every item in bookmark*/}
                             {Object.keys(this.props.data.bookmark).map((item, i) =>( 
                                 <>
                                     <div id="bookMarkeditem">
