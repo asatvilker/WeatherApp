@@ -5,7 +5,6 @@ import Overview from './components/DropDown/overview';
 import TopBar from './components/TopBar'
 import Daily from './components/daily/daily';
 import Clothes from './components/clothes/clothes';
-import Suggest from './components/suggestions/suggestion';
 import React, { Component } from "react";
 
 class App extends Component {
@@ -136,7 +135,6 @@ class App extends Component {
                 <Background date={this.state.date} timeZone={this.state.timezone}/>
                 <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)} removeBookmark={this.removeBookmark.bind(this)}/>
                 <Overview data={this.state} />
-                <Suggest hourly={this.state.hourly} celsius={this.state.celsius}/> 
                 <Clothes hourly={this.state.hourly} timeZone={this.state.timezone} celsius={this.state.celsius}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>{/* celcius will tell us what unit of measure we need to use */}
             </div>

@@ -51,13 +51,9 @@ class Suggest extends Component{
   render(){
     return(
       <div id='main'>
-        <div id='swap'> 
-          <button id='flip'><MDBIcon icon="exchange-alt" id="flip-button" size="lg" /></button>
-        </div>
         <div id='text'>
           <strong>{this.state.selection} {this.state.addRain}</strong>
         </div>
-        <hr />
       </div>
     )
   }
