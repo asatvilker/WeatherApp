@@ -16,7 +16,8 @@ p {
 
 
 .dailyWrapper {
-    width: unset;
+    /* width: unset; */
+    width: min-content;
     flex-shrink: 0;
     /* width: auto; */
     padding: 0;
