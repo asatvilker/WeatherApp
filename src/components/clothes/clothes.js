@@ -170,7 +170,7 @@ componentDidUpdate(prevProps){ //this function is called whenever props or state
                     <div className="menuButton" onClick={() => this.setState({isFlipped: true})}>
                         Rain-Chart
                     </div>
-                    <button class="menuRate ripple" onClick={() => this.setState({rated: !this.state.rated})}>{this.state.rated ? "Thanks!": "Rate?"}
+                    <button class="menuRate ripple" onClick={() => this.setState({rated: !this.state.rated})}>{this.state.rated ? "Thanks!": "Like?"}
                     <MDBIcon far={!this.state.rated} fas={this.state.rated} icon="thumbs-up" className="ml-2" /></button>
                 </div>
                 <hr />
