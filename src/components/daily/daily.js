@@ -22,10 +22,12 @@ class DailyCard extends Component {
         let day = days[data.time.getDay()]; //converting date to string
         let temp = Math.round(data.temperature); //rounding temperature so easier to read
         return (
-            <div class={`dailyWrapper ${this.state.expand ? "expand" : ""}`} onClick={(e) => this.toggleExpand(e)}>
+            <div class={`container dailyWrapper ${this.state.expand ? "expand" : ""}`} onClick={(e) => this.toggleExpand(e)}>
                 <Card time={day} temp={temp} icon={data.weatherIcon} condition={data.weatherDesc} celsius={this.props.celsius} wind={data.wind} kmh={this.props.kmh}/>
-                <ClothesGrid temperature={data.temperature} celsius={this.props.celsius} weatherDesc={data.weatherDesc} time={data.time} size={5}/>
-                {/* <ClothesGrid temperature={this.props.hourly[0].temperature} celsius={this.props.celsius} weatherDesc={this.props.hourly[0].weatherDesc} time={this.props.hourly[0].time}/> */}
+                <div className="dailySuggestions">
+                    Suggestions
+                    <ClothesGrid temperature={data.temperature} celsius={this.props.celsius} weatherDesc={data.weatherDesc} time={data.time} size={"5em"} text/>
+                </div>
             </div>
         )
     }
