@@ -8,7 +8,8 @@ import WeatherIcon from "../weatherIcons.js";
 class Overview extends Component {
     state = {
         date: new Date(),
-        open: false
+        open: false,
+        months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
     }
 
     toggleCollapse = () => () => { //function to toggle the state of the dropdown
@@ -24,7 +25,7 @@ class Overview extends Component {
     componentDidMount() {
         this.timerIntervalID = setInterval(
             () => this.setState({date: convertTZ(new Date(), this.props.data.timeZone)}), 1000
-        );   
+        );
     }
 
     componentWillUnmount() {
@@ -34,7 +35,7 @@ class Overview extends Component {
     //calcuates the feels like temperature according to wind speed
     feelsLike=()=>{
         if (!this.props.data.celsius){
-            let tempF = (this.props.data.hourly[0].temperature) 
+            let tempF = (this.props.data.hourly[0].temperature)
             let windspeedmph = this.props.data.hourly[0].wind.speed.value *0.62 // made it into mph
             let feelsLikeF = (35.74+(0.6215*tempF)-35.75*(Math.pow(windspeedmph,0.16))+(0.4275*tempF*(Math.pow(windspeedmph,0.16)))) //formula found on https://en.wikipedia.org/wiki/Wind_chill
             return Math.round(feelsLikeF*10)/10
@@ -42,10 +43,10 @@ class Overview extends Component {
         let tempF = 9/5*(this.props.data.hourly[0].temperature)+32 // made it into f
         let windspeedmph = this.props.data.hourly[0].wind.speed.value *0.62 // made it into mph
         let feelsLikeF = (35.74+(0.6215*tempF)-35.75*(Math.pow(windspeedmph,0.16))+(0.4275*tempF*(Math.pow(windspeedmph,0.16)))) //formula found on https://en.wikipedia.org/wiki/Wind_chill
-        let feelsLikeC = 5/9*(feelsLikeF-32) 
+        let feelsLikeC = 5/9*(feelsLikeF-32)
         return Math.round(feelsLikeC*10)/10
     }
-    
+
 
     render() {
         return (
@@ -65,16 +66,16 @@ class Overview extends Component {
                                         <h1 className="overviewHeader" >{Math.round(this.props.data.hourly[0].temperature)}</h1>{/*shows temperature of first hour in array as this would be now */}
                                         <h1 className="overviewHeader" >&#176;{this.props.data.celsius ? "C" : "F"}</h1>{/*conditional display of correct symbol */}
                                     </div>
-                                        
+
                                     <div>
-                                        Feels Like: {this.feelsLike()} &#176;{this.props.data.celsius ? "C" : "F"} 
+                                        Feels Like: {this.feelsLike()} &#176;{this.props.data.celsius ? "C" : "F"}
                                     </div>
                                     <div>
                                         Wind: {this.props.data.hourly[0].wind.speed.value.toFixed(1)} {this.props.data.kmh?"km/h":"mph"}{/* for now hourly */}
                                     </div>
 
-                                    <p>{`${this.props.data.address}, ${this.state.date.toLocaleTimeString("en-US", {timeZone: this.props.data.timezone, hour12:!this.props.data.fullDay})}, ${this.state.date.getDate()}`}</p> {/*extra information on location, time */}
-                                    
+                                    <p>{`${this.props.data.address}, ${this.state.date.toLocaleTimeString("en-US", {timeZone: this.props.data.timezone, hour12:!this.props.data.fullDay})}, ${this.state.date.getDate()}/${this.state.months[this.state.date.getMonth()]}/${this.state.date.getFullYear()}`}</p> {/*extra information on location, time */}
+
                                 </>
                         }
 
