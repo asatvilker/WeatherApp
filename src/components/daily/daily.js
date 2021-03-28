@@ -33,7 +33,7 @@ class DailyCard extends Component {
                 <Card time={day} temp={temp} icon={data.weatherIcon} condition={data.weatherDesc} celsius={this.props.celsius} wind={data.wind} kmh={this.props.kmh}/>
                 <div className="dailySuggestions">
                     Suggestions
-                    <ClothesGrid temperature={data.temperature} celsius={this.props.celsius} weatherDesc={data.weatherDesc} time={data.time} size={"3em"} text/>                                          
+                    <ClothesGrid temperature={data.temperature} celsius={this.props.celsius} weatherDesc={data.weatherDesc} time={data.time} size={"3em"} text expand={this.state.expand}/>                                          
                 </div>
             </div>
         )
