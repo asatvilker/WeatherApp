@@ -60,7 +60,7 @@ p {
 
 .dailyWrapper.expand {
     flex-shrink: 0;
-    width: 75%;
+    width: 100%;
 }
 
 @media screen and (min-width: 500px) {
