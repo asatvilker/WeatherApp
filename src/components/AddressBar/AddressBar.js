@@ -48,12 +48,14 @@ class AddressBar extends Component {
     
     newBookmark=()=>{
         document.getElementById('emptyStar').style.animation = 'turnR 2s ease';
+        document.getElementById('bookmark-button').style.animation = 'bounce 2s ease';
         this.props.setBookmark()// creates a bookmark by calling the function in app.js that will store the current states
         console.log("saved positions", this.props.data.bookmark[this.props.data.address])
     }
 
     alreadyBookmark=()=>{
         document.getElementById('filledStar').style.animation = 'turnL 2s ease';
+        document.getElementById('bookmark-button').style.animation = '';
         this.props.removeBookmark(this.props.data.address)//removes bookmark by passing the address name to app.js method
     }
 
