@@ -24,7 +24,7 @@ class Clothes extends Component {
                     <div className="flip-card-inner">
                         <div className={`flip-card-front z-depth-1 ${this.state.isFlipped ? "flipped" : ""}`}>
                             {this.props.hourly[0] && 
-                                <ClothesGrid temperature={this.props.hourly[0].temperature} celsius={this.props.celsius} weatherDesc={this.props.hourly[0].weatherDesc} time={this.props.hourly[0].time}/>
+                                <ClothesGrid temperature={this.props.hourly[0].temperature} celsius={this.props.celsius} weatherDesc={this.props.hourly[0].weatherDesc} time={this.props.hourly[0].time} text={this.props.text}/>
                             }
                         </div>
                         <div className={`flip-card-back z-depth-1 ${this.state.isFlipped ? "flipped" : ""}`}>
