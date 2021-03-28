@@ -20,8 +20,8 @@ class Dropdown extends PureComponent {
                             <button /*button for triggering open/close of dropdown */
                                 onClick={this.props.toggleCollapse()}
                                 style={{ marginBottom: "1rem", height: "45px", width:"45px"}}
-                                className="dropButton btn-default">
-                                <MDBIcon icon="angle-down" id="dropIcon" size="2x" className={this.props.open ? "rotated" : ""}/> {/*icon to make button obvious in purpose*/}
+                                className={`dropButton btn-default ${this.props.open ? "rotated" : ""}`}>{/*rotate class adds animation to turn button */}
+                                <MDBIcon icon="angle-down" id="dropIcon" size="2x" /> {/*icon to make button obvious in purpose*/}
                             </button>
                         </MDBAnimation>
                     </MDBCol>
