@@ -33,7 +33,7 @@ class DailyCard extends Component {
                 <Card time={day} temp={temp} icon={data.weatherIcon} condition={data.weatherDesc} celsius={this.props.celsius} wind={data.wind} kmh={this.props.kmh}/>
                 <div className="dailySuggestions">
                     Suggestions
-                    <ClothesGrid temperature={data.temperature} celsius={this.props.celsius} weatherDesc={data.weatherDesc} time={data.time} size={"3em"} text expand={this.state.expand}/>                                          
+                    <ClothesGrid temperature={data.temperature} celsius={this.props.celsius} weatherDesc={data.weatherDesc} time={data.time} size={"3em"} text={this.props.text} expand={this.state.expand}/>                                          
                 </div>
             </div>
         )
@@ -56,7 +56,7 @@ class Daily extends Component {
                     {
                         this.props.data.slice(1, 9).map((data, index) => { /* loops through each element (each day) */
                             return (
-                                <DailyCard expand={!index} data={data} celsius={this.props.celsius} />
+                                <DailyCard expand={!index} data={data} celsius={this.props.celsius} text={this.props.text}/>
                                 /*card element is reused for daily and hourly as they should look the same, only difference for each card is here we pass through the day not the hour */
                             )
                         })

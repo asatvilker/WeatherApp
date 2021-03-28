@@ -141,7 +141,7 @@ class App extends Component {
                 <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)} removeBookmark={this.removeBookmark.bind(this)}/>
                 <Overview data={this.state} />
                 <Clothes hourly={this.state.hourly} minutely={this.state.minutely} timeZone={this.state.timezone} celsius={this.state.celsius} text={this.state.text}/>
-                <Daily data={this.state.daily} celsius={this.state.celsius}/>{/* celcius will tell us what unit of measure we need to use */}
+                <Daily data={this.state.daily} celsius={this.state.celsius} text={this.state.text}/>{/* celcius will tell us what unit of measure we need to use */}
             </div>
         )
     }
