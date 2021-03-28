@@ -55,7 +55,7 @@ class AddressBar extends Component {
 
     alreadyBookmark=()=>{
         document.getElementById('filledStar').style.animation = 'turnL 2s ease';
-        document.getElementById('bookmark-button').style.animation = '';
+        document.getElementById('bookmark-button').style.animation = 'shake 2s ease';
         this.props.removeBookmark(this.props.data.address)//removes bookmark by passing the address name to app.js method
     }
 
