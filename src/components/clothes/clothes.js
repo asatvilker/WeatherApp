@@ -6,7 +6,7 @@ import ClothesIcon from "./clothesIcons";
 import Suggest from '../suggestions/suggestion';
 
 class Clothes extends Component {
-    
+
 state = {
     selection:[], //where we will store the selection of clothese determined by the logic
     rainOption:["Drizzle","Rain","Light Rain","Heavy Rain","Flurries","Light Snow","Heavy Snow","Freezing Drizzle","Freezing Rain","Light Freezing Rain","Heavy Freezing Rain","Showers", "Mostly cloudy w/ showers", "Partly sunny w/ showers", "Rain and snow", "Partly cloudy w/ showers"],
@@ -19,7 +19,7 @@ componentDidUpdate(prevProps){ //this function is called whenever props or state
         const hour=this.props.hourly[0].time.getHours() //time of day
         const temp=this.props.celsius? this.props.hourly[0].temperature: (this.props.hourly[0].temperature - 32)* 5/9 //ensures temperate is in celsius (consistent format which logic below is based on)
         const isRaining= this.state.rainOption.includes(this.props.hourly[0].weatherDesc)
-        
+
         if (Math.round(temp) <= 15 ) //checks if it is cold or very cold
         {
             if (Math.round(temp) <= 5 ) //very cold (doesnt check for rain as it will suggest a coat anyway)
@@ -34,7 +34,7 @@ componentDidUpdate(prevProps){ //this function is called whenever props or state
                 }
                 else //just cold AND not raining
                 {
-                    this.setState({selection:["hoodie","jeans","scarf"]}) 
+                    this.setState({selection:["hoodie","jeans","scarf"]})
                 }
             }
         }
@@ -55,10 +55,10 @@ componentDidUpdate(prevProps){ //this function is called whenever props or state
                     else{
                         this.setState({selection:["raincoat","hoodie","joggers","trainers"]})
                     }
-                     
+
                 }
             }
-            
+
             else //warm or hot AND NOT raining
             {
                 if ( Math.round(temp) >= 26 ) //hot and not raining
@@ -71,8 +71,8 @@ componentDidUpdate(prevProps){ //this function is called whenever props or state
                     {
                         this.setState({selection:["T-shirt","shorts/skirt","trainers"]})
                     }
-                    
-                    
+
+
                 }
                 else //warm and not raining
                 {
@@ -86,7 +86,7 @@ componentDidUpdate(prevProps){ //this function is called whenever props or state
                         {
                             this.setState({selection:["T-shirt","joggers","trainers"]})
                         }
-                        
+
                     }
                     else{
                         if ( hour >= 8 && hour < 19 ) //during the day
@@ -98,30 +98,30 @@ componentDidUpdate(prevProps){ //this function is called whenever props or state
                             this.setState({selection:["hoodie","joggers","trainers"]})
                         }
                     }
-                    
+
                 }
             }
-        } 
+        }
     }
-    
+
 }
 
 render() {
   return (
       <>
         <h1 id="clothesHead">Suggestion for the day</h1>
-        <Suggest hourly={this.props.hourly} celsius={this.props.celsius}/>
+        <Suggest hourly={this.props.hourly} celsius={this.props.celsius} text={this.props.text}/>
         <MDBRow id="clothes" className="z-depth-1"> {/* a bootstrap layout component that breaks the layout up into responsive rows and columns */}
          {
             this.state.selection.map((item)=>{//map function loops through our selection array (each item of clothing)
                 return(
                     <MDBCol size="6" className="flex-center flex-column">
                         <ClothesIcon iconName={codes[item]} size="10vh"/> {/*for each item we have a icon component, we first map the selection name to the icon name which is stored as in a json file */}
-                        <p>{item.toUpperCase()}</p>{/* displays the name of the clothing in capital letters */}
+                        {this.props.text ? <p>{item.toUpperCase()}</p>: ""}{/* displays the name of the clothing in capital letters */}
                     </MDBCol>
                 )
             })
-         }   
+         }
         </MDBRow>
         <hr/>
     </>

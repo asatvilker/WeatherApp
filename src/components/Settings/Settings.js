@@ -12,7 +12,7 @@ class Settings extends Component{
         }
     }
 
-   //display settings when button is clicked 
+   //display settings when button is clicked
     displaySettings = event => {
         const {isSettingsOpen} = this.state;
         if(!isSettingsOpen) {
@@ -21,8 +21,8 @@ class Settings extends Component{
             document.getElementById('settingslist').style.animation = '';
         }
         this.setState({isSettingsOpen: !isSettingsOpen} );
-        
-    }  
+
+    }
 
     //whenever a switch is switched, this method is called with respective fieldname, that willb then be passed in setSetting method in app.js
     handleChange = (event, fieldName)=> {
@@ -33,7 +33,7 @@ class Settings extends Component{
         this.setState({
             isSettingsOpen: false
         });
-        
+
     }
 
     render(){
@@ -80,16 +80,28 @@ class Settings extends Component{
                             </label>
                             <div>m/h</div>
                         </div>
-                        
+
+                        <div className="switchContainer">
+                            <div id="iconToText">text</div> {/*initial value*/}
+                            <label className="switch">{/*Toggles settings button*/}
+                                <input type="checkbox" id="togBtn" checked={!this.props.data.text} onChange={(event) =>this.handleChange(event,"text")}/>
+                                <div className="slider round b">
+                                    <span className="on">Icon</span> {/*Toggled value*/}
+                                    <span className="off">Text</span> {/*initial value*/}
+                                </div>
+                            </label>
+                            <div>icon</div> {/*Toggled value*/}
+                        </div>
+
                         <div>
                             <MDBIcon far icon="thumbs-up" className="feedback"> Send Feedback </MDBIcon>
                         </div>
                         <div className="settings-header">Credits</div>
                         <div className="switchContainer">
-                            Adam Satvilker, 
-                            Jay Patel, 
+                            Adam Satvilker,
+                            Jay Patel,
                             Lian Arthofer,
-                            Max Jayatillake, 
+                            Max Jayatillake,
                             Tarikh Mukhtar
                         </div>
                     </MDBBox>
@@ -99,7 +111,7 @@ class Settings extends Component{
         }
 
         return(
-            
+
             <div>
                 {/*div settigns overlay used as filter when settings is open*/}
                 {this.state.isSettingsOpen? <div className="settings-overlay" onClick={this.removeFocus} /> : null }

@@ -25,7 +25,7 @@ class Dropdown extends PureComponent {
                             </MDBBtn>
                         </MDBAnimation>
                     </MDBCol>
-                    <MDBCol className="line column" size="5"></MDBCol>  
+                    <MDBCol className="line column" size="5"></MDBCol>
                 </MDBRow>
             </div>
         );

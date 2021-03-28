@@ -6,21 +6,21 @@ class Suggest extends Component{
   constructor(props){
     super(props);
     this.state = {
-      selection:"",
+      selection:"", //the selection variable holds the clothing suggestion related to a certain tempreature
       hourly:[],
       addRain:"",
       rainOption:["Drizzle","Rain","Light Rain","Heavy Rain","Flurries","Light Snow","Heavy Snow","Freezing Drizzle","Freezing Rain","Light Freezing Rain","Heavy Freezing Rain","Showers", "Mostly cloudy w/ showers", "Partly sunny w/ showers", "Rain and snow", "Partly cloudy w/ showers"],
-
+      // rainOption includes all weather conditions that will require an umbrella (based on API weather description)
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.hourly[0] !== prevProps.hourly[0])
+    if (this.props.hourly[0] !== prevProps.hourly[0])// checks if their has been a change in conditions
     {
       const temp=this.props.celsius? this.props.hourly[0].temperature: (this.props.hourly[0].temperature - 32)* 5/9 //ensures temperate is in celsius (consistent format which logic below is based on)
-      const isRaining= this.state.rainOption.includes(this.props.hourly[0].weatherDesc)
-      if (temp >= 30) {
-        this.setState({selection:"Bring some sunglasses"});
+      const isRaining= this.state.rainOption.includes(this.props.hourly[0].weatherDesc) // checks if it has rained
+      if (temp >= 30) { // suggestions are based on tempreature
+        this.setState({selection:"Bring some sunglasses"}); // used to set tempreature
       } else if (temp >= 25) {
         this.setState({selection:"Might want a sun hat"});
       } else if (temp >= 20) {
@@ -40,7 +40,7 @@ class Suggest extends Component{
       } else {
         this.setState({selection:"Wear a hoodie"});
       }
-      if (isRaining){
+      if (isRaining){// checks if its raining if it is addRain is set to bring an umbrella if not nothing id
         this.setState({addRain:"and bring an umbrella"});
       } else {
         this.setState({addRain:""});
@@ -52,7 +52,10 @@ class Suggest extends Component{
     return(
       <div id='main'>
         <div id='text'>
-          <strong>{this.state.selection} {this.state.addRain}</strong>
+          {/* This displays the clothing suggestions, the state selection holds the suggestion based on tempreature */}
+          {/* And addRain will suggest bring an umbrella if it's raining */}
+          {/* the value text will not show the any suggestion if text has been toggled in settings */}
+          {this.props.text? <strong>{this.state.selection} {this.state.addRain}</strong>:""}
         </div>
       </div>
     )
