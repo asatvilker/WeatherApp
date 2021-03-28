@@ -22,7 +22,6 @@
   background-color: #e7e7e7;
   border-radius: 40px;
   font-family: Sen;
-  
 }
 
 .address-header-title input,
@@ -39,7 +38,6 @@ input:focus {
   outline: none;
   -webkit-user-select: text;
   user-select: text;
-  
 }
 
 .address-suggestions {
@@ -141,5 +139,50 @@ input:focus {
   100% {
     transform: rotate(-720deg);
     transform-origin: 58% 50%;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(1.1, 0.9) translateY(0);
+  }
+  30% {
+    transform: scale(0.9, 1.1) translateY(-20px);
+  }
+  50% {
+    transform: scale(1.05, 0.95) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(-10px);
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(10deg);
+  }
+  20% {
+    transform: rotate(-10deg);
+  }
+  40% {
+    transform: rotate(20deg);
+  }
+  60% {
+    transform: rotate(-7deg);
+  }
+  80%{
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
