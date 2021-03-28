@@ -58,12 +58,16 @@ p {
     transition: all 1s;
 }
 
-.dailyWrapper.expand {
-    flex-shrink: 0;
-    width: 100%;
+.dailyWrapper #clothes .col-6 p {
+    font-size: unset;
 }
 
-@media screen and (min-width: 500px) {
+.dailyWrapper.expand {
+    flex-shrink: 0;
+    width: 75%;
+}
+
+ @media screen and (min-width: 500px) {
     .dailyWrapper.expand {
         flex-shrink: 0;
         width: 50%;
@@ -75,7 +79,7 @@ p {
         flex-shrink: 0;
         width: 33%;
     }
-}
+}  
 
 .dailyWrapper.expand .dailySuggestions {
     font-size: inherit;
