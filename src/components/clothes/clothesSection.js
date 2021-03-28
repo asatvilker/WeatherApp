@@ -20,7 +20,7 @@ class Clothes extends Component {
                 <h1 id="clothesHead">Suggestion for the day</h1>
                 <Suggest hourly={this.props.hourly} celsius={this.props.celsius} rainSummary={this.props.minutely.summary} />
                 {/* a bootstrap layout component that breaks the layout up into responsive rows and columns */}
-                <div className="flip-card" onClick={() => this.setState({ isFlipped: !this.state.isFlipped })}>
+                <div className="flip-card ml-2 mr-2" onClick={() => this.setState({ isFlipped: !this.state.isFlipped })}>
                     <div className="flip-card-inner">
                         <div className={`flip-card-front z-depth-1 ${this.state.isFlipped ? "flipped" : ""}`}>
                             {this.props.hourly[0] && 
