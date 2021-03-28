@@ -4,7 +4,7 @@ import {getHourForecastClimaCell, getMinuteData, getMinuteDataMicrosoft, getDail
 import Overview from './components/DropDown/overview';
 import TopBar from './components/TopBar'
 import Daily from './components/daily/daily';
-import Clothes from './components/clothes/clothes';
+import Clothes from './components/clothes/clothesSection';
 import React, { Component } from "react";
 import Chart from "./components/Chart/Chart";
 

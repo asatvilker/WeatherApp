@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {MDBBtn, MDBCol, MDBCollapse, MDBContainer, MDBIcon, MDBRow} from "mdbreact";
 import WeatherIcon from "../weatherIcons.js";
+import "./Card.css";
 
 class Card extends Component {
     state = {
@@ -17,7 +18,6 @@ class Card extends Component {
                 <p>{this.props.condition}</p>
                 <p>{this.props.wind.speed.value.toFixed(1)}{this.props.wind.speed.unit}</p>
                 <h2 style={{fontWeight:"400"}}>{this.props.temp}&#176;{this.props.celsius ? "C" : "F"}</h2> {/*checks if in celcius or farenheight, displays appropriate symbol */}
-
             </MDBContainer>
 
         );

@@ -26,7 +26,7 @@ class Daily extends Component {
                             let day = days[data.time.getDay()]; //converting date to string
                             let temp = Math.round(data.temperature); //rounding temperature so easier to read
                             return (
-                                <Card time={day} temp={temp} icon={data.weatherIcon} condition={data.weatherDesc} celsius={this.props.celsius} wind={data.wind} kmh={this.props.kmh}/>
+                                    <Card time={day} temp={temp} icon={data.weatherIcon} condition={data.weatherDesc} celsius={this.props.celsius} wind={data.wind} kmh={this.props.kmh} onClick={(element) => element.target.scrollIntoView()}/>
                                 /*card element is reused for daily and hourly as they should look the same, only difference for each card is here we pass through the day not the hour */
                             )
                         })
