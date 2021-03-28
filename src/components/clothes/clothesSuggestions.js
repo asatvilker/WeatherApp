@@ -46,27 +46,27 @@ class ClothesGrid extends Component {
             }
         }
 
-        else //warm or hot AND NOT raining
+        else //warm or hot 
         {
-            if (Math.round(temp) >= 26) //hot and not raining
+            if (isRaining) // warm/mild or hot AND raining
             {
-                if (Math.round(temp) >= 26) // hot and raining
+                if (Math.round(temp) >= 26) // very hot and raining
                 {
                     this.setState({ selection: ["umbrella", "T-shirt", "shorts/skirt", "trainers"] })
                 }
-                else // warm and raining
+                else // warm/mild and raining
                 {
-                    if (Math.round(temp) >= 21) {
+                    if (Math.round(temp) >= 21) { //warm and raining
                         this.setState({ selection: ["raincoat", "T-shirt", "joggers", "trainers"] })
                     }
-                    else {
+                    else { //mild and raining
                         this.setState({ selection: ["raincoat", "hoodie", "joggers", "trainers"] })
                     }
 
                 }
             }
 
-            else //warm or hot AND NOT raining
+            else //warm/mild or hot AND NOT raining
             {
                 if (Math.round(temp) >= 26) //hot and not raining
                 {
@@ -80,9 +80,9 @@ class ClothesGrid extends Component {
                     }
 
                 }
-                else //warm and not raining
+                else // warm/mild and not raining
                 {
-                    if (Math.round(temp) >= 21) {
+                    if (Math.round(temp) >= 21) { // warm
                         if (hour >= 8 && hour < 19) //during the day
                         {
                             this.setState({ selection: ["T-shirt", "joggers", "cap"] })
@@ -93,7 +93,7 @@ class ClothesGrid extends Component {
                         }
 
                     }
-                    else {
+                    else { //mild
                         if (hour >= 8 && hour < 19) //during the day
                         {
                             this.setState({ selection: ["hoodie", "joggers", "cap"] })
