@@ -89,7 +89,7 @@ class AddressBar extends Component {
         return (
             <div>
                 {addOverlay()}
-                <div className="address-wrapper">
+                <div className={`address-wrapper ${this.state.focus ? "z-index-6" : ""}`}>
                     <div className="address-header-title" >
                         <BiSearch className="address-search-icon"/>
                         <input

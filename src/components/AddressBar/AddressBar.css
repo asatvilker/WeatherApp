@@ -15,6 +15,10 @@
   height: auto;
 }
 
+.z-index-6 {
+    z-index: 6;
+}
+
 .address-header-title {
   display: flex;
   height: 27px;

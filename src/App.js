@@ -97,12 +97,22 @@ class App extends Component {
         console.log(this.state.hourly);
     }
 
+    fetchMinute() {
+        
+    }
+
     componentDidMount(){//when components first loads it will fetch the weather data
-        this.fetchData();
+        // this.fetchData();
+        this.hourlyUpdate = setInterval(getHourDataMicrosoft(this.state, this.setSettings.bind(this)), 1000 * 60 * 60);
+        this.minutelyUpdate = setInterval(getMinuteDataMicrosoft(this.state, this.setSettings.bind(this)), 1000 * 60 * 5);
+        this.dailyUpdate = setInterval(getDailyDataMicrosoft(this.state, this.setSettings.bind(this)), 1000 * 60 * 60 * 24);
     }
 
     componentWillUnmount() {
         clearInterval(this.timerIntervalID);
+        clearInterval(this.hourlyUpdate);
+        clearInterval(this.minutelyUpdate);
+        clearInterval(this.dailyUpdate);
     }
 
     //Reuse existing method pls

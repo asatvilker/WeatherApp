@@ -146,11 +146,11 @@ function TimeChange(date) {
 function Birds() {
     return (
         <div className="bird-wrap">
-            <div className="birdA"></div>
-            <div className="birdB"></div>
-            <div className="birdC"></div>
-            <div className="birdD"></div>
-            <div className="birdE"></div>
+            <div className="bird birdA"></div>
+            <div className="bird birdB"></div>
+            <div className="bird birdC"></div>
+            <div className="bird birdD"></div>
+            <div className="bird birdE"></div>
         </div>
     );
 }

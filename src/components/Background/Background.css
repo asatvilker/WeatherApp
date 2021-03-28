@@ -177,66 +177,79 @@ body {
   height: 40%;
   position: fixed;
   left: 0;
-  filter: drop-shadow(0px 4px 60px rgba(0, 0, 0, 0.3));
 }
 
-.birdA,
-.birdB,
-.birdC,
-.birdD,
-.birdE {
-  background: black;
-  clip-path: polygon(
-    50% 100%,
-    75% 80%,
-    100% 75%,
-    75% 75%,
-    50% 95%,
-    25% 75%,
-    0 75%,
-    25% 80%
-  );
-  position: fixed;
-  animation: fly 3.5s infinite;
+.bird {
+  position: absolute;
+  display: none;
 }
 
 .birdA {
-  animation-delay: -1.5s;
-  height: 50px;
-  width: 89px;
-  top: 80%;
-  left: 70%;
+    display: block;
+    animation-delay: -1.5s;
+    transform: translate(40px, 45px) scale(2);
+    top: 80%;
+    left: 70%;
 }
 
 .birdB {
+    display: block;
   animation-delay: -2.7s;
-  height: 35px;
-  width: 69px;
+  transform: translate(35px, 30px) scale(1.4);
+  /* height: 35px;
+  width: 69px; */
   top: 85%;
   left: 10%;
 }
 
 .birdC {
+    display: block;
   animation-delay: -3.8s;
-  height: 25px;
-  width: 49px;
+  transform: translate(25px, 20px) scale(1);
+  /* height: 25px;
+  width: 49px; */
   top: 8%;
   left: 20%;
 }
 
-@keyframes fly {
-  50% {
-    clip-path: polygon(
-      50% 90%,
-      75% 80%,
-      100% 90%,
-      75% 75%,
-      50% 85%,
-      25% 75%,
-      0 90%,
-      25% 80%
-    );
-  }
+@keyframes flap-before {
+    50% {
+        transform: rotate(20deg) skew(-55deg);
+    }
+}
+
+@keyframes flap-after {
+    50% {
+        transform: rotate(-20deg) skew(55deg);
+    }
+}
+
+.bird::before{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 10px;
+    border-top: 2px solid black;
+    border-left: 1px solid black;
+    transform: rotate(30deg) skew(-55deg);
+    right: 5.5px;
+    animation: flap-before 3.5s infinite;
+    animation-delay: inherit;
+}
+
+.bird::after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 10px;
+    border-top: 2px solid black;
+    border-right: 1px solid black;
+    transform: rotate(-30deg) skew(55deg);
+    left: 5.5px;
+    animation: flap-after 3.5s infinite;
+    animation-delay: inherit;
 }
 
 @media screen and (max-height: 900px) {
@@ -247,8 +260,10 @@ body {
 
 @media screen and (min-width: 700px) {
   .birdD {
-    height: 35px;
-    width: 69px;
+    display: block;
+    transform: translate(35px, 30px) scale(1.4);
+    /* height: 35px;
+    width: 69px; */
     top: 50%;
     left: 45%;
   }
@@ -256,8 +271,10 @@ body {
 
 @media screen and (min-width: 400px) {
   .birdE {
-    height: 25px;
-    width: 43px;
+    display: block;
+    transform: translate(21px, 20px) scale(1);
+    /* height: 25px;
+    width: 43px; */
     left: 55%;
     top: 35%;
   }
