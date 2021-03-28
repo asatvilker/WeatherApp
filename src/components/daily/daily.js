@@ -8,7 +8,9 @@ import ClothesGrid from "../clothes/clothesSuggestions.js"
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 class DailyCard extends Component {
-    state = {}
+    state = {
+        expand: this.props.expand
+    }
 
     toggleExpand(element) {
         element.currentTarget.parentElement.scrollTo({left: element.currentTarget.offsetLeft, behavior: "smooth"});
@@ -26,7 +28,7 @@ class DailyCard extends Component {
                 <Card time={day} temp={temp} icon={data.weatherIcon} condition={data.weatherDesc} celsius={this.props.celsius} wind={data.wind} kmh={this.props.kmh}/>
                 <div className="dailySuggestions">
                     Suggestions
-                    <ClothesGrid temperature={data.temperature} celsius={this.props.celsius} weatherDesc={data.weatherDesc} time={data.time} size={"5em"} text/>
+                    <ClothesGrid temperature={data.temperature} celsius={this.props.celsius} weatherDesc={data.weatherDesc} time={data.time} size={"4em"} text/>
                 </div>
             </div>
         )
@@ -48,9 +50,9 @@ class Daily extends Component {
                 <p>Next 7 days</p> {/* shows forecast for 7 days*/}
                 <MDBContainer className="d-flex flex-row hourlyContainer" style={{ margin: "0 0" }}> {/*bootsrap classes to make display felex and as a row */}
                     {
-                        this.props.data.slice(1, 8).map(data => { /* loops through each element (each day) */
+                        this.props.data.slice(1, 8).map((data, index) => { /* loops through each element (each day) */
                             return (
-                                <DailyCard data={data} celsius={this.props.celsius}/>
+                                <DailyCard expand={!index} data={data} celsius={this.props.celsius}/>
                                 /*card element is reused for daily and hourly as they should look the same, only difference for each card is here we pass through the day not the hour */
                             )
                         })
