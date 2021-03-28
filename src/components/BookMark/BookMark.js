@@ -63,7 +63,7 @@ class BookMark extends Component{
                                             {Object.keys(this.props.data.bookmark)[i]}{/*when clicked will set the position with the address displayed*/} 
                                         </div>
                                         <div>
-                                            {/*this button will remove the bookmark by accessing the bookamrk function un app.js*/} 
+                                            {/*this button will remove the bookmark by accessing the bookmark function un app.js*/} 
                                         <button className="close" onClick={()=>this.removeBookmark(Object.keys(this.props.data.bookmark)[i])}><span className="sr-only">Close</span></button> 
                                         </div>
                                     </div>

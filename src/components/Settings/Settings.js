@@ -24,7 +24,7 @@ class Settings extends Component{
 
     }
 
-    //whenever a switch is switched, this method is called with respective fieldname, that willb then be passed in setSetting method in app.js
+    //whenever a switch is switched, this method is called with respective fieldname, that will then be passed in setSetting method in app.js
     handleChange = (event, fieldName)=> {
         this.props.setSettings({[fieldName]:!event.target.checked})
     }
