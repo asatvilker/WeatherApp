@@ -14,6 +14,12 @@ class Clothes extends Component {
         rated: false
     }
 
+    componentDidUpdate(nextProps, nextState) {
+        if (JSON.stringify(nextProps) !== JSON.stringify(this.props)) {
+            this.setState({rated: false});
+        }
+    }
+
     render() {
         return (
             <>
