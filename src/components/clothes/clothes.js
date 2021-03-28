@@ -8,20 +8,40 @@ import Chart from "../Chart/Chart";
 
 class Clothes extends Component {
 
-    state = {
-        selection: [], //where we will store the selection of clothese determined by the logic
-        rainOption: ["Drizzle", "Rain", "Light Rain", "Heavy Rain", "Flurries", "Light Snow", "Heavy Snow", "Freezing Drizzle", "Freezing Rain", "Light Freezing Rain", "Heavy Freezing Rain", "Showers", "Mostly cloudy w/ showers", "Partly sunny w/ showers", "Rain and snow", "Partly cloudy w/ showers"],
-        //these are the descriptions which correspond to rain so we will use these to determine if its raining as this part of our logic for deciding clothes
-        hourly: [],
-        isFlipped: false,
-    }
+state = {
+    selection:[], //where we will store the selection of clothese determined by the logic
+    rainOption:["Drizzle","Rain","Light Rain","Heavy Rain","Flurries","Light Snow","Heavy Snow","Freezing Drizzle","Freezing Rain","Light Freezing Rain","Heavy Freezing Rain","Showers", "Mostly cloudy w/ showers", "Partly sunny w/ showers", "Rain and snow", "Partly cloudy w/ showers"],
+    //these are the descriptions which correspond to rain so we will use these to determine if its raining as this part of our logic for deciding clothes
+    hourly:[],
+    isFlipped: false
+}
 
-    flip() {
+componentDidUpdate(prevProps){ //this function is called whenever props or state update and so when the api data if passed through, once it is all there, props will update and this function is invoked
+    if (this.props.hourly[0] !== prevProps.hourly[0]) //this ensure there is an actual change, otherwise we get stuck in an infinite loop and it crashes
+    {
+        const hour=this.props.hourly[0].time.getHours() //time of day
+        const temp=this.props.celsius? this.props.hourly[0].temperature: (this.props.hourly[0].temperature - 32)* 5/9 //ensures temperate is in celsius (consistent format which logic below is based on)
+        const isRaining= this.state.rainOption.includes(this.props.hourly[0].weatherDesc)
 
-    }
-
-    componentDidUpdate(prevProps) { //this function is called whenever props or state update and so when the api data if passed through, once it is all there, props will update and this function is invoked
-        if (this.props.hourly[0] !== prevProps.hourly[0]) //this ensure there is an actual change, otherwise we get stuck in an infinite loop and it crashes
+        if (Math.round(temp) <= 15 ) //checks if it is cold or very cold
+        {
+            if (Math.round(temp) <= 5 ) //very cold (doesnt check for rain as it will suggest a coat anyway)
+            {
+                this.setState({selection:["coat","hoodie","jeans","gloves"]})
+            }
+            else
+            {
+                if (isRaining ) // just cold but not very cold AND raining
+                {
+                    this.setState({selection:["raincoat","hoodie","jeans","trainers"]})
+                }
+                else //just cold AND not raining
+                {
+                    this.setState({selection:["hoodie","jeans","scarf"]})
+                }
+            }
+        }
+        else
         {
             const hour = this.props.hourly[0].time.getHours() //time of day
             const temp = this.props.celsius ? this.props.hourly[0].temperature : (this.props.hourly[0].temperature - 32) * 5 / 9 //ensures temperate is in celsius (consistent format which logic below is based on)
@@ -42,10 +62,13 @@ class Clothes extends Component {
                     {
                         this.setState({ selection: ["hoodie", "jeans", "scarf"] })
                     }
+
                 }
             }
-            else {
-                if (isRaining)//warm or hot (else of first statement) AND raining
+
+            else //warm or hot AND NOT raining
+            {
+                if ( Math.round(temp) >= 26 ) //hot and not raining
                 {
                     if (Math.round(temp) >= 26) // hot and raining
                     {
@@ -61,6 +84,8 @@ class Clothes extends Component {
                         }
 
                     }
+
+
                 }
 
                 else //warm or hot AND NOT raining
@@ -75,7 +100,6 @@ class Clothes extends Component {
                         {
                             this.setState({ selection: ["T-shirt", "shorts/skirt", "trainers"] })
                         }
-
 
                     }
                     else //warm and not raining
@@ -106,8 +130,8 @@ class Clothes extends Component {
                 }
             }
         }
-
     }
+}
 
     render() {
         return (

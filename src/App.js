@@ -27,6 +27,7 @@ class App extends Component {
             celsius:true,
             kmh: true,
             fullDay: true,
+            text: true
         }
     }
 
@@ -48,6 +49,9 @@ class App extends Component {
             }
             if (newSettings.hasOwnProperty("kmh")) {
                 this.convertWindToggle();
+            }
+            if (newSettings.hasOwnProperty("text")) {
+                console.log("text -> icon");
             }
         });
     }
@@ -71,7 +75,7 @@ class App extends Component {
             return (item)
         })});
     }
-    
+
     convertWindToggle() {
         this.setState({hourly: this.state.hourly.map((item) => {
             item.wind.speed.value = this.state.kmh ? item.wind.speed.value*1.609 : item.wind.speed.value/1.609;
@@ -94,8 +98,8 @@ class App extends Component {
             getMinuteData(this.state, this.setSettings.bind(this));
             getDayForecastClimaCell(this.state, this.setSettings.bind(this));
         } else if (this.state.api == "microsoft") {
-            getMinuteDataMicrosoft(this.state, this.setSettings.bind(this)); 
-            getHourDataMicrosoft(this.state, this.setSettings.bind(this)); 
+            getMinuteDataMicrosoft(this.state, this.setSettings.bind(this));
+            getHourDataMicrosoft(this.state, this.setSettings.bind(this));
             getDailyDataMicrosoft(this.state, this.setSettings.bind(this));
         }
         console.log(this.state.hourly);
@@ -129,14 +133,14 @@ class App extends Component {
         delete newBookmark[name]
         this.setState({Bookmark:newBookmark})
     }
-   
+
     render() {
         return (
             <div className="App"> {/* Here we display the different components and pass through the required api data */}
                 <Background date={this.state.date} timeZone={this.state.timezone}/>
                 <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)} removeBookmark={this.removeBookmark.bind(this)}/>
                 <Overview data={this.state} />
-                <Clothes hourly={this.state.hourly} minutely={this.state.minutely} timeZone={this.state.timezone} celsius={this.state.celsius}/>
+                <Clothes hourly={this.state.hourly} minutely={this.state.minutely} timeZone={this.state.timezone} celsius={this.state.celsius} text={this.state.text}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>{/* celcius will tell us what unit of measure we need to use */}
             </div>
         )
