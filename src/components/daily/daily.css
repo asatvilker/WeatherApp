@@ -56,12 +56,25 @@ p {
 .dailyWrapper .dailySuggestions {
     width: unset;
     transition: all 1s;
-
 }
 
 .dailyWrapper.expand {
     flex-shrink: 0;
     width: 75%;
+}
+
+@media screen and (min-width: 500px) {
+    .dailyWrapper.expand {
+        flex-shrink: 0;
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .dailyWrapper.expand {
+        flex-shrink: 0;
+        width: 33%;
+    }
 }
 
 .dailyWrapper.expand .dailySuggestions {
