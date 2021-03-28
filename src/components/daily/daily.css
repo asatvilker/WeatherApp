@@ -10,9 +10,15 @@ p {
 .dailyWrapper #clothes {
     padding: 0;
     margin: 0;
+    width: 0;
+    transition: all 1s;
 }
 
+
 .dailyWrapper {
+    width: unset;
+    flex-shrink: 0;
+    /* width: auto; */
     padding: 0;
     position: relative;
     display: flex;
@@ -21,17 +27,19 @@ p {
     border-radius: 0.5em;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
     margin: 0 5px;
-    transition: all 1s;
+    transition: all 1s ease-out;
     scroll-snap-align: start;
 }
 
 .dailyWrapper .dailySuggestions > *{
     height: unset;
     padding: 0;
+    transition: all 1s ease-out;
 }
 
 .dailyWrapper .dailySuggestions .row > *{
     padding: 0;
+    transition: all 1s ease-out;
 }
 
 .dailyWrapper .card {
@@ -39,6 +47,7 @@ p {
     box-shadow: unset !important;
     width: unset;
     scroll-snap-align: unset;
+    transition: all 1s ease-out;
 }
 
 .dailyWrapper .dailySuggestions {
@@ -46,15 +55,19 @@ p {
     flex-grow: 1;
     justify-content: center;
     padding: 0;
-    transition: all 1s;
     opacity: 0;
     padding: 0;
     display: flex;
     flex-direction: column; 
+    transition: all 1s ease-out;
 }
 
 .dailyWrapper .dailySuggestions {
     width: unset;
+    transition: all 1s ease-out;
+}
+
+.dailyWrapper #clothes.container {
     transition: all 1s;
 }
 
@@ -87,6 +100,10 @@ p {
     padding: unset;
 }
 
-.dailyWrapper:last-child {
-    visibility: hidden;
+.dailyWrapper.expand #clothes {
+    width: 100%;
 }
+
+/* .dailyWrapper:last-child {
+    visibility: hidden;
+} */
