@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { MDBBtn, MDBCol, MDBCollapse, MDBIcon, MDBRow } from "mdbreact";
+import {MDBCol, MDBCollapse, MDBIcon, MDBRow } from "mdbreact";
 import './dropdown.css'
 import Hourly from './hourly';
 import { MDBAnimation } from "mdbreact";
@@ -16,13 +16,13 @@ class Dropdown extends PureComponent {
                     </MDBCollapse>
                     <MDBCol className="line column" size="5"></MDBCol>{/*this if for design, create the lines either side of button */}
                     <MDBCol size="2"  className="d-flex p-0 justify-content-center column">
-                        <MDBAnimation type="bounce" count={2} reveal> {/*animation which makes button jump when loaded to get users attention */}
-                            <MDBBtn /*button for triggering open/close of dropdown */
+                        <MDBAnimation type="bounce" count={3} reveal> {/*animation which makes button jump when loaded to get users attention */}
+                            <button /*button for triggering open/close of dropdown */
                                 onClick={this.props.toggleCollapse()}
                                 style={{ marginBottom: "1rem", height: "45px", width:"45px"}}
-                                className="dropButton">
+                                className="dropButton btn-default">
                                 <MDBIcon icon="angle-down" id="dropIcon" size="2x" className={this.props.open ? "rotated" : ""}/> {/*icon to make button obvious in purpose*/}
-                            </MDBBtn>
+                            </button>
                         </MDBAnimation>
                     </MDBCol>
                     <MDBCol className="line column" size="5"></MDBCol>
