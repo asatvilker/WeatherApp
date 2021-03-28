@@ -23,9 +23,10 @@ hr {
 .menu {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     position: relative;
     padding: 1vh 1vh 0;
+    margin-top: 1vh;
 }
 .menu .button {
     display: flex;
@@ -56,4 +57,26 @@ hr {
 
 .flip-card-back.flipped{
     transform: rotateY(0deg);
+}
+
+.menuButton {
+    padding: 0.5vh 3vw;
+    border-radius: 1em;
+    background-color: #f8f9fa33;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuRate {
+    padding: 0.5vh 3vw;
+    border-radius: 1em;
+    background-color: #f8f9fa33;
+    border-width: 0px;
+    font-color: #212529;
+}
+
+
+.menuRate i, button {
+    color: #212529;
 }

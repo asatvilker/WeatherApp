@@ -13,7 +13,8 @@ state = {
     rainOption:["Drizzle","Rain","Light Rain","Heavy Rain","Flurries","Light Snow","Heavy Snow","Freezing Drizzle","Freezing Rain","Light Freezing Rain","Heavy Freezing Rain","Showers", "Mostly cloudy w/ showers", "Partly sunny w/ showers", "Rain and snow", "Partly cloudy w/ showers"],
     //these are the descriptions which correspond to rain so we will use these to determine if its raining as this part of our logic for deciding clothes
     hourly:[],
-    isFlipped: false
+    isFlipped: false,
+    rated: false
 }
 
 componentDidUpdate(prevProps){ //this function is called whenever props or state update and so when the api data if passed through, once it is all there, props will update and this function is invoked
@@ -163,20 +164,14 @@ componentDidUpdate(prevProps){ //this function is called whenever props or state
                     </div>
                 </div>
                 <div className="menu">
-                    <div className="menu button" onClick={() => this.setState({isFlipped: false})}>
+                    <div className="menuButton" onClick={() => this.setState({isFlipped: false})}>
                         Overview
                     </div>
-                    <div className="menu button" onClick={() => this.setState({isFlipped: true})}>
+                    <div className="menuButton" onClick={() => this.setState({isFlipped: true})}>
                         Rain-Chart
                     </div>
-                    <div className="menu rate">
-                        <div>
-                            Up
-                        </div>
-                        <div>
-                            Down
-                        </div>
-                    </div>
+                    <button class="menuRate ripple" onClick={() => this.setState({rated: !this.state.rated})}>{this.state.rated ? "Thanks!": "Rate?"}
+                    <MDBIcon far={!this.state.rated} fas={this.state.rated} icon="thumbs-up" className="ml-2" /></button>
                 </div>
                 <hr />
             </>
