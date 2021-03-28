@@ -129,7 +129,7 @@ class ClothesGrid extends Component {
                 {
                         this.state.selection.slice(2).map((item, x) => {//map function loops through our selection array (each item of clothing)
                             return (
-                                <MDBCol md={this.state.length % 2 ? "6" : "12"} size={this.props.size ? this.props.size : 6} className="flex-center flex-column">
+                                <MDBCol size={this.state.selection.length % 2 ===0 ? "6" : "12"} className="flex-center flex-column">
                                     <ClothesIcon iconName={codes[item]} size={this.props.size ? this.props.size : "6.4em"} /> {/*for each item we have a icon component, we first map the selection name to the icon name which is stored as in a json file */}
                                     {
                                         this.props.text && <p>{item.toUpperCase()}</p>/* displays the name of the clothing in capital letters */
