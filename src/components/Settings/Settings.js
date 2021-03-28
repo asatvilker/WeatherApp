@@ -82,7 +82,7 @@ class Settings extends Component{
                         </div>
 
                         <div className="switchContainer">
-                            <div id="iconToText">text</div> {/*initial value*/}
+                            <div id="iconToText">Text</div> {/*initial value*/}
                             <label className="switch">{/*Toggles settings button*/}
                                 <input type="checkbox" id="togBtn" checked={!this.props.data.text} onChange={(event) =>this.handleChange(event,"text")}/>
                                 <div className="slider round b">
@@ -90,7 +90,7 @@ class Settings extends Component{
                                     <span className="off">Text</span> {/*initial value*/}
                                 </div>
                             </label>
-                            <div>icon</div> {/*Toggled value*/}
+                            <div>Icon</div> {/*Toggled value*/}
                         </div>
 
                         <div>
