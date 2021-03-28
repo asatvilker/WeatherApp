@@ -45,7 +45,7 @@ p {
 .dailyWrapper .card {
     background-color: rgba(0, 0, 0, 0);
     box-shadow: unset !important;
-    width: unset;
+    width: 0;
     scroll-snap-align: unset;
     transition: all 1s ease-out;
 }
@@ -104,6 +104,6 @@ p {
     width: 100%;
 }
 
-/* .dailyWrapper:last-child {
+.dailyWrapper:last-child {
     visibility: hidden;
-} */
+}
