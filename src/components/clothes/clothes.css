@@ -8,76 +8,85 @@
 }
 
 #clothesHead {
-    font-size: 2vh;
-    margin-top: 5vh;
-    position: relative;
+  font-size: 2vh;
+  margin-top: 5vh;
+  position: relative;
 }
 
 #clothes .col-6 p {
-    font-size: 2.5vh;
+  font-size: 2.5vh;
 }
 
 hr {
-    position: relative;
+  position: relative;
 }
 
 .menu {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    position: relative;
-    padding: 1vh 1vh 0;
-    margin-top: 1vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  position: relative;
+  padding: 1vh 1vh 0;
+  margin-top: 1vh;
 }
 .menu .button {
-    display: flex;
+  display: flex;
 }
 
 .flip-card {
-    position: relative;
+  position: relative;
 }
 
 .flip-card-back {
-    position: absolute;
-    transform: rotateY(-180deg);
-    width: 100%;
-    top: 0;
-    height: 100%;
+  position: absolute;
+  transform: rotateY(-180deg);
+  width: 100%;
+  top: 0;
+  height: 100%;
 }
 
-.flip-card-front, .flip-card-back {
-    backface-visibility: hidden;
-    transition: all 0.6s;
-    border-radius: 1em;
-    background-color: #f8f9fa33;
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+  transition: all 0.6s;
+  border-radius: 1em;
+  background-color: #f8f9fa33;
 }
 
 .flip-card-front.flipped {
-    transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
 
-.flip-card-back.flipped{
-    transform: rotateY(0deg);
+.flip-card-back.flipped {
+  transform: rotateY(0deg);
+}
+
+.menuButton,
+.menuRate {
+  box-shadow: 2px 3px rgb(48, 40, 40);
+  padding: 0.5vh 3vw;
+  border-radius: 1em;
+  cursor: pointer;
+  background-color: #f8f9fa33;
+}
+
+.menuButton:active,
+.menuRate:active {
+  box-shadow: inset 0px 0px 5px #000000;
 }
 
 .menuButton {
-    padding: 0.5vh 3vw;
-    border-radius: 1em;
-    background-color: #f8f9fa33;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .menuRate {
-    padding: 0.5vh 3vw;
-    border-radius: 1em;
-    background-color: #f8f9fa33;
-    border-width: 0px;
-    font-color: #212529;
+  border-width: 0px;
+  color: #212529;
 }
 
-
-.menuRate i, button {
-    color: #212529;
+.menuRate i,
+button {
+  color: #212529;
 }
