@@ -8,6 +8,11 @@ class Card extends Component {
         condition:"",
     }
 
+    //Prevent card from rendering needlessly
+    shouldComponentUpdate(nextProps, nextState) {
+        return JSON.stringify(nextProps) !== JSON.stringify(this.props) || JSON.stringify(nextState) !== JSON.stringify(this.state)
+    }
+
     render() {
         return (
             <MDBContainer className="card"> {/*although the classname is hourly, this was because originally for just hourly but was then abstracted to reuse for daily too, thats why component was renamed to just card */}

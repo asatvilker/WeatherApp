@@ -73,7 +73,7 @@ p {
 }
 
 .dailyWrapper #clothes .col-6 p {
-    font-size: unset;
+    font-size: 0.66em;
 }
 
 .dailyWrapper.expand {
