@@ -1,6 +1,19 @@
+.chartWrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rainSummary {
+    padding: 5% 0%;
+}
+
 .rain-chart {
     width: 100%;
     position: relative;
+    flex-grow: 1;
 }
 
 .ct-line {

@@ -10,7 +10,7 @@ function ctTargetLineWithLabel(options) {
                 x: data.chartRect.x1 - options.offset,
                 y: projectedY + options.offset,
                 "text-anchor": "end",
-                fill: "#212529"
+                fill: "white"
             }, "chart-text").text(options.text)
             data.svg.elem("line", {
                 x1: data.chartRect.x1,
@@ -47,7 +47,7 @@ class RainChart extends Component {
         numberOfData: 0,
         options: {
             height: 175,
-            lineSmooth: Chartist.Interpolation.cardinal({
+            lineSmooth: Chartist.Interpolation.monotoneCubic({
                 tension: 1
             }),
             showArea: true,
@@ -134,7 +134,10 @@ class RainChart extends Component {
 
     render() {
         return (
-            <div class="rain_chart" ref={(ref) => this.chart = ref} style={{position: "relative"}}> </div>
+            <div class="chartWrapper">
+                <div class="rainSummary"><strong>{this.props.rainSummary ? this.props.rainSummary.longPhrase : "No data avaliable"}</strong></div>
+                <div class="rain-chart" ref={(ref) => this.chart = ref} style={{position: "relative"}}> </div>
+            </div>
         )
     }
 }

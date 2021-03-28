@@ -7,7 +7,6 @@ import Daily from './components/daily/daily';
 import Clothes from './components/clothes/clothes';
 import React, { Component } from "react";
 import Chart from "./components/Chart/Chart";
-import FlipCard from "./components/FlipCard/FlipCard";
 
 class App extends Component {
     constructor(props) {
@@ -137,7 +136,7 @@ class App extends Component {
                 <Background date={this.state.date} timeZone={this.state.timezone}/>
                 <TopBar setSettings={this.setSettings.bind(this)} data={this.state} setBookmark={this.setBookmark.bind(this)} removeBookmark={this.removeBookmark.bind(this)}/>
                 <Overview data={this.state} />
-                <Clothes hourly={this.state.hourly} timeZone={this.state.timezone} celsius={this.state.celsius}/>
+                <Clothes hourly={this.state.hourly} minutely={this.state.minutely} timeZone={this.state.timezone} celsius={this.state.celsius}/>
                 <Daily data={this.state.daily} celsius={this.state.celsius}/>{/* celcius will tell us what unit of measure we need to use */}
             </div>
         )

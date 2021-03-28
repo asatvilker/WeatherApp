@@ -185,6 +185,7 @@ export function getMinuteDataMicrosoft(sdata, callBack) {
                     }
                 )
             });
+            minutely["summary"] = result["summary"];
             if (callBack) {
                 callBack({minutely: minutely});
             }

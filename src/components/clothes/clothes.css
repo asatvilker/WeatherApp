@@ -1,7 +1,5 @@
 #clothes {
   margin-top: 2vh !important;
-  background-color: #f8f9fa33;
-  border-radius: 1em;
   padding-top: 4vh;
   padding-bottom: 4vh;
   margin-left: 1vh !important;
@@ -9,15 +7,53 @@
   position: relative;
 }
 #clothesHead {
-  font-size: 2vh;
-  margin-top: 5vh;
-  position: relative;
+    font-size: 2vh;
+    margin-top: 5vh;
+    position: relative;
 }
 
 #clothes .col-6 p {
-  font-size: 2.5vh;
+    font-size: 2.5vh;
 }
 
 hr {
-  position: relative;
+    position: relative;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+    padding: 1vh 1vh 0;
+}
+.menu .button {
+    display: flex;
+}
+
+.flip-card {
+    position: relative;
+}
+
+.flip-card-back {
+    position: absolute;
+    transform: rotateY(-180deg);
+    width: 100%;
+    top: 0;
+    height: 100%;
+}
+
+.flip-card-front, .flip-card-back {
+    backface-visibility: hidden;
+    transition: all 0.6s;
+    border-radius: 1em;
+    background-color: #f8f9fa33;
+}
+
+.flip-card-front.flipped {
+    transform: rotateY(-180deg);
+}
+
+.flip-card-back.flipped{
+    transform: rotateY(0deg);
 }
