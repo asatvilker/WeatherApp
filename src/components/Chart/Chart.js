@@ -92,7 +92,7 @@ class RainChart extends Component {
                 height: 200
             }],
             ["screen and (min-width: 1000px)", {
-                height: 300,
+                height: 250,
                 chartPadding: {
                     left: 30
                 }

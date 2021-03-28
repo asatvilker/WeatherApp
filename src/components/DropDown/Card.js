@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import {MDBBtn, MDBCol, MDBCollapse, MDBContainer, MDBIcon, MDBRow} from "mdbreact";
 import WeatherIcon from "../weatherIcons.js";
-import "./Card.css";
-
 class Card extends Component {
     state = {
         hour:"",
