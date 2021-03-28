@@ -1,7 +1,7 @@
-#main { 
-  border-radius: 0.5em;
-  font-size: 2vh;
-  position: relative;
+#main {
+    border-radius: 0.5em;
+    font-size: 2vh;
+    position: relative;
 }
 
 #text {
@@ -10,29 +10,29 @@
   text-align: center;
 }
 
-#text strong{
-  font-weight: 600;
+#text strong {
+    font-weight: 600;
 }
 hr {
-  border-color: white;
-  border-width: 1.55px;
+    border-color: white;
+    border-width: 1.55px;
 }
 
 #swap {
-  float: left;
+    float: left;
 }
 
 #flip {
-  background-color: transparent;
-  border-color: transparent;
+    background-color: transparent;
+    border-color: transparent;
 }
 
 #flip {
-  padding: 0rem 2rem;
-  transition: all 0.3s;
-  cursor: pointer;
+    padding: 0 2rem;
+    transition: all 0.3s;
+    cursor: pointer;
 }
 
 #flip:active {
-  transform: scale(0.65);
+    transform: scale(0.65);
 }

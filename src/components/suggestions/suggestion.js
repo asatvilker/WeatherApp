@@ -55,7 +55,7 @@ class Suggest extends Component{
           {/* This displays the clothing suggestions, the state selection holds the suggestion based on tempreature */}
           {/* And addRain will suggest bring an umbrella if it's raining */}
           {/* the value text will not show the any suggestion if text has been toggled in settings */}
-          {this.props.text? <strong>{this.state.selection} {this.state.addRain}</strong>:""}
+        <strong>{this.state.selection} {this.state.addRain}</strong>
         </div>
       </div>
     )

@@ -1,129 +1,143 @@
-import React, { Component } from "react";
-import { Line } from "react-chartjs-2";
+import React, { Component, useContext } from "react";
+import Chartist from "chartist";
+import "./Chart.css";
 
+function ctTargetLineWithLabel(options) {
+    return function ctTargetLineWithLabel(chart) {
+        chart.on("created", function (data) {
+            let projectedY = data.chartRect.height() - data.axisY.projectValue(options.value, 0) + data.chartRect.y2;
+            data.svg.elem("text", {
+                x: data.chartRect.x1 - options.offset,
+                y: projectedY + options.offset,
+                "text-anchor": "end",
+                fill: "white"
+            }, "chart-text").text(options.text)
+            data.svg.elem("line", {
+                x1: data.chartRect.x1,
+                x2: data.chartRect.x2,
+                y1: projectedY,
+                y2: projectedY
+            }, options.className, true)
+        });
+    };
+};
 
-function sleep (time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
+function drawUp(options) {
+    return function drawUp(chart) {
+        chart.on('draw', function (data) {
+            if (data.type === 'line' || data.type === 'area') {
+                data.element.animate({
+                    d: {
+                        begin: 2000 * data.index,
+                        dur: 2000,
+                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.y1).stringify(),
+                        to: data.path.clone().stringify(),
+                        easing: Chartist.Svg.Easing.easeOutQuint
+                    }
+                });
+            }
+        });
+    }
 }
 
+const numberOfData = 24;
 
-class RainChart extends React.Component {
-    constructor(props) {
-        super(props);
-        this.chartRef = React.createRef();
-        this.state = {
-            dataLine: {
-                labels: this.props.data.map((item, i) => {
-                    return i+1
-                }),
-                datasets: [
-                    {
-                        label: "Rain",
-                        fill: true,
-                        lineTension: 0.3,
-                        backgroundColor: "rgba(122, 190, 237)",
-                        borderColor: "rgb(122, 190, 237)",
-                        borderCapStyle: "butt",
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: "miter",
-                        pointRadius: 0,
-                        data: this.props.data.map((item) => {
-                            if (item <= 2.5) {
-                                return item/2.5;
-                            } else if (item <= 7.6) {
-                                return 1 + (item-2.5)/5.1
-                            } else if (item <= 50) {
-                                return 2 + (item-7.6)/(50-7.6)
-                            } else {
-                                return 3;
-                            }
-                        })
+class RainChart extends Component {
+    state = {
+        numberOfData: 0,
+        options: {
+            height: 175,
+            lineSmooth: Chartist.Interpolation.monotoneCubic({
+                tension: 1
+            }),
+            showArea: true,
+            fullWidth: true,
+            showPoints: true,
+            axisY: {
+                type: Chartist.FixedScaleAxis,
+                low: 0,
+                high: 70,
+                divisor: 16,
+                ticks: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70],
+                showLabel: false,
+            },
+            axisX: {
+                showLabel: true,
+                referenceValue: 5,
+                labelInterpolationFnc: function (value, i) {
+                    if (i == 0) {
+                        return "Now";
+                    } else if (i % (numberOfData / 8) == 0 && i != numberOfData) {
+                        if (i*5 >= 60) {
+                            // return new Date(new Date().getTime() + i*5*60000).toLocaleTimeString().slice(0, -3); 
+                            return (i*5) / 60 + "hr"
+                        } else {
+                            // return new Date(new Date().getTime() + i*5*60000).toLocaleTimeString().slice(0, -3); 
+                            return (i*5) + "m"
+                        }
+                    } else {
+                        return null
                     }
-                ]
-            }
-        }
-    }
-
-    areArraysEqual(a, b) {
-        if (a.length != b.length) {
-            return false;
-        } else {
-            for (let i = 0; i < a.length; i++) {
-                if (a[i] !== b[i]) {
-                    return false;
                 }
-            }
-        }
-        return true;
+            },
+            plugins: [
+                drawUp(),
+                ctTargetLineWithLabel({ value: 20, text: "Light", offset: 5, className: "chart-light" }),
+                ctTargetLineWithLabel({ value: 35, text: "Medium", offset: 5, className: "chart-medium" }),
+                ctTargetLineWithLabel({ value: 50, text: "Heavy", offset: 5, className: "chart-heavy" }),
+            ]
+        },
+        responsiveOptions: [
+            ["screen and (min-width: 400px)", {
+                height: 200
+            }],
+            ["screen and (min-width: 1000px)", {
+                height: 300,
+                chartPadding: {
+                    left: 30
+                }
+            }]
+        ]
+    };
+
+    componentDidMount() {
+        this.updateChart(this.props.data);
     }
 
     componentDidUpdate() {
-        console.log("CHART: VALUES: ", this.props.data, this.chartRef.chartInstance.data.datasets[0].data)
-        if (!(this.areArraysEqual(this.props.data, this.chartRef.chartInstance.data.datasets[0].data))) {
-            console.log("CHART (BEFORE): ",this.props.data, this.chartRef.chartInstance.data.datasets[0].data);
-            this.chartRef.chartInstance.data.datasets[0].data = this.props.data.map((item) => {
-                if (item <= 2.5) {
-                    return item/2.5;
-                } else if (item <= 7.6) {
-                    return 1 + (item-2.5)/5.1
-                } else if (item <= 50) {
-                    return 2 + (item-7.6)/(50-7.6)
-                } else {
-                    return 3;
-                }
-            });
-            this.chartRef.chartInstance.update();
-            console.log("CHART (AFTER): ",this.props.data, this.chartRef.chartInstance.data.datasets[0].data);
-            this.chartRef.chartInstance.update();
-        }
+        this.setState({numberOfData: this.props.data.length});
+        this.updateChart(this.props.data);
     }
 
-    componentDidMount() {
-        this.chartRef.chartInstance.update();
+    shouldComponentUpdate(nextProps, nextState) {
+        return JSON.stringify(nextProps) != JSON.stringify(this.props) || JSON.stringify(nextState) != JSON.stringify(this.state);
+    }
+
+    forceUpdate() {
+        console.log(this.chartist);
+    }
+
+    updateChart(incomingData) {
+        console.log("CHART: UPDATING", incomingData);
+        let data = {
+            labels: incomingData.map((item, i) => {
+                return (i)
+            }),
+            series: [incomingData]
+        }
+        if (this.chartist) {
+            this.chartist.update(data, this.state.options, this.state.responsiveOptions);
+        } else {
+            this.chartist = new Chartist.Line(this.chart, data, this.state.options, this.state.responsiveOptions);
+        }
     }
 
     render() {
         return (
-            <Line ref={(reference) => this.chartRef = reference} data={this.state.dataLine} options={{
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            fontColor: "black",
-                            max: 3,
-                            min: 0, 
-                            stepSize: 1,
-                            callback: function(value, index, values) {
-                                switch(index) {
-                                    case 3:
-                                        return ""
-                                    case 2:
-                                        return "Light"
-                                    case 1:
-                                        return "Medium"
-                                    case 0:
-                                        return "Heavy"
-                                }
-                            }
-                        }
-                    }],
-                    xAxes: [{
-                        ticks: {
-                            display: true
-                        },
-                        gridLines: {
-                            color: "rgba(0, 0, 0, 0)",
-                        }
-                    }]
-                },
-                legend: {
-                    display: false
-                },
-                tooltips: {
-                    enabled: false
-                },
-                responsive: true
-            }}/>
+            <div class="chartWrapper">
+                <div class="rainSummary"><strong>{this.props.rainSummary ? this.props.rainSummary.longPhrase : "No data avaliable"}</strong></div>
+                <div class="rain-chart" ref={(ref) => this.chart = ref} style={{position: "relative"}}> </div>
+            </div>
         )
     }
 }

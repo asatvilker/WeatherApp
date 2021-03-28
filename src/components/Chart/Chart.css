@@ -1,0 +1,81 @@
+.chartWrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rainSummary {
+    padding: 5% 0%;
+}
+
+.rain-chart {
+    width: 100%;
+    position: relative;
+    flex-grow: 1;
+}
+
+.ct-line {
+    fill: none;
+    shape-rendering: crispEdges;
+}
+
+.chart-heavy, .chart-medium, .chart-light {
+    stroke: white;
+    shape-rendering: crispEdges;
+}
+
+.ct-line {
+    stroke: rgb(34, 152, 199);
+}
+
+.ct-area {
+    fill: rgba(34, 152, 199, 0.5)
+}
+
+.ct-grids line {
+    stroke: rgba(51, 57, 63, 0.8);
+    shape-rendering: crispEdges;
+}
+
+.ct-vertical ~ .ct-vertical {
+    stroke: none;
+}
+
+.ct-horizontal ~ .ct-horizontal {
+    stroke: rgba(51, 57, 63, 0.2);
+}
+
+
+.ct-horizontal {
+    shape-rendering: crispEdges;
+}
+
+.ct-label {
+    display: inline-block;
+    width: auto !important;
+    transform: translateX(-50%);
+    font-size: 0.66em;
+    font-weight: 550;
+
+}
+
+.chart-text {
+    font-size: 0.66em;
+    font-weight: 500;
+}
+
+@media screen and (min-width: 400px) {
+    .ct-label, .chart-text {
+        font-size: 0.75em;
+        font-weight: 400;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .ct-label, .chart-text {
+        font-size: 1em;
+        font-weight: 400;
+    }
+}

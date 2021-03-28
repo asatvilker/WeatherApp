@@ -185,6 +185,7 @@ export function getMinuteDataMicrosoft(sdata, callBack) {
                     }
                 )
             });
+            minutely["summary"] = result["summary"];
             if (callBack) {
                 callBack({minutely: minutely});
             }
@@ -265,6 +266,7 @@ export function getOpenWeatherData(sdata, callBack) {
                 {
                     time: convertTZ(new Date(item.dt*1000), sdata.timezone),
                     temperature: item.temp,
+                    temperatureApparent: item.feels_like,
                     weatherIcon: openWeatherIconMap[item.weather[0].id],
                     weatherDesc: item.weather[0].description,
                     wind:wind
