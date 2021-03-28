@@ -1,63 +1,5 @@
-const weatherCode = {
-    0: "Unknown",
-    1000: "Clear",
-    1001: "Cloudy",
-    1100: "Mostly Clear",
-    1101: "Partly Cloudy",
-    1102: "Mostly Cloudy",
-    2000: "Fog",
-    2100: "Light Fog",
-    3000: "Light Wind",
-    3001: "Wind",
-    3002: "Strong Wind",
-    4000: "Drizzle",
-    4001: "Rain",
-    4200: "Light Rain",
-    4201: "Heavy Rain",
-    5000: "Snow",
-    5001: "Flurries",
-    5100: "Light Snow",
-    5101: "Heavy Snow",
-    6000: "Freezing Drizzle",
-    6001: "Freezing Rain",
-    6200: "Light Freezing Rain",
-    6201: "Heavy Freezing Rain",
-    7000: "Ice Pellets",
-    7101: "Heavy Ice Pellets",
-    7102: "Light Ice Pellets",
-    8000: "Thunderstorm"
-}
 
-const climacellIconMap = {
-    0: "WiAlien",
-    1000: "WiDaySunny",
-    1001: "WiCloudy",
-    1100: "WiDayCloudy",
-    1101: "WiDayCloudy",
-    1102: "WiDayCloudyHigh",
-    2000: "WiFog",
-    2100: "WiHaze",
-    3000: "WiDayLightWind",
-    3001: "WiDayWindy",
-    3002: "WiWindy",
-    4000: "WiShowers",
-    4001: "WiRain",
-    4200: "WiRainMix",
-    4201: "WiRain",
-    5000: "WiSnow",
-    5001: "WiSnow",
-    5100: "WiSnow",
-    5101: "WiSnow",
-    6000: "WiSleet",
-    6001: "WiSleet",
-    6200: "WiSleet",
-    6201: "WiSleet",
-    7000: "WiHail",
-    7101: "WiHail",
-    7102: "WiHail",
-    8000: "WiThunderstorm"
-}
-
+// Mapping for when the openweather API is used to get the corresponding icon
 const openWeatherIconMap = {
     200: "WiThunderstorm",
     201: "WiThunderstorm",
@@ -122,6 +64,7 @@ const openWeatherIconMap = {
     957: "WiStrongWind"
 }
 
+// Mapping for when the microsoft API is used to get the corresponding icon
 const microsoftIconMap = {
     1: "WiDaySunny",
     2: "WiDaySunnyOvercast",
@@ -166,18 +109,32 @@ const microsoftIconMap = {
 
 }
 
+/*
+
+    All API calls are rebounded of my server (maxjay.co.uk), this allows for API calls to be cached for a set amount of time
+    reducing the amount of calls are done for testing purposes.
+
+    All server responses with the correct url format recieve *a* response, however tests are needed to make sure 
+
+*/
+
+
+// Function that given a date (object or string) and a timezone, it returns a Date object of the date given in the specified timezone, allowing
+// for the same Date object manipulation as standard
 export function convertTZ(date, tzString) {
     return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
 }
 
+// Function to get MinuteData from Microsoft
+// This is used to provide data for the rainchart
 export function getMinuteDataMicrosoft(sdata, callBack) {
     let url = "https://maxjay.dev/weatherAppData.php?api=microsoft&type=minutely&lat=" + sdata.lat + "&lon=" + sdata.lon;
-    console.log("API: URL: ", url);
-    return fetch(url)
-    .then(res => res.json())
-    .then(result => {
-        if (result["intervals"]) {
-            let minutely = result["intervals"].map(function(item) {
+    console.log("API: URL: ", url);                                                                                 // Console Log the url for debugging
+    return fetch(url)                                                                                               // Return the promise to be used if needed
+    .then(res => res.json())                                                                                        // The response from the server is always in json format 
+    .then(result => {                                                                                                   
+        if (result["intervals"]) {                                                                                  // If the response has the data included
+            let minutely = result["intervals"].map(function(item) {                                                 // Map the data appropriately to be used later
                 return (
                     {
                         minute: item.minute,
@@ -185,91 +142,96 @@ export function getMinuteDataMicrosoft(sdata, callBack) {
                     }
                 )
             });
-            minutely["summary"] = result["summary"];
-            if (callBack) {
+            minutely["summary"] = result["summary"];                                                                // Include the summary as custom summaries are given for rain and theyre helpful
+            if (callBack) {                                                                                         // If callBack is defined, call it with the data that was recieved and mapped
                 callBack({minutely: minutely});
             }
         }
     });
 }
 
+// Function to get HourData from Microsoft
+// This is used to provide hourly data for the current day (and a bit more)
 export function getHourDataMicrosoft(sdata, callBack) {
     let url = "https://maxjay.dev/weatherAppData.php?api=microsoft&type=hourly&lat=" + sdata.lat + "&lon=" + sdata.lon;
-    console.log("API: URL: ", url);
-    return fetch(url)
-    .then(res => res.json())
+    console.log("API: URL: ", url);                                                                                 // Console log the url for debugging
+    return fetch(url)                                                                                               // Return the promise to be used if needed
+    .then(res => res.json())                                                                                        // The response from the server is always in json format
     .then(result => {
-        let hourly = result["forecasts"].slice(0, 29).map(function(item) {
-            
-            return (
-                {
-                    time: convertTZ(item.date, sdata.timezone),
-                    temperature: item.temperature.value,
-                    weatherIcon: microsoftIconMap[item.iconCode],
-                    weatherDesc: item.iconPhrase,
-                    wind:item.wind
-                }
-            )
-        });
-        if (callBack) {
-            callBack({hourly: hourly});
+        if (result["forecasts"]) {                                                                                  // If the response has the data included
+            let hourly = result["forecasts"].slice(0, 29).map(function(item) {                                      // Map the data appropriately to be used later
+                return (
+                    {
+                        time: convertTZ(item.date, sdata.timezone),                                                 // TimeZones are provided, convert the time given from the response to a Date object with correct TimeZones
+                        temperature: item.temperature.value,                                                    
+                        weatherIcon: microsoftIconMap[item.iconCode],                                               // Map the given icon to our internal icon
+                        weatherDesc: item.iconPhrase,
+                        wind:item.wind
+                    }
+                )
+            });
+            if (callBack) {                                                                                         
+                callBack({hourly: hourly});                                                                         // If callBack is defined, call it with the data that was recieved and mapped
+            }
         }
     });
 }
 
-export function getDailyDataMicrosoft(sdata, callBack) {
+// Function to get DailyData from Microsoft
+// This is used to provide daily data for the next week (and a bit more)
+export function getDailyDataMicrosoft(sdata, callBack) {                                    
     let url = "https://maxjay.dev/weatherAppData.php?api=microsoft&type=daily&lat=" + sdata.lat + "&lon=" + sdata.lon;
-    console.log("API: URL: ", url);
-    return fetch(url)
-    .then(res => res.json())
+    console.log("API: URL: ", url);                                                                                 // Console log the url for debugging
+    return fetch(url)                                                                                               // Return the promise to be used if needed
+    .then(res => res.json())                                                                                        // The response from the server is always in json format
     .then(result => {
-        let daily = result["forecasts"].map(function(item) {
-            return (
-                {
-                    time: convertTZ(item.date, sdata.timezone),
-                    temperature: (item.temperature.maximum.value + item.temperature.minimum.value) / 2,
-                    weatherIcon: microsoftIconMap[item.day.iconCode],
-                    weatherDesc: item.day.iconPhrase,
-                    wind:item.day.wind
-                }
-            )
-        });
-        if (callBack) {
-            callBack({daily: daily});
+        if (result["forecasts"]) {                                                                                  // If the response has the data included
+            let daily = result["forecasts"].map(function(item) {                                                    // Map the data appropriately to be used later
+                return (
+                    {
+                        time: convertTZ(item.date, sdata.timezone),                                                 // TimeZones are provided, convert the time given from the response to a Date object with correct TimeZones 
+                        temperature: (item.temperature.maximum.value + item.temperature.minimum.value) / 2,         // Average the temperature to get day temperature
+                        weatherIcon: microsoftIconMap[item.day.iconCode],                                           // Map the given icon to our internal icon
+                        weatherDesc: item.day.iconPhrase,
+                        wind:item.day.wind
+                    }
+                )
+            });
+            if (callBack) {                                                                                         // If callBack is defined, call it with the data that was recieved and mapped
+                callBack({daily: daily});
+            }
         }
     });
 }
 
+// Function to get Minutely, Daily and Hourly data from OpenWeath
 export function getOpenWeatherData(sdata, callBack) {
     let url = "https://maxjay.dev/weatherAppData.php?api=openweather&lat=" + sdata.lat + "&lon=" + sdata.lon;
-    return fetch(url)
-    .then(res => res.json())
+    return fetch(url)                                                                                              // Return the promise to be used if needed
+    .then(res => res.json())                                                                        
     .then(result => {
-        console.log("API: URL: ", url)
-        let daily = result["daily"].map(function(item) {
-            const wind ={speed:{value: item.wind_speed*3.6}} //same format as microsoft
-            
+        console.log("API: URL: ", url)                                                                             // Console log the url for debugging
+        let daily = result["daily"].map(function(item) {                                                           // Map the daily data provided by the server
             return (
                 {
-                    time: convertTZ(new Date(item.dt*1000), sdata.timezone),
+                    time: convertTZ(new Date(item.dt*1000), sdata.timezone),                                       // TimeZones are provided, convert the time given from the response to a Date object with correct TimeZones 
                     temperature: item.temp.day,
-                    weatherIcon: openWeatherIconMap[item.weather[0].id],
+                    weatherIcon: openWeatherIconMap[item.weather[0].id],                                           // Map the given icon to our internal icon
                     weatherDesc: item.weather[0].description,
-                    wind:wind
+                    wind: {speed:{value: item.wind_speed*3.6}}                                                     // Convert for formatting
                 }
             )
         });
-        let startTime = convertTZ(new Date(result["hourly"][0].dt * 1000), sdata.timezone)
-        let hourly = result["hourly"].slice(0, 29 - startTime.getHours()).map(function(item) {
-            const wind ={speed:{value: item.wind_speed*3.6}} //same format as microsoft
+        let startTime = convertTZ(new Date(result["hourly"][0].dt * 1000), sdata.timezone)                         // Get the start time for hourly data
+        let hourly = result["hourly"].slice(0, 29 - startTime.getHours()).map(function(item) {                     // Calculate how many hours are left in the day (+ 5) and map the item accordingly
             return (
                 {
-                    time: convertTZ(new Date(item.dt*1000), sdata.timezone),
+                    time: convertTZ(new Date(item.dt*1000), sdata.timezone),                                       // TimeZones are provided, convert the time given from the response to a Date object with correct TimeZones 
                     temperature: item.temp,
-                    temperatureApparent: item.feels_like,
-                    weatherIcon: openWeatherIconMap[item.weather[0].id],
+                    temperatureApparent: item.feels_like,                                                          
+                    weatherIcon: openWeatherIconMap[item.weather[0].id],                                           // Map the given icon to our internal icon
                     weatherDesc: item.weather[0].description,
-                    wind:wind
+                    wind: {speed:{value: item.wind_speed*3.6}}                                                     // Convert for formatting
                 }
             )
         });
@@ -281,117 +243,50 @@ export function getOpenWeatherData(sdata, callBack) {
                 }
             )
         });
-        console.log("API: FETCHING DATA (OPENWEATHER): ", daily, "\n\t\t\t\t  ", hourly, "\n\t\t\t\t  ", minutely);
+        console.log("API: FETCHING DATA (OPENWEATHER): ", daily, "\n\t\t\t\t  ", hourly, "\n\t\t\t\t  ", minutely); //Console log results for debugging
         if (callBack) {
             callBack({hourly: hourly, minutely: minutely, daily: daily});
         }
     });
 }
 
+
+// Function to suggest places based on what the user has currently entered
+// This uses Google Places API and based on their query, provides 5 locations with placeIds (googles internal system)
 export function placeSuggestions(sdata, callBack) {
     let url = "https://maxjay.dev/weatherAppData.php?input="+sdata;
-    return fetch(url)
+    return fetch(url)                                                                                             // Return the promise to be used if needed
     .then(res => res.json())
-    .then(result => {
-        let suggestions = result["predictions"].map(function(item, i) {
+    .then(result => {                                                                                   
+        console.log("API URL: ", url);                                                                            // Console log url for debugging
+        let suggestions = result["predictions"].map(function(item, i) {                                           // Map the results
             return (
                 {
-                    main: item.structured_formatting.main_text,
-                    secondary: item.structured_formatting.secondary_text,
-                    placeId: item.place_id
+                    main: item.structured_formatting.main_text,                                                   // Provide text to show to the user
+                    secondary: item.structured_formatting.secondary_text,                                         // Provide text to show to the user
+                    placeId: item.place_id                                                                        // PlaceId to be then used to get the lat/lon for that location
                 }
             )
         })
-        if (callBack) {
+        if (callBack) {                                                                                           // CallBack
             callBack({suggestions: suggestions})
         }
         return result["predictions"];
     });
 }
 
+
+// Function to get the lattitude and longitude of a place given a PlaceId that was recieved from the suggestion function above
+// This uses Google Place API and another to include the timezone for the returned lat and lon
 export function getGeoCoords(sdata, callBack) {
     let url = "https://maxjay.dev/weatherAppData.php?placeId=" + sdata;
     return fetch(url)
     .then(res => res.json())
     .then(result => {
-        let loc = result["results"][0]["geometry"]["location"];
-        if (callBack) {
-            //console.log(geoTz(loc.lat, loc.lng));
+        let loc = result["results"][0]["geometry"]["location"];                                                   // Grab the Location
+        if (callBack) {                                                                                           // CallBack a dictionary of the results
             callBack({lat: loc.lat, lon: loc.lng, address: result["results"][0]["formatted_address"], timezone: result["TimeZones"][0]["Id"]});
-            //callBack({lat: loc.lat, lon: loc.lng});
         }
         return loc;
-    });
-};
-
-export function getMinuteData(sdata, callBack) {
-    let url = "https://maxjay.dev/weatherAppData.php?api=climacell&type=rain&lat=" + sdata.lat + "&lon=" + sdata.lon;
-    return fetch(url)
-    .then(res => res.json())
-    .then(result => {
-        let rainData = result["data"]["timelines"][0]["intervals"].map(function(item, i) {
-            return (
-                {
-                    type: item.values.precipitationType,
-                    intensity: item.values.precipitationIntensity,
-                    probability: item.values.precipitationProbability,
-                    temperature: item.values.temperature,
-                    time: item.startTime,
-                    index: i
-                }
-            )
-        });
-        console.log("API: FETCHING RAIN (CLIMACELL): ", rainData);
-        if (callBack) {
-            callBack({minutely: rainData});
-        }
-        return rainData;
-    });
-}
-
-export function getDayForecastClimaCell(sdata, callBack) {
-    let url = "https://maxjay.dev/weatherAppData.php?api=climacell&type=forecast&lat=" + sdata.lat + "&lon=" + sdata.lon;
-    return fetch(url)
-    .then(res => res.json())
-    .then(result => {
-        let forecast = result["data"]["timelines"][0]["intervals"].map(function(item, i) {
-            return ( 
-                {
-                    time: new Date(item.startTime),
-                    temperature: item.values.temperature,
-                    weatherIcon: climacellIconMap[item.values.weatherCode],
-                    weatherDesc: weatherCode[item.values.weatherCode]
-                }
-            )
-        })
-        console.log("API: FETCHING DAY FORECAST (CLIMACELL): ", forecast);
-        if (callBack) {
-            callBack({daily: forecast});
-        }
-        return forecast;
-    });
-}
-
-export function getHourForecastClimaCell(sdata, callBack) {
-    let url = "https://maxjay.dev/weatherAppData.php?api=climacell&type=now&lat=" + sdata.lat + "&lon=" + sdata.lon;
-    console.log(url);
-    return fetch(url)
-    .then(res => res.json())
-    .then(result => {
-        let forecast = result["data"]["timelines"][0]["intervals"].map(function(item, i) {
-            return ( 
-                {
-                    time: new Date(item.startTime),
-                    temperature: item.values.temperature,
-                    weatherIcon: climacellIconMap[item.values.weatherCode],
-                    weatherDesc: weatherCode[item.values.weatherCode]
-                }
-            )
-        });
-        console.log("API: FETCHING HOUR FORECAST (CLIMACELL): ", forecast);
-        if (callBack) {
-            callBack({hourly: forecast});
-        }
-        return forecast;
     });
 }

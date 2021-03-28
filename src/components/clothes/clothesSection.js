@@ -10,13 +10,13 @@ import ClothesGrid from "./clothesSuggestions.js";
 class Clothes extends Component {
 
     state = {
-        isFlipped: false,
-        rated: false
+        isFlipped: false, // for the flip card effect
+        rated: false //  if the clothing suggestion was rated
     }
 
-    componentDidUpdate(nextProps, nextState) {
-        if (JSON.stringify(nextProps) !== JSON.stringify(this.props)) {
-            this.setState({rated: false});
+    componentDidUpdate(nextProps) {
+        if (JSON.stringify(nextProps) !== JSON.stringify(this.props)) { //if the props have changed, i.e the hourly has changed and new clothes have been suggested
+            this.setState({rated: false}); // reset the rated button
         }
     }
 
@@ -25,16 +25,20 @@ class Clothes extends Component {
             <>
                 <h1 id="clothesHead">Suggestion for the day</h1>
                 <Suggest hourly={this.props.hourly} celsius={this.props.celsius} rainSummary={this.props.minutely.summary} />
-                {/* a bootstrap layout component that breaks the layout up into responsive rows and columns */}
-                <div className="flip-card ml-2 mr-2" onClick={() => this.setState({ isFlipped: !this.state.isFlipped })}>
+                {/* a bootstrap layout component that breaks the layout up into responsive rows and columns 
+                
+                    Flip on click by adding a button
+                */}
+                <div className="flip-card ml-2 mr-2" onClick={() => this.setState({ isFlipped: !this.state.isFlipped })}> 
                     <div className="flip-card-inner">
                         <div className={`flip-card-front z-depth-1 ${this.state.isFlipped ? "flipped" : ""}`}>
+                            {/* For the front of the flip card we have the clothes suggesteds */}
                             {this.props.hourly[0] && 
                                 <ClothesGrid temperature={this.props.hourly[0].temperature} celsius={this.props.celsius} weatherDesc={this.props.hourly[0].weatherDesc} time={this.props.hourly[0].time} text={this.props.text} expand={true}/>
                             }
                         </div>
                         <div className={`flip-card-back z-depth-1 ${this.state.isFlipped ? "flipped" : ""}`}>
-                            
+                            {/* Add the graph to the back of the clipk card */}
                             <Chart rainSummary={this.props.minutely.summary} data={this.props.minutely.map((item) => {
                                 return (item.intensity)
                             })} />

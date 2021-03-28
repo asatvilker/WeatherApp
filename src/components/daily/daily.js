@@ -16,12 +16,11 @@ class DailyCard extends Component {
         expand: this.props.expand
     }
 
+    // When the card is clicked, toggle its expand
     toggleExpand(element) {
         this.setState({ expand: !this.state.expand });
-        // await timeout(1000);
-        // element.currentTarget.parentElement.scrollTo({left: element.currentTarget.offsetLeft, behavior: "smooth"});
-        // element.currentTarget.parentElement.scrollTo({left: element.currentTarget.offsetLeft, behavior: "smooth"});
-        // element.target.parent.scrollTo(element.target.clientX, element.target.clientY);
+        // Scroll to view
+        element.currentTarget.parentElement.scrollTo({left: element.currentTarget.offsetLeft, behavior: "smooth"});
     }
 
     render() {
@@ -29,6 +28,7 @@ class DailyCard extends Component {
         let day = days[data.time.getDay()]; //converting date to string
         let temp = Math.round(data.temperature); //rounding temperature so easier to read
         return (
+            // This is a card that display information for a day, when tapped, it expands and shows you clothing suggestions for that day
         <div class={`container dailyWrapper ${this.state.expand ? "expand" : ""}`} onClick={(e) => this.toggleExpand(e)}>
                 <Card time={day} temp={temp} icon={data.weatherIcon} condition={data.weatherDesc} celsius={this.props.celsius} wind={data.wind} kmh={this.props.kmh}/>
                 <div className="dailySuggestions">

@@ -4,6 +4,10 @@ import "./AddressBar.css";
 import {BiSearch} from "react-icons/bi"
 import { MDBIcon } from 'mdbreact';
 
+
+// AddressBar component that allows you to search for a location, get auto complete suggestions and 
+// set the applications lat and longitude
+
 class AddressBar extends Component {
 
     constructor(props) {
@@ -19,19 +23,25 @@ class AddressBar extends Component {
         this.click = this.click.bind(this);
     }
 
+    // On key change, take the input value and request auto complete suggestions
+    // Throw in a callback that then sets the return to the state
     createSuggestions(e) {
         placeSuggestions(e.target.value, this.callBack.bind(this));
     }
 
+    // CallBack function to allow for the state to be set outside of the component
     callBack(settings){
         this.setState(settings)
     }
 
+    // When a suggestion is clicked, remove the focus and get the latitude and longitude based on the placeId of the suggestion
+    // Pass in a callback from the parent that sets the applications global settings
     click(placeId) {
         getGeoCoords(placeId, this.props.setSettings)
         this.removeFocus();
     }
 
+    // Create a focus when the address bar is clicked
     setFocus(e) {
         this.setState({
             focus: true,
@@ -39,6 +49,7 @@ class AddressBar extends Component {
         });
     }
 
+    // Remove the focus created
     removeFocus() {
         this.setState({
             focus: false,
@@ -46,6 +57,7 @@ class AddressBar extends Component {
         });
     }
     
+    // For the bookmark feature, this function creates a bookmark and adds it
     newBookmark=()=>{
         document.getElementById('emptyStar').style.animation = 'turnR 2s ease';
         document.getElementById('bookmark-button').style.animation = 'bounce 2s ease';
@@ -53,6 +65,7 @@ class AddressBar extends Component {
         console.log("saved positions", this.props.data.bookmark[this.props.data.address])
     }
 
+    // Remove the bookmark if its already there
     alreadyBookmark=()=>{
         document.getElementById('filledStar').style.animation = 'turnL 2s ease';
         document.getElementById('bookmark-button').style.animation = 'shake 2s ease';
@@ -93,10 +106,10 @@ class AddressBar extends Component {
                             <MDBIcon  icon="star" className="address-search-icon-star" id="filledStar" onClick={this.alreadyBookmark}  />: 
                             <MDBIcon  far icon="star" id="emptyStar" className="address-search-icon-star" onClick={this.newBookmark} />}
                     </div>
-                    {isListOpen && (
+                    {isListOpen && (                                                                                                        // is the address bar is open, render the following
                         <div className="address-suggestions">
-                        {suggestions.map((item, i) => (
-                            <div className="address-suggestions-item" key={item.placeId} onClick={() => this.click(item.placeId)}>
+                        {suggestions.map((item, i) => (                                                                                     // render each suggestions // make the suggestions clickable and allocate them their placeid
+                            <div className="address-suggestions-item" key={item.placeId} onClick={() => this.click(item.placeId)}>          
                                 <div className="address-text-body">
                                     <div className="address-suggestions-main">
                                         {item.main}
@@ -106,7 +119,7 @@ class AddressBar extends Component {
                                     </div>
                                 </div>
                                 {i < suggestions.length - 1  && (
-                                    <div className="address-line"></div>
+                                    <div className="address-line"></div>                                                                    // Add dividors between suggestions, but not for the last one or before the first one
                                 )}
                             </div>
                         ))}

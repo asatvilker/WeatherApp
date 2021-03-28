@@ -99,9 +99,13 @@ input:focus {
   width: auto;
 }
 
+/* grey everything when focus */
+
 .greyed {
   color: #383840;
 }
+
+/* position the star accordingly */
 
 .address-search-icon-star {
   padding-left: 10px;
@@ -131,6 +135,8 @@ input:focus {
   }
 }
 
+/* animation for the star to turn */
+
 @keyframes turnL {
   0% {
     transform: rotate(0deg);
@@ -142,6 +148,8 @@ input:focus {
     transform-origin: 58% 50%;
   }
 }
+
+/* animation for the bookmark icon to bounce when adding a bookmark */
 
 @keyframes bounce {
   0% {
@@ -166,6 +174,8 @@ input:focus {
     transform: scale(1, 1) translateY(0);
   }
 }
+
+/* animation for the bookmark icon to shake when deleting */
 
 @keyframes shake {
   0% {

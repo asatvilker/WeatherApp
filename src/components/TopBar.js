@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import {getHourForecastClimaCell, getMinuteData, getDayForecastClimaCell } from '../WeatherAPI'
 import { MDBIcon } from 'mdbreact';
 import BookMark from "./BookMark/BookMark";
 import Settings from './Settings/Settings';
