@@ -61,7 +61,7 @@ p {
 
 .dailyWrapper.expand {
     flex-shrink: 0;
-    width: 75%;
+    width: 100%;
 }
 
 .dailyWrapper.expand .dailySuggestions {
