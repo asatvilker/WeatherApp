@@ -118,7 +118,7 @@ class ClothesGrid extends Component {
                                 <MDBCol size={this.props.expand?"6":"0"} className="flex-center flex-column">
                                     <ClothesIcon iconName={codes[item]} size={this.props.size ? this.props.size : "6em"} /> {/*for each item we have a icon component, we first map the selection name to the icon name which is stored as in a json file */}
                                     {
-                                        this.props.text && <p>{item.toUpperCase()}</p>/* displays the name of the clothing in capital letters */
+                                        this.props.text && <p style={{"font-size": "2.5vh"}}>{item.toUpperCase()}</p>/* displays the name of the clothing in capital letters */
                                     }
                                 </MDBCol>
                             )
@@ -132,7 +132,7 @@ class ClothesGrid extends Component {
                                 <MDBCol size={this.state.selection.length % 2 ? "12" : "6"} className="flex-center flex-column">
                                     <ClothesIcon iconName={codes[item]} size={this.props.size ? this.props.size : "6.4em"} /> {/*for each item we have a icon component, we first map the selection name to the icon name which is stored as in a json file */}
                                     {
-                                        this.props.text && <p>{item.toUpperCase()}</p>/* displays the name of the clothing in capital letters */
+                                        this.props.text && <p style={{"font-size": "2.5vh"}}>{item.toUpperCase()}</p>/* displays the name of the clothing in capital letters */
                                     }
                                 </MDBCol>
                             )
