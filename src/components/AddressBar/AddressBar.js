@@ -72,6 +72,13 @@ class AddressBar extends Component {
         this.props.removeBookmark(this.props.data.address)//removes bookmark by passing the address name to app.js method
     }
 
+    // If the user presses enter, select the first suggestion to be used
+    selectSuggestion(e) {
+        if (e.key === "Enter" && this.state.suggestions.length) {
+            this.click(this.state.suggestions[0].placeId);
+        }
+    }
+
     render() {
         const {focus, suggestions, isListOpen } = this.state;
         const bookmarked_check = this.props.data.bookmark[this.props.data.address];
@@ -100,6 +107,7 @@ class AddressBar extends Component {
                             className={focus ? "": "greyed"} 
                             style={{fontFamily: 'Sen'}}
                             onChange={this.createSuggestions}
+                            onKeyDown={(e) => this.selectSuggestion(e)}
                             />
                         {/*if there is not an existing address in the bookmark dictinary in app.js, display empty start, otherwise full star*/}
                         {bookmarked_check !== undefined?
