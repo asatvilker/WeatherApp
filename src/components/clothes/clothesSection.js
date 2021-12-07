@@ -16,7 +16,7 @@ class Clothes extends Component {
 
     componentDidUpdate(nextProps) {
         if (JSON.stringify(nextProps) !== JSON.stringify(this.props)) { //if the props have changed, i.e the hourly has changed and new clothes have been suggested
-            this.setState({rated: false}); // reset the rated button
+            this.setState({ rated: false }); // reset the rated button
         }
     }
 
@@ -29,30 +29,19 @@ class Clothes extends Component {
                 
                     Flip on click by adding a button
                 */}
-                <div className="flip-card ml-2 mr-2" onClick={() => this.setState({ isFlipped: !this.state.isFlipped })}> 
-                    <div className="flip-card-inner">
-                        <div className={`flip-card-front z-depth-1 ${this.state.isFlipped ? "flipped" : ""}`}>
-                            {/* For the front of the flip card we have the clothes suggesteds */}
-                            {this.props.hourly[0] && 
-                                <ClothesGrid temperature={this.props.hourly[0].temperature} celsius={this.props.celsius} weatherDesc={this.props.hourly[0].weatherDesc} time={this.props.hourly[0].time} text={this.props.text} expand={true}/>
-                            }
-                        </div>
-                        <div className={`flip-card-back z-depth-1 ${this.state.isFlipped ? "flipped" : ""}`}>
-                            {/* Add the graph to the back of the clipk card */}
-                            <Chart rainSummary={this.props.minutely.summary} data={this.props.minutely.map((item) => {
-                                return (item.intensity)
-                            })} />
-                        
-                        </div>
+
+                <div className="flip-card-inner">
+                    <div className={`flip-card-front z-depth-1 ${this.state.isFlipped ? "flipped" : ""}`}>
+                        {/* For the front of the flip card we have the clothes suggesteds */}
+                        {this.props.hourly[0] &&
+                            <ClothesGrid temperature={this.props.hourly[0].temperature} celsius={this.props.celsius} weatherDesc={this.props.hourly[0].weatherDesc} time={this.props.hourly[0].time} text={this.props.text} expand={true} />
+                        }
                     </div>
+
                 </div>
+
                 <div className="menu">
-                    <div className="menuButton" onClick={() => this.setState({ isFlipped: false })}>
-                        Overview
-                    </div>
-                    <div className="menuButton" onClick={() => this.setState({ isFlipped: true })}>
-                        Rain-Chart
-                    </div>
+
                     <button class="menuRate ripple" onClick={() => this.setState({ rated: !this.state.rated })}>{this.state.rated ? "Thanks!" : "Like?"}
                         <MDBIcon far={!this.state.rated} fas={this.state.rated} icon="thumbs-up" className="ml-2" /></button>
                 </div>

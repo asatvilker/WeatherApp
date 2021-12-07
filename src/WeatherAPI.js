@@ -206,7 +206,7 @@ export function getDailyDataMicrosoft(sdata, callBack) {
 
 // Function to get Minutely, Daily and Hourly data from OpenWeath
 export function getOpenWeatherData(sdata, callBack) {
-    let url = "https://maxjay.dev/weatherAppData.php?api=openweather&lat=" + sdata.lat + "&lon=" + sdata.lon;
+    let url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + sdata.lat + "&lon=" + sdata.lon + "&appid=c695a976493f941bab51ff0dd89acb52" + "&units=metric";
     return fetch(url)                                                                                              // Return the promise to be used if needed
     .then(res => res.json())                                                                        
     .then(result => {

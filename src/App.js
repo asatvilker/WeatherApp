@@ -18,7 +18,7 @@ class App extends Component {
             hourly: [],
             minutely: [],
             daily: [],
-            api: "microsoft",
+            api: "openweather",
             timezone: "Europe/London", //set default timezone to london
             data: "",
             //settings variables
@@ -102,10 +102,10 @@ class App extends Component {
     }
 
     componentDidMount(){//when components first loads it will fetch the weather data
-        // this.fetchData();
-        this.hourlyUpdate = setInterval(getHourDataMicrosoft(this.state, this.setSettings.bind(this)), 1000 * 60 * 60);
-        this.minutelyUpdate = setInterval(getMinuteDataMicrosoft(this.state, this.setSettings.bind(this)), 1000 * 60 * 5);
-        this.dailyUpdate = setInterval(getDailyDataMicrosoft(this.state, this.setSettings.bind(this)), 1000 * 60 * 60 * 24);
+        this.fetchData();
+        //this.hourlyUpdate = setInterval(getHourDataMicrosoft(this.state, this.setSettings.bind(this)), 1000 * 60 * 60);
+       // this.minutelyUpdate = setInterval(getMinuteDataMicrosoft(this.state, this.setSettings.bind(this)), 1000 * 60 * 5);
+        //this.dailyUpdate = setInterval(getDailyDataMicrosoft(this.state, this.setSettings.bind(this)), 1000 * 60 * 60 * 24);
     }
 
     componentWillUnmount() {
