@@ -279,13 +279,15 @@ export function placeSuggestions(sdata, callBack) {
 // Function to get the lattitude and longitude of a place given a PlaceId that was recieved from the suggestion function above
 // This uses Google Place API and another to include the timezone for the returned lat and lon
 export function getGeoCoords(sdata, callBack) {
-    let url = "https://maxjay.dev/weatherAppData.php?placeId=" + sdata;
+    //this is an example url, after setting up places api, you have to run this server side due to cors restrictions
+    let url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + sdata + "&fields=geometry&%2Cformatted_address&key=YOUR_API_KEY"
+  
     return fetch(url)
     .then(res => res.json())
     .then(result => {
-        let loc = result["results"][0]["geometry"]["location"];                                                   // Grab the Location
+        let loc = result["result"]["geometry"]["location"];                                                   // Grab the Location
         if (callBack) {                                                                                           // CallBack a dictionary of the results
-            callBack({lat: loc.lat, lon: loc.lng, address: result["results"][0]["formatted_address"], timezone: result["TimeZones"][0]["Id"]});
+            callBack({lat: loc.lat, lon: loc.lng, address: result["result"]["formatted_address"], timezone: '"Europe/London"'});
         }
         return loc;
     });
