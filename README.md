@@ -1,4 +1,4 @@
-# React Weather App with Clothing Suggestions
+# React Weather App with Clothing Suggestions 🌤🧢
 
 This weather app was made by me and 3 others at university as part of a GUI design module. The weather app doesn't just tell you the weather, it gives you helpful suggestions for those conditions. The focus was more on the design and user experience, hence we focused on creating a stylish, easy to use and intuitive design.
 
