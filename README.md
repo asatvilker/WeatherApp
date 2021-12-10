@@ -6,6 +6,8 @@ To have a look at our work, please feel free to run it using the instructions be
 
 **Note:** The weather api used is a basic free one so the api key is already set. Unfortunately the Google places api had to be turned off. To be able to change location you will need a google places api set up. More guidance is [here](https://developers.google.com/maps/documentation/places/web-service/details), however this is not essential to run the application, the functionality will just be limited (not being able to change location)
 
+# Demo:
+If you just want to see the application quickly, you can do so [here](https://weathersmart.netlify.app/)
 
 # Running the application
 
